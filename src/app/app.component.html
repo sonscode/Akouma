@@ -1,0 +1,59 @@
+
+<div class="img containerr" style="margin: 0 0em 0 0em;">
+  <div class="inner-container">
+    <div class="top">
+      <div class="top-next">
+        <h1>{{title}}<span style="color:  rgb(204, 31, 0);">&dot;</span></h1>
+      </div>
+
+      <div class="top-next" id="top1">
+        <img src="../assets/images/Alocation.png" alt="">
+        <h4 style="color: #fff; font-weight: lighter;">&nbsp;&nbsp;34 street name, yaounde, Cameroon</h4>
+      </div>
+
+      <div class="top-next" id="top2">
+        <img src="../assets/images/Atime.png" alt="">
+        <h4 style="color: #fff; font-weight: lighter;">&nbsp;&nbsp;Monday - Friday 8:00AM - 3:30PM</h4>
+      </div>
+      
+      <div class="top-next">
+        <h2 class="regBtns" *ngIf="!this.authService.loggedIn()" routerLink="/register" routerLinkActive="top-active-link">Signup</h2>&nbsp;&nbsp;&nbsp;
+        <h2 class="regBtns" *ngIf="!this.authService.loggedIn()" routerLink="/login" routerLinkActive="top-active-link">Login</h2>
+        <h2 class="regBtns" *ngIf="this.authService.loggedIn()" (click)="logout()" routerLinkActive="top-active-link">Logout</h2>
+      </div>
+    </div>
+
+    <nav>
+      <div id="intend">
+        <a routerLink="/home" routerLinkActive="active-link" class="nav-link">Home</a>
+        <a routerLink="/about" routerLinkActive="active-link" class="nav-link">About</a>
+        <a routerLink="/marks" routerLinkActive="active-link" class="nav-link">Marks</a>
+        <!-- <a routerLink="/gallery" routerLinkActive="active-link" class="nav-link">Gallery</a> -->
+        <!-- <a routerLink="/blog" routerLinkActive="active-link" class="nav-link">Blog</a> -->
+        <a routerLink="/contact" routerLinkActive="active-link" class="nav-link">Contact</a>
+      </div>
+      <div id="extend">
+        <a href="https://twitter.com/akouma" class="nav-link-ex"><img src="../assets/images/Atwitter.png" alt=""
+            title="Akouma twitter"></a>
+        <a href="https://facebook.com/akouma" class="nav-link-ex"><img src="../assets/images/Afacebook.png" alt=""
+            title="Akouma facebook"></a>
+        <a href="https://linkedin.com/akouma" class="nav-link-ex"><img src="../assets/images/Alinkedin.png" alt=""
+            title="Akouma linkedin"></a>
+      </div>
+    </nav>
+    <!-- end of header setup -->
+    <!-- <br/>
+    <br/>
+    <br/> -->
+    <router-outlet></router-outlet>
+    <br/>
+    <br/>
+    <br/>
+
+
+  </div>
+</div>
+
+<!-- ***************************** footer starts here ********************************-->
+
+<!-- *****end of footer***** -->
