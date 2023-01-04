@@ -9,8 +9,8 @@ export class MarksApiService {
 
   constructor(private http: HttpClient, private router: Router) { }
 
-private homeUrl = "http://localhost:8080/api/home";
-private marksUrl = "http://localhost:8080/api/marks";
+private homeUrl = "https://express-users-7hku.onrender.com/api/home";
+private marksUrl = "https://express-users-7hku.onrender.com/api/marks";
 
 getMarksfromApi(){
   return this.http.get<any>(this.marksUrl)
