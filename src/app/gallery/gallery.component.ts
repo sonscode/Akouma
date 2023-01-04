@@ -74,9 +74,14 @@ export class GalleryComponent implements OnInit {
   // dataNameSource!: MatTableDataSource<studentData>
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
-
   @ViewChild(MatPaginator) paginator12!: MatPaginator;
+  @ViewChild(MatPaginator) paginator13!: MatPaginator;
+  @ViewChild(MatPaginator) paginator14!: MatPaginator;
+  @ViewChild(MatPaginator) paginator15!: MatPaginator;
+  @ViewChild(MatPaginator) paginator16!: MatPaginator;
+
+
+  @ViewChild(MatSort) sort!:     MatSort;
   @ViewChild(MatSort) sort12!: MatSort;
   @ViewChild(MatSort) sort13!: MatSort;
   @ViewChild(MatSort) sort14!: MatSort;
@@ -95,7 +100,6 @@ export class GalleryComponent implements OnInit {
     this.getAllMarks15();
     this.getAllMarks16();
   }
-
 
 
   openDialog() {
@@ -151,7 +155,7 @@ export class GalleryComponent implements OnInit {
       .subscribe({
         next: (res) => {
           this.dataSource12 = new MatTableDataSource(res);
-          // this.dataSource12.paginator = this.paginator12;
+          this.dataSource12.paginator = this.paginator12;
           this.dataSource12.sort = this.sort12;
           this.getMarkList2 = res;
 
@@ -168,7 +172,7 @@ export class GalleryComponent implements OnInit {
       .subscribe({
         next: (res) => {
           this.dataSource13 = new MatTableDataSource(res);
-          // this.dataSource12.paginator = this.paginator12;
+          this.dataSource13.paginator = this.paginator13;
           this.dataSource13.sort = this.sort13;
           this.getMarkList3 = res;
           // console.log(res);
@@ -184,7 +188,7 @@ export class GalleryComponent implements OnInit {
       .subscribe({
         next: (res) => {
           this.dataSource14 = new MatTableDataSource(res);
-          // this.dataSource12.paginator = this.paginator12;
+          this.dataSource14.paginator = this.paginator14;
           this.dataSource14.sort = this.sort14;
           this.getMarkList4 = res;
 
@@ -201,7 +205,7 @@ export class GalleryComponent implements OnInit {
       .subscribe({
         next: (res) => {
           this.dataSource15 = new MatTableDataSource(res);
-          // this.dataSource12.paginator = this.paginator12;
+          this.dataSource15.paginator = this.paginator15;
           this.dataSource15.sort = this.sort15;
           this.getMarkList5 = res;
 
@@ -218,7 +222,7 @@ export class GalleryComponent implements OnInit {
       .subscribe({
         next: (res) => {
           this.dataSource16 = new MatTableDataSource(res);
-          // this.dataSource12.paginator = this.paginator12;
+          this.dataSource16.paginator = this.paginator16;
           this.dataSource16.sort = this.sort16;
           this.getMarkList6 = res;
 
