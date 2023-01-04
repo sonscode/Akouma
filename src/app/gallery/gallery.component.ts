@@ -8,7 +8,6 @@ import { MatSort } from '@angular/material/sort';
 
 export interface studentData {
   name: string;
-
 }
 
 @Component({
@@ -50,17 +49,6 @@ export class GalleryComponent implements OnInit {
     'name17',
     'name18',
     'name19',
-    'name20',
-    'name21',
-    'name22',
-    'name23',
-    'name24',
-    'name25',
-    'name26',
-    'name27',
-    'name28',
-    'name29',
-    'name30',
     'actions'
   ];
 
