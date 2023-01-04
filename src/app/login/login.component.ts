@@ -31,6 +31,7 @@ login(){
       this.router.navigate(['/marks']);
     },
     error: (err: any) => {
+      alert("Login: Something went wrong!")
       console.log(err)
     }
   })

@@ -49,6 +49,7 @@ export class RegisterComponent implements OnInit {
           this.router.navigate(['/marks'])
         },
         error: (err: any) => {
+      alert("Register: Something went wrong!")
           console.log(err)
         }
       })
