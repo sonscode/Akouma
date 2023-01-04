@@ -86,7 +86,7 @@ input:hover{
 
 .searchbar input{
     background: none;
-    width: 500px;
+    width: 400px;
     color: indigo;
 }
 .searchbar input:hover{
@@ -113,7 +113,7 @@ input:hover{
 }
 
 .totals{
-    width: 145em;
+    width: 94em;
     color: green;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
@@ -131,10 +131,6 @@ input:hover{
     text-align: center;
 }
 
-/* #fist{
-    margin-left: 0;
-} */
-
 .td-cell{
     text-align: center;
     /* padding: 0 0 0 .7em; */
@@ -143,10 +139,16 @@ input:hover{
 .tr-cell{
     border-bottom: 1px solid white;
     border-right: 1px solid white;
+    /* margin-left: 8em; */
 
 }
 
+.tr-cell .fist, .tr-cell .fist2{
+    padding-left: 1.88em;
+}
+
 .tr-cell td{
+    padding: .8em;
     border-right: 1px solid white;
     border-left: 1px solid white;
 }
