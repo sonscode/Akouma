@@ -45,7 +45,7 @@ export class ContactComponent implements OnInit {
    var DE = this._contactService.enroll(this.userModel)
       .subscribe({
         next: (data: any) => { console.log('success!', data) , this.submitted = true},
-        error: (error: any) => { console.log("Nothing to show here"), this.errorMsg = error.statusText, this.submitted = false }
+        error: (error: any) => { console.log("Error: Nothing to show here"), this.errorMsg = error.statusText, this.submitted = false }
       });
       return this.submitted;
       
