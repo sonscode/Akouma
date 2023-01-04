@@ -69,18 +69,18 @@ export class DialogComponent implements OnInit {
       name16: ['', Validators.nullValidator],
       name17: ['', Validators.nullValidator],
       name18: ['', Validators.nullValidator],
-      name19: ['', Validators.nullValidator],
-      name20: ['', Validators.nullValidator],
-      name21: ['', Validators.nullValidator],
-      name22: ['', Validators.nullValidator],
-      name23: ['', Validators.nullValidator],
-      name24: ['', Validators.nullValidator],
-      name25: ['', Validators.nullValidator],
-      name26: ['', Validators.nullValidator],
-      name27: ['', Validators.nullValidator],
-      name28: ['', Validators.nullValidator],
-      name29: ['', Validators.nullValidator],
-      name30: ['', Validators.nullValidator]
+      name19: ['', Validators.nullValidator]
+      //,name20: ['', Validators.nullValidator],
+      // name21: ['', Validators.nullValidator],
+      // name22: ['', Validators.nullValidator],
+      // name23: ['', Validators.nullValidator],
+      // name24: ['', Validators.nullValidator],
+      // name25: ['', Validators.nullValidator],
+      // name26: ['', Validators.nullValidator],
+      // name27: ['', Validators.nullValidator],
+      // name28: ['', Validators.nullValidator],
+      // name29: ['', Validators.nullValidator],
+      // name30: ['', Validators.nullValidator]
     })
 
 
@@ -108,17 +108,17 @@ export class DialogComponent implements OnInit {
       this.markForm.controls['name17'].setValue(this.editData.name17);
       this.markForm.controls['name18'].setValue(this.editData.name18);
       this.markForm.controls['name19'].setValue(this.editData.name19);
-      this.markForm.controls['name20'].setValue(this.editData.name20);
-      this.markForm.controls['name21'].setValue(this.editData.name21);
-      this.markForm.controls['name22'].setValue(this.editData.name22);
-      this.markForm.controls['name23'].setValue(this.editData.name23);
-      this.markForm.controls['name24'].setValue(this.editData.name24);
-      this.markForm.controls['name25'].setValue(this.editData.name25);
-      this.markForm.controls['name26'].setValue(this.editData.name26);
-      this.markForm.controls['name27'].setValue(this.editData.name27);
-      this.markForm.controls['name28'].setValue(this.editData.name28);
-      this.markForm.controls['name29'].setValue(this.editData.name29);
-      this.markForm.controls['name30'].setValue(this.editData.name30);
+      // this.markForm.controls['name20'].setValue(this.editData.name20);
+      // this.markForm.controls['name21'].setValue(this.editData.name21);
+      // this.markForm.controls['name22'].setValue(this.editData.name22);
+      // this.markForm.controls['name23'].setValue(this.editData.name23);
+      // this.markForm.controls['name24'].setValue(this.editData.name24);
+      // this.markForm.controls['name25'].setValue(this.editData.name25);
+      // this.markForm.controls['name26'].setValue(this.editData.name26);
+      // this.markForm.controls['name27'].setValue(this.editData.name27);
+      // this.markForm.controls['name28'].setValue(this.editData.name28);
+      // this.markForm.controls['name29'].setValue(this.editData.name29);
+      // this.markForm.controls['name30'].setValue(this.editData.name30);
 
     }
 
