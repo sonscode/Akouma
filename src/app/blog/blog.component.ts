@@ -154,7 +154,7 @@ export class BlogComponent implements OnInit {
     if (confirm("Confirm delete")) {
       this.api.deleteMark2(id).subscribe({
         next: (res) => {
-          alert("Marks deleted successfully!")
+          
           this.listMarks();
         },
         error: () => {
@@ -169,7 +169,7 @@ export class BlogComponent implements OnInit {
 
       this.api.deleteMark22(id).subscribe({
         next: (res) => {
-          alert("Marks deleted successfully!")
+          
           this.listMarks2();
         },
         error: () => {
@@ -184,7 +184,7 @@ export class BlogComponent implements OnInit {
 
       this.api.deleteMark23(id).subscribe({
         next: (res) => {
-          alert("Marks deleted successfully!")
+          
           this.listMarks3();
         },
         error: () => {
@@ -199,7 +199,7 @@ export class BlogComponent implements OnInit {
 
       this.api.deleteMark24(id).subscribe({
         next: (res) => {
-          alert("Marks deleted successfully!")
+          
           this.listMarks4();
         },
         error: () => {
@@ -214,7 +214,7 @@ export class BlogComponent implements OnInit {
 
       this.api.deleteMark25(id).subscribe({
         next: (res) => {
-          alert("Marks deleted successfully!")
+          
           this.listMarks5();
         },
         error: () => {
@@ -230,7 +230,7 @@ export class BlogComponent implements OnInit {
 
       this.api.deleteMark26(id).subscribe({
         next: (res) => {
-          alert("Marks deleted successfully!")
+          
           this.listMarks6();
         },
         error: () => {

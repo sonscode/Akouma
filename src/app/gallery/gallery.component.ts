@@ -284,7 +284,7 @@ export class GalleryComponent implements OnInit {
     if (confirm("Confirm delete")) {
       this.api.deleteMark(id).subscribe({
         next: (res) => {
-          alert("Marks deleted successfully!")
+          
           this.getAllMarks();
         },
         error: () => {
@@ -299,7 +299,7 @@ export class GalleryComponent implements OnInit {
     if (confirm("Confirm delete")) {
       this.api.deleteMark12(id).subscribe({
         next: (res) => {
-          alert("Marks deleted successfully!")
+          
           this.getAllMarks12();
 
         },
@@ -315,7 +315,7 @@ export class GalleryComponent implements OnInit {
 
       this.api.deleteMark13(id).subscribe({
         next: (res) => {
-          alert("Marks deleted successfully!")
+          
           this.getAllMarks13();
 
         },
@@ -331,7 +331,7 @@ export class GalleryComponent implements OnInit {
 
       this.api.deleteMark14(id).subscribe({
         next: (res) => {
-          alert("Marks deleted successfully!")
+          
           this.getAllMarks14();
 
         },
@@ -347,7 +347,7 @@ export class GalleryComponent implements OnInit {
 
       this.api.deleteMark15(id).subscribe({
         next: (res) => {
-          alert("Marks deleted successfully!")
+          
           this.getAllMarks15();
         },
         error: () => {
@@ -363,7 +363,7 @@ export class GalleryComponent implements OnInit {
 
       this.api.deleteMark16(id).subscribe({
         next: (res) => {
-          alert("Marks deleted successfully!")
+          
           this.getAllMarks16();
         },
         error: () => {

@@ -155,7 +155,7 @@ export class Form4Component implements OnInit {
       if (confirm("Confirm delete")) {
         this.api.deleteMark4(id).subscribe({
           next: (res) => {
-            alert("Marks deleted successfully!")
+            
             this.listMarks();
           },
           error: () => {
@@ -170,7 +170,7 @@ export class Form4Component implements OnInit {
   
         this.api.deleteMark42(id).subscribe({
           next: (res) => {
-            alert("Marks deleted successfully!")
+            
             this.listMarks2();
           },
           error: () => {
@@ -185,7 +185,7 @@ export class Form4Component implements OnInit {
   
         this.api.deleteMark43(id).subscribe({
           next: (res) => {
-            alert("Marks deleted successfully!")
+            
             this.listMarks3();
           },
           error: () => {
@@ -200,7 +200,7 @@ export class Form4Component implements OnInit {
   
         this.api.deleteMark44(id).subscribe({
           next: (res) => {
-            alert("Marks deleted successfully!")
+            
             this.listMarks4();
           },
           error: () => {
@@ -215,7 +215,7 @@ export class Form4Component implements OnInit {
   
         this.api.deleteMark45(id).subscribe({
           next: (res) => {
-            alert("Marks deleted successfully!")
+            
             this.listMarks5();
           },
           error: () => {
@@ -231,7 +231,7 @@ export class Form4Component implements OnInit {
   
         this.api.deleteMark46(id).subscribe({
           next: (res) => {
-            alert("Marks deleted successfully!")
+            
             this.listMarks6();
           },
           error: () => {
