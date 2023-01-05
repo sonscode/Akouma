@@ -51,4 +51,8 @@ mat-form-field{
     mat-form-field{
         width: 31%;
     }
+    .coeff>.labcoef{
+        margin-left: 10%;
+    
+    }
 }
