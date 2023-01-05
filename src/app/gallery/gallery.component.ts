@@ -150,7 +150,7 @@ export class GalleryComponent implements OnInit {
           // console.log(res);
         },
         error: (err) => {
-          alert("Error while fetching marks!");
+          console.log("Error while fetching marks!");
         }
       })
   }
@@ -166,7 +166,7 @@ export class GalleryComponent implements OnInit {
           // console.log(res);
         },
         error: (err) => {
-          alert("Error while fetching marks!");
+          console.log("Error while fetching marks!");
         }
       })
   }
@@ -183,7 +183,7 @@ export class GalleryComponent implements OnInit {
           // console.log(res);
         },
         error: (err) => {
-          alert("Error while fetching marks!");
+          console.log("Error while fetching marks!");
         }
       })
   }
@@ -200,7 +200,7 @@ export class GalleryComponent implements OnInit {
           // console.log(res);
         },
         error: (err) => {
-          alert("Error while fetching marks!");
+          console.log("Error while fetching marks!");
         }
       })
   }
@@ -217,7 +217,7 @@ export class GalleryComponent implements OnInit {
           // console.log(res);
         },
         error: (err) => {
-          alert("Error while fetching marks!");
+          console.log("Error while fetching marks!");
         }
       })
   }

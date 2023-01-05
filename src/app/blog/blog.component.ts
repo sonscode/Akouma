@@ -87,7 +87,7 @@ export class BlogComponent implements OnInit {
         // alert((this.markList[9].subjectName))     
       },
       error: () => {
-        alert("Could not load marks!")
+        console.log("Could not load marks!")
       }
 
     })
@@ -98,10 +98,10 @@ export class BlogComponent implements OnInit {
       next: (res) => {
         this.getMarkList3 = res;
         // this.markList[9].subjectName
-        // alert((this.markList[9].subjectName))     
+        // console.log((this.markList[9].subjectName))     
       },
       error: () => {
-        alert("Could not load marks!")
+        console.log("Could not load marks!")
       }
 
     })
@@ -112,10 +112,10 @@ export class BlogComponent implements OnInit {
       next: (res) => {
         this.getMarkList4 = res;
         // this.markList[9].subjectName
-        // alert((this.markList[9].subjectName))     
+        // console.log((this.markList[9].subjectName))     
       },
       error: () => {
-        alert("Could not load marks!")
+        console.log("Could not load marks!")
       }
 
     })
@@ -126,10 +126,10 @@ export class BlogComponent implements OnInit {
       next: (res) => {
         this.getMarkList5 = res;
         // this.markList[9].subjectName
-        // alert((this.markList[9].subjectName))     
+        // console.log((this.markList[9].subjectName))     
       },
       error: () => {
-        alert("Could not load marks!")
+        console.log("Could not load marks!")
       }
 
     })
@@ -140,10 +140,10 @@ export class BlogComponent implements OnInit {
       next: (res) => {
         this.getMarkList6 = res;
         // this.markList[9].subjectName
-        // alert((this.markList[9].subjectName))     
+        // console.log((this.markList[9].subjectName))     
       },
       error: () => {
-        alert("Could not load marks!")
+        console.log("Could not load marks!")
       }
     })
   }
