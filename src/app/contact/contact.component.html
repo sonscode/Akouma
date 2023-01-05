@@ -1,10 +1,9 @@
 <br />
 <br />
-
 <br />
-<div class="container mb-5 w-50">
+<div class="cont containerr ">
 <Label ><h3 style="color: rgba(202, 43, 4, 0.719); font-family: cursive; vertical-align: top; margin: 0 auto; text-align: center; ">Send us a message!</h3></Label>
-
+<br>
     <div *ngIf = "submitted" class="alert alert-success">
         <h6 style="color: rgba(8, 168, 94, 0.788); font-weight: lighter; font-family:monospace;">Your message has been submitted! Thanks!</h6>
     </div>
@@ -12,7 +11,6 @@
         <h6 style="color: rgba(230, 46, 0, 0.89); font-weight: lighter; font-family:monospace;">{{errorMsg}}</h6>
     </div>
     <form (ngSubmit)= "onSubmit()"  #userForm="ngForm" novalidate>
-        <!-- *ngIf="!submitted" -->
         <div class="form-group">
             <label style="font-size: large; font-weight: lighter;" for="name">Name</label>
             <input type="text" required id="name" placeholder="Your full name" #name="ngModel" [class.is-invalid]="name.invalid && name.touched"
@@ -25,7 +23,7 @@
             <input type="email" #email="ngModel" placeholder="example@gmail.com" [class.is-invalid]="email.invalid && email.touched" required
                 [class.is-valid]="email.valid" name="email" id="email" class="form-control" [(ngModel)]="userModel.email">
             <small [class.d-none] = "email.valid || email.untouched" style="color: rgb(17, 112, 255);">email is required</small>
-           
+
         </div>
 
         <div class="form-group">
@@ -62,4 +60,14 @@
  <br/>
  <br/>
  <br/>
-<app-footer></app-footer>
+ <br/>
+ <br/>
+ <br/>
+ <br/>
+ <br/>
+ <br/>
+ <br/>
+ <br/>
+ <br/>
+ <br/>
+<app-footer ></app-footer>

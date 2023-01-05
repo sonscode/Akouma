@@ -99,10 +99,8 @@ const routes: Routes = [
           { path: 'sport', component: Component }
 
         ]
-      },
+      }
 
-      { path: 'contact', component: ContactComponent },
-      { path: 'phy', component: GalleryComponent }
     ]
   },
   // {path: 'blog', component: BlogComponent},

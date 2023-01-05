@@ -92,7 +92,7 @@ export class GalleryComponent implements OnInit {
 
   openDialog() {
     this.dialog.open(DialogComponent, {
-      width: "85%", height: "85%"
+      width: "100%", height: "95%"
     }).afterClosed().subscribe(val => {
       if (val === 'save') {
         this.getAllMarks();

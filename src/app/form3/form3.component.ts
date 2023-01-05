@@ -35,7 +35,7 @@ export class Form3Component implements OnInit {
 
   openDialog() {
     this.dialog.open(Dialog3Component, {
-      width: "85%", height: "95%"
+      width: "100%", height: "85%"
     }).afterClosed().subscribe(val => {
       if (val === 'save') {
         this.listMarks();

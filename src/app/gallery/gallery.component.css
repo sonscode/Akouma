@@ -81,7 +81,7 @@ input:hover{
     /* margin-left: 10%; */
     margin: 0 auto;
     margin-top: -4%;
-    width: 400px;
+    width: 200px;
 }
 
 .searchbar input{
@@ -94,9 +94,13 @@ input:hover{
 
 }
 
-.container{
+.no-scroll{
     margin-left: 0em;
     overflow-x: scroll;
+}
+#navbar > .container > div{
+    border-right: 1px solid white;
+
 }
 /* .mat-elevation-z8{
     margin-left: -20%;
@@ -170,3 +174,9 @@ thead > tr{
     width: 0%;
 } */
 
+
+@media only screen and (max-width: 800px){
+    .upperClass{
+        display: block;
+    }
+}

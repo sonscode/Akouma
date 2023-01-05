@@ -1,9 +1,10 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
-.container{
+.containerr{
     background: rgba(214, 214, 214, 0.411);
     height: 58vh;
-    width: 30%;
+    width: 55%;
     border-radius: 7px;
+    margin: 0 auto;
 }
 
 *{
@@ -15,5 +16,14 @@
 input, textarea{
     color: rgba(182, 37, 11, 0.795);
     opacity: .6;
+}
+
+@media only screen and (max-width: 800px){
+    .containerr{
+        background: none;
+        width: 90%;
+        height: 50vh;
+
+    }
 }
 

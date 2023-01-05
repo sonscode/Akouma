@@ -114,4 +114,19 @@
     position: absolute;
   }
 
-/* *******************footer style here ******************** */
+/* *******************Media screen style here ******************** */
+
+@media only screen and (max-width : 800px){
+#extend{
+  display: none;
+}
+
+#intend{
+  margin: 0 auto;
+  overflow: hidden;
+}
+#top1, #top2{
+  display: none;
+}
+
+}

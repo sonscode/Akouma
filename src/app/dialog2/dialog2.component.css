@@ -37,6 +37,18 @@ mat-form-field{
 }
 
 .coeff>.labcoef{
-    margin-left: 30%;
+    margin-left: 53%;
 
+
+}
+
+
+@media only screen  and (max-width: 800px){
+    .dact button{
+        width: 40%;
+    }
+
+    mat-form-field{
+        width: 31%;
+    }
 }

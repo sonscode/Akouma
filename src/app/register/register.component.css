@@ -75,7 +75,7 @@ html body{
       cursor: pointer;
     }
   
-    @media only screen and (max-width: 768px){
+    @media only screen and (max-width: 800px){
        .signup{
         margin: 50px 0 30%;
         margin: 14%;
@@ -106,6 +106,9 @@ html body{
       p,h2{
         font-size: 100%;
         margin-top: 4%;
+      }
+      .row{
+        width: 100%;
       }
   
       

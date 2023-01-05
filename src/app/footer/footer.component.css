@@ -2,11 +2,12 @@
   .footer{
     margin:  auto;
     margin-top : 4cm;
+    margin-bottom: 0%;
     background-color: #333;
     opacity: .7;
     position: absolute;
-
-    min-width: 100%;
+    overflow: hidden;
+    width: 100%;
     /* min-height: 20px; */
     border-top-left-radius: 1.5em;
     border-top-right-radius: 1.5em;
@@ -88,3 +89,32 @@
     /* float: right; */
   }
 
+
+  /* media screen style here */
+
+  @media only screen and (max-width: 800px){
+    .cols{
+      display: block;
+    }
+.col1, .col2,.col3, .col1 p, .col2 p, .col3 p{
+    margin: 0em auto;
+    text-align: center;
+}
+.col2,.col3, .col4{
+  margin: 2em auto;
+}
+.col4{
+  display: block;
+}
+ .rest{
+  display: flex;
+}
+.footer{
+  width: 100%;
+  margin: auto;
+  overflow: hidden;
+  margin-bottom: 0%;
+
+}
+
+  }

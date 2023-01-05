@@ -64,8 +64,7 @@ input:hover{
     
 }
 
-.container{
-
+.no-scroll{
     overflow-x: scroll;
 }
 

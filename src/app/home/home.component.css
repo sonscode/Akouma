@@ -15,8 +15,8 @@
 
 .toAbout{
     color: #fff;
-    width: 12%;
-    height: 10vh;
+    width: 9em;
+    height: 7vh;
     padding: 1em .7em 1em .7em;
     border-top-left-radius: 25px;
     border-bottom-right-radius: 25px;
@@ -217,3 +217,24 @@
     transition-timing-function: ease-in-out;
 }
 /* end of cards */
+
+
+/* Starting phone configuration */
+@media only screen and (max-width: 800px) {
+    .welcome{
+        display: block;
+        text-align: center;
+    }
+    .bottom{
+        display: block;
+        margin: 0 auto;
+    }
+    .bottom2, .bottom3{
+        margin-top: 200px;
+    }
+
+    
+
+
+}
+

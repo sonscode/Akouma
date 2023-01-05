@@ -107,7 +107,9 @@ html body{
         font-size: 100%;
         margin-top: 4%;
       }
-  
+      .row{
+        width: 100%;
+      }
       
     }
    
