@@ -39,6 +39,10 @@ import { AuthGuard } from './guards/auth.guard';
 import { TokenInterceptorService } from './services/token-interceptor.service';
 import { Dialog3Component } from './dialog3/dialog3.component';
 import { Dialog4Component } from './dialog4/dialog4.component';
+import { SocialLoginModule, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
+import {
+  GoogleLoginProvider
+} from '@abacritt/angularx-social-login';
 
 @NgModule({
   declarations: [
@@ -77,7 +81,8 @@ import { Dialog4Component } from './dialog4/dialog4.component';
     ReactiveFormsModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    SocialLoginModule
 
   ],
   providers: [
@@ -90,7 +95,26 @@ import { Dialog4Component } from './dialog4/dialog4.component';
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,
       multi: true
+    },
+
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              '89385707814-tov8ukqt2p1mum39it5t4dr6jhosoid0.apps.googleusercontent.com'
+            )
+          }
+        ], 
+        onError: (err) => {
+          console.error(err);
+        }
+      } as SocialAuthServiceConfig,
     }
+
   ],
   bootstrap: [AppComponent]
 })

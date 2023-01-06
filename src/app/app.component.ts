@@ -15,6 +15,8 @@ export class AppComponent {
 
   constructor(public authService: AuthApiService, private router: Router) { }
 
+
+  
   logout() {
     if (confirm("Logout?")) {
       this.authService.logout();

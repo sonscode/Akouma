@@ -1,8 +1,20 @@
 <!--Sign up form-->
 <div class="row">
     <div class="container-fluid">
+        <asl-google-signin-button *ngIf="!user"></asl-google-signin-button>
+        <!-- <button class="btn-google" *ngIf="!user" (click)="signInWithGoogle()">Login with Google</button> -->
+        <div *ngIf="user">
+            <img src="{{user.photoUrl}}" alt="" srcset="">
+            <div>
+                <h4>{{user.name}}</h4>
+                <p>{{user.email}}</p>
+            </div>
+        </div>
+        <button class="btn-google" *ngIf="user" (click)="signOut()">Sign out</button>
+
         <div class="signup w-70" id="connect">
             <!--class="col-lm-3" -->
+
             <div class="content">
 
                 <form novalidate class="justify-content-center" #userForm="ngForm">
