@@ -32,7 +32,7 @@ export class Form4Component implements OnInit {
     this.listMarks5();
     this.listMarks6();
 
-    this.percentagePassed1();
+    // this.percentagePassed1();
   }
 
 
@@ -466,19 +466,109 @@ getTotal5(studName: any) {
 
 
   //Percentage passed calculation for sequence ONE... ************************************************************************************
-percentagePassed1(){
+percentagePassed1(sequ: any){
   var element = 0
-  for (let i = 1; i <= 30; i++) {
+  switch (sequ) {
+    case 'seq1':
+      for (let i = 1; i <= 30; i++) {
         if(this.getTotal1('name'+i)/43 >= 10) {
           element++
         }
   }
   return ((element/7)*100).toFixed(0) + "%"
+      break;
+
+      case 'seq2':
+      for (let i = 1; i <= 30; i++) {
+        if(this.getTotal2('name'+i)/43 >= 10) {
+          element++
+        }
+  }
+  return ((element/7)*100).toFixed(0) + "%"
+      break;
+  
+      case 'seq3':
+      for (let i = 1; i <= 30; i++) {
+        if(this.getTotal3('name'+i)/43 >= 10) {
+          element++
+        }
+  }
+  return ((element/7)*100).toFixed(0) + "%"
+      break;
+
+      case 'seq4':
+        for (let i = 1; i <= 30; i++) {
+          if(this.getTotal4('name'+i)/43 >= 10) {
+            element++
+          }
+    }
+    return ((element/7)*100).toFixed(0) + "%"
+        break;
+
+        case 'seq5':
+      for (let i = 1; i <= 30; i++) {
+        if(this.getTotal5('name'+i)/43 >= 10) {
+          element++
+        }
+  }
+  return ((element/7)*100).toFixed(0) + "%"
+      break;
+
+      case 'seq6':
+      for (let i = 1; i <= 30; i++) {
+        if(this.getTotal6('name'+i)/43 >= 10) {
+          element++
+        }
+  }
+  return ((element/7)*100).toFixed(0) + "%"
+      break;
+
+
+
+
+    default:
+      return "-";
+      break;
+  }
 
 }
 
-getNumberOfStudents(){
-  
+
+TermPercentagePassed(term: any){
+  var element = 0
+  switch (term) {
+    case 'term1':
+      for (let i = 1; i <= 30; i++) {
+        if((this.getTotal1('name'+i) + this.getTotal2('name'+i)) /86 >= 10) {
+          element++
+        }
+  }
+  return ((element/7)*100).toFixed(0) + "%"
+      break;
+
+      case 'term2':
+        for (let i = 1; i <= 30; i++) {
+          if((this.getTotal3('name'+i) + this.getTotal4('name'+i)) /86 >= 10) {
+            element++
+          }
+    }
+    return ((element/7)*100).toFixed(0) + "%"
+        break;
+
+        case 'term3':
+          for (let i = 1; i <= 30; i++) {
+            if((this.getTotal5('name'+i) + this.getTotal6('name'+i)) /86 >= 10) {
+              element++
+            }
+      }
+      return ((element/7)*100).toFixed(0) + "%"
+          break;
+
+    default:
+      return "-";
+      break;
+  }
+
 }
 
 
