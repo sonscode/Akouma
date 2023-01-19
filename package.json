@@ -25,6 +25,7 @@
     "@google-cloud/local-auth": "^2.1.0",
     "bootstrap": "^5.2.2",
     "googleapis": "^105.0.0",
+    "json-server": "^0.17.1",
     "node-mailjet": "^5.1.1",
     "rxjs": "~7.4.0",
     "tslib": "^2.3.0",
