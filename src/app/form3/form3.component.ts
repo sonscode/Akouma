@@ -492,9 +492,7 @@ getTotal5(studName: any) {
     //  }
     
     // }
-
-
-    return ((element/ this.getNumberOfStudent())*100).toFixed(0) + "%" + "  "
+    return ((element/ 5)*100).toFixed(0) + "%" + "  "
         break;
   
         case 'seq2':
@@ -503,7 +501,7 @@ getTotal5(studName: any) {
             element++
           }
     }
-    return ((element/ this.getNumberOfStudent())*100).toFixed(0) + "%"
+    return ((element/ 5)*100).toFixed(0) + "%"
         break;
     
         case 'seq3':
@@ -512,7 +510,7 @@ getTotal5(studName: any) {
             element++
           }
     }
-    return ((element/ this.getNumberOfStudent())*100).toFixed(0) + "%"
+    return ((element/ 5)*100).toFixed(0) + "%"
         break;
   
         case 'seq4':
@@ -521,7 +519,7 @@ getTotal5(studName: any) {
               element++
             }
       }
-      return ((element/ this.getNumberOfStudent())*100).toFixed(0) + "%"
+      return ((element/ 5)*100).toFixed(0) + "%"
           break;
   
           case 'seq5':
@@ -530,7 +528,7 @@ getTotal5(studName: any) {
             element++
           }
     }
-    return ((element/ this.getNumberOfStudent())*100).toFixed(0) + "%"
+    return ((element/ 5)*100).toFixed(0) + "%"
         break;
   
         case 'seq6':
@@ -539,7 +537,7 @@ getTotal5(studName: any) {
             element++
           }
     }
-    return ((element/ this.getNumberOfStudent())*100).toFixed(0) + "%"
+    return ((element/ 5)*100).toFixed(0) + "%"
         break;
   
   
@@ -562,7 +560,7 @@ getTotal5(studName: any) {
             element++
           }
     }
-    return ((element/ this.getNumberOfStudent())*100).toFixed(0) + "%"
+    return ((element/ 5)*100).toFixed(0) + "%"
         break;
   
         case 'term2':
@@ -571,7 +569,7 @@ getTotal5(studName: any) {
               element++
             }
       }
-      return ((element/ this.getNumberOfStudent())*100).toFixed(0) + "%"
+      return ((element/ 5)*100).toFixed(0) + "%"
           break;
   
           case 'term3':
@@ -580,7 +578,7 @@ getTotal5(studName: any) {
                 element++
               }
         }
-        return ((element/ this.getNumberOfStudent())*100).toFixed(0) + "%"
+        return ((element/ 5)*100).toFixed(0) + "%"
             break;
   
       default:

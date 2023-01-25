@@ -485,7 +485,7 @@ percentagePassed1(sequ: any){
           element++
         }
   }
-  return ((element/ this.getNumberOfStudent())*100).toFixed(0) + "%" + "     " + this.getNumberOfStudent() + "     " + element
+  return ((element/ 7)*100).toFixed(0) + "%";
       break;
 
       case 'seq2':
@@ -494,7 +494,7 @@ percentagePassed1(sequ: any){
           element++
         }
   }
-  return ((element/this.getNumberOfStudent())*100).toFixed(0) + "%"
+  return ((element/7)*100).toFixed(0) + "%"
       break;
   
       case 'seq3':
@@ -503,7 +503,7 @@ percentagePassed1(sequ: any){
           element++
         }
   }
-  return ((element/this.getNumberOfStudent())*100).toFixed(0) + "%"
+  return ((element/7)*100).toFixed(0) + "%"
       break;
 
       case 'seq4':
@@ -512,7 +512,7 @@ percentagePassed1(sequ: any){
             element++
           }
     }
-    return ((element/this.getNumberOfStudent())*100).toFixed(0) + "%"
+    return ((element/7)*100).toFixed(0) + "%"
         break;
 
         case 'seq5':
@@ -521,7 +521,7 @@ percentagePassed1(sequ: any){
           element++
         }
   }
-  return ((element/this.getNumberOfStudent())*100).toFixed(0) + "%"
+  return ((element/7)*100).toFixed(0) + "%"
       break;
 
       case 'seq6':
@@ -530,7 +530,7 @@ percentagePassed1(sequ: any){
           element++
         }
   }
-  return ((element/this.getNumberOfStudent())*100).toFixed(0) + "%"
+  return ((element/7)*100).toFixed(0) + "%"
       break;
 
 
@@ -553,7 +553,7 @@ TermPercentagePassed(term: any){
           element++
         }
   }
-  return ((element/this.getNumberOfStudent())*100).toFixed(0) + "%"
+  return ((element/7)*100).toFixed(0) + "%"
       break;
 
       case 'term2':
@@ -562,7 +562,7 @@ TermPercentagePassed(term: any){
             element++
           }
     }
-    return ((element/this.getNumberOfStudent())*100).toFixed(0) + "%"
+    return ((element/7)*100).toFixed(0) + "%"
         break;
 
         case 'term3':
@@ -571,7 +571,7 @@ TermPercentagePassed(term: any){
               element++
             }
       }
-      return ((element/this.getNumberOfStudent())*100).toFixed(0) + "%"
+      return ((element/7)*100).toFixed(0) + "%"
           break;
 
     default:
