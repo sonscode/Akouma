@@ -465,7 +465,17 @@ getTotal5(studName: any) {
   }
 
 
-  //Percentage passed calculation for sequence ONE... ************************************************************************************
+  getNumberOfStudent(){
+    var studentCount = 0
+    for (let i = 1; i <= 30; i++){ 
+     if( this.getMarkList[0]['name'+i] != ""){
+      studentCount++
+     }
+    }
+     return studentCount;
+  }
+
+  //Percentage passed calculation ************************************************************************************
 percentagePassed1(sequ: any){
   var element = 0
   switch (sequ) {
@@ -475,7 +485,7 @@ percentagePassed1(sequ: any){
           element++
         }
   }
-  return ((element/7)*100).toFixed(0) + "%"
+  return ((element/ this.getNumberOfStudent())*100).toFixed(0) + "%" + "     " + this.getNumberOfStudent() + "     " + element
       break;
 
       case 'seq2':
@@ -484,7 +494,7 @@ percentagePassed1(sequ: any){
           element++
         }
   }
-  return ((element/7)*100).toFixed(0) + "%"
+  return ((element/this.getNumberOfStudent())*100).toFixed(0) + "%"
       break;
   
       case 'seq3':
@@ -493,7 +503,7 @@ percentagePassed1(sequ: any){
           element++
         }
   }
-  return ((element/7)*100).toFixed(0) + "%"
+  return ((element/this.getNumberOfStudent())*100).toFixed(0) + "%"
       break;
 
       case 'seq4':
@@ -502,7 +512,7 @@ percentagePassed1(sequ: any){
             element++
           }
     }
-    return ((element/7)*100).toFixed(0) + "%"
+    return ((element/this.getNumberOfStudent())*100).toFixed(0) + "%"
         break;
 
         case 'seq5':
@@ -511,7 +521,7 @@ percentagePassed1(sequ: any){
           element++
         }
   }
-  return ((element/7)*100).toFixed(0) + "%"
+  return ((element/this.getNumberOfStudent())*100).toFixed(0) + "%"
       break;
 
       case 'seq6':
@@ -520,7 +530,7 @@ percentagePassed1(sequ: any){
           element++
         }
   }
-  return ((element/7)*100).toFixed(0) + "%"
+  return ((element/this.getNumberOfStudent())*100).toFixed(0) + "%"
       break;
 
 
@@ -543,7 +553,7 @@ TermPercentagePassed(term: any){
           element++
         }
   }
-  return ((element/7)*100).toFixed(0) + "%"
+  return ((element/this.getNumberOfStudent())*100).toFixed(0) + "%"
       break;
 
       case 'term2':
@@ -552,7 +562,7 @@ TermPercentagePassed(term: any){
             element++
           }
     }
-    return ((element/7)*100).toFixed(0) + "%"
+    return ((element/this.getNumberOfStudent())*100).toFixed(0) + "%"
         break;
 
         case 'term3':
@@ -561,7 +571,7 @@ TermPercentagePassed(term: any){
               element++
             }
       }
-      return ((element/7)*100).toFixed(0) + "%"
+      return ((element/this.getNumberOfStudent())*100).toFixed(0) + "%"
           break;
 
     default:
