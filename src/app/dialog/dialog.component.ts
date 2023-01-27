@@ -474,6 +474,9 @@ export class DialogComponent implements OnInit {
           });
       }
     }
+    else{
+      alert("Subject does not exist!")
+    }
   }
 
 
@@ -510,6 +513,9 @@ export class DialogComponent implements OnInit {
       } //end if
       //     } //end for
 
+    }
+    else{
+      alert("Subject does not exist!")
     }
 
   }
@@ -564,6 +570,9 @@ export class DialogComponent implements OnInit {
       //     } //end for
 
     }
+    else{
+      alert("Subject does not exist!")
+    }
 
   }
 
@@ -615,6 +624,9 @@ export class DialogComponent implements OnInit {
       } //end if
       //     } //end for
 
+    }
+    else{
+      alert("Subject does not exist!")
     }
 
   }
@@ -669,6 +681,9 @@ export class DialogComponent implements OnInit {
       //     } //end for
 
     }
+    else{
+      alert("Subject does not exist!")
+    }
 
   }
 
@@ -720,6 +735,9 @@ export class DialogComponent implements OnInit {
       } //end if
       //     } //end for
 
+    }
+    else{
+      alert("Subject does not exist!")
     }
 
   }

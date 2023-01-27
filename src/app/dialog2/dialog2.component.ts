@@ -449,6 +449,9 @@ updateMark26(){
       //     } //end for
 
     }
+    else{
+      alert("Subject does not exist!")
+    }
 
   }
 
@@ -498,6 +501,9 @@ updateMark26(){
       } //end if
       //     } //end for
 
+    }
+    else{
+      alert("Subject does not exist!")
     }
 
   }
@@ -549,6 +555,9 @@ updateMark26(){
       //     } //end for
 
     }
+    else{
+      alert("Subject does not exist!")
+    }
 
   }
 
@@ -598,6 +607,9 @@ updateMark26(){
       } //end if
       //     } //end for
 
+    }
+    else{
+      alert("Subject does not exist!")
     }
 
   }
@@ -649,6 +661,9 @@ updateMark26(){
       //     } //end for
 
     }
+    else{
+      alert("Subject does not exist!")
+    }
 
   }
 
@@ -696,6 +711,9 @@ updateMark26(){
             }
           });
       } //end if
+    }
+    else{
+      alert("Subject does not exist!")
     }
   }
 
