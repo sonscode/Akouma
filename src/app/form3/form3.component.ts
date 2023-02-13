@@ -408,12 +408,25 @@ getTermMark3(el1: any, studName: any) {
 }
 
 
+
+getPosition(studName: any) {
+  var element = 0;
+  for (let i = 0; i < this.getMarkList.length; i++) {
+    element += this.getMarkList[i].coef * this.getMarkList[i][studName]
+  }
+  var ele = Math.max(element)
+  console.log("Highest position "+ ele);
+  return ele;
+}
+
  //Getting all Total marks... for sequence ONE... *********************************************************************************
  getTotal1(studName: any) {
   var element = 0;
   for (let i = 0; i < this.getMarkList.length; i++) {
     element += this.getMarkList[i].coef * this.getMarkList[i][studName]
   }
+  var ele = Math.max(element)
+
   return element;
 }
 
@@ -422,7 +435,7 @@ getTotal2(studName: any) {
   var element = 0;
   for (let i = 0; i < this.getMarkList2.length; i++) {
     element += this.getMarkList2[i].coef * this.getMarkList2[i][studName]
-  }
+  } 
   return element;
 }
 
