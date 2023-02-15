@@ -278,101 +278,194 @@ export class GalleryComponent implements OnInit {
     }
   }
 
-  //All edits and deletes***************************************************************************************************
+    //All edits and deletes***************************************************************************************************
 
-  deleteMark(id: number) {
-    if (confirm("Confirm delete")) {
-      this.api.deleteMark(id).subscribe({
-        next: (res) => {
-          
-          this.getAllMarks();
-        },
-        error: () => {
-          alert("Sorry! The marks could not be removed")
-        }
-      })
+    deleteMark2(id: number) {
+      if (confirm("Confirm delete")) {
+        this.api.deleteMark2(id).subscribe({
+          next: (res) => {
+            
+            this.getAllMarks();
+          },
+          error: () => {
+            alert("Sorry! Your marks could not be removed")
+          }
+        })
+      }
     }
-  }
-
-
-  deleteMark12(id: number) {
-    if (confirm("Confirm delete")) {
-      this.api.deleteMark12(id).subscribe({
-        next: (res) => {
-          
-          this.getAllMarks12();
-
-        },
-        error: () => {
-          alert("Sorry! the marks could not be removed")
-        }
-      })
+  
+    deleteMark22(id: number) {
+      if (confirm("Confirm delete")) {
+  
+        this.api.deleteMark22(id).subscribe({
+          next: (res) => {
+            
+            this.getAllMarks12();
+          },
+          error: () => {
+            alert("Sorry! Your marks could not be removed")
+          }
+        })
+      }
     }
-  }
-
-  deleteMark13(id: number) {
-    if (confirm("Confirm delete")) {
-
-      this.api.deleteMark13(id).subscribe({
-        next: (res) => {
-          
-          this.getAllMarks13();
-
-        },
-        error: () => {
-          alert("Sorry! the marks could not be removed")
-        }
-      })
+  
+    deleteMark23(id: number) {
+      if (confirm("Confirm delete")) {
+  
+        this.api.deleteMark23(id).subscribe({
+          next: (res) => {
+            
+            this.getAllMarks13();
+          },
+          error: () => {
+            alert("Sorry! Your marks could not be removed")
+          }
+        })
+      }
     }
-  }
-
-  deleteMark14(id: number) {
-    if (confirm("Confirm delete")) {
-
-      this.api.deleteMark14(id).subscribe({
-        next: (res) => {
-          
-          this.getAllMarks14();
-
-        },
-        error: () => {
-          alert("Sorry! the marks could not be removed")
-        }
-      })
+  
+    deleteMark24(id: number) {
+      if (confirm("Confirm delete")) {
+  
+        this.api.deleteMark24(id).subscribe({
+          next: (res) => {
+            
+            this.getAllMarks14();
+          },
+          error: () => {
+            alert("Sorry! Your marks could not be removed")
+          }
+        })
+      }
     }
-  }
-
-  deleteMark15(id: number) {
-    if (confirm("Confirm delete")) {
-
-      this.api.deleteMark15(id).subscribe({
-        next: (res) => {
-          
-          this.getAllMarks15();
-        },
-        error: () => {
-          alert("Sorry! the marks could not be removed")
-        }
-      })
+  
+    deleteMark25(id: number) {
+      if (confirm("Confirm delete")) {
+  
+        this.api.deleteMark25(id).subscribe({
+          next: (res) => {
+            
+            this.getAllMarks15();
+          },
+          error: () => {
+            alert("Sorry! Your marks could not be removed")
+          }
+        })
+      }
     }
-  }
-
-  deleteMark16(id: number) {
-    // alert("Confirm delete . . . ")
-    if (confirm("Confirm delete")) {
-
-      this.api.deleteMark16(id).subscribe({
-        next: (res) => {
-          
-          this.getAllMarks16();
-        },
-        error: () => {
-          alert("Sorry! the marks could not be removed")
-        }
-      })
+  
+    deleteMark26(id: number) {
+      // alert("Confirm delete . . . ")
+      if (confirm("Confirm delete")) {
+  
+        this.api.deleteMark26(id).subscribe({
+          next: (res) => {
+            
+            this.getAllMarks16();
+          },
+          error: () => {
+            alert("Sorry! Your marks could not be removed")
+          }
+        })
+      }
     }
-  }
-
+  //All deletes ... many in one click**************************************************
+    deleteAll1() {
+      if (confirm("You want to delete all marks for 1st sequence?")) {
+        for (let i = 0; i < 30; i++) {
+          this.api.deleteMark2(i).subscribe({
+            next: (res) => {
+              // console.log("All 1st sequence marks have been removed")
+              this.getAllMarks();
+            },
+            error: () => {
+              // alert("One or more marks could not be removed")
+            }
+          })
+        }
+      }
+    }
+  
+    deleteAll2() {
+      if (confirm("You want to delete all marks for 2nd sequence?")) {
+        for (let i = 0; i < 30; i++) {
+          this.api.deleteMark22(i).subscribe({
+            next: (res) => {
+              // console.log("All 1st sequence marks have been removed")
+              this.getAllMarks12();
+            },
+            error: () => {
+              // alert("One or more marks could not be removed")
+            }
+          })
+        }
+      }
+    }
+  
+    deleteAll3() {
+      if (confirm("You want to delete all marks for 3rd sequence?")) {
+        for (let i = 0; i < 30; i++) {
+          this.api.deleteMark23(i).subscribe({
+            next: (res) => {
+              // console.log("All 1st sequence marks have been removed")
+              this.getAllMarks13();
+            },
+            error: () => {
+              // alert("One or more marks could not be removed")
+            }
+          })
+        }
+      }
+    }
+  
+    deleteAll4() {
+      if (confirm("You want to delete all marks for 4th sequence?")) {
+        for (let i = 0; i < 30; i++) {
+          this.api.deleteMark24(i).subscribe({
+            next: (res) => {
+              // console.log("All 1st sequence marks have been removed")
+              this.getAllMarks14();
+            },
+            error: () => {
+              // alert("One or more marks could not be removed")
+            }
+          })
+        }
+      }
+    }
+  
+    deleteAll5() {
+      if (confirm("You want to delete all marks for 5th sequence?")) {
+        for (let i = 0; i < 30; i++) {
+          this.api.deleteMark25(i).subscribe({
+            next: (res) => {
+              // console.log("All 1st sequence marks have been removed")
+              this.getAllMarks15();
+            },
+            error: () => {
+              // alert("One or more marks could not be removed")
+            }
+          })
+        }
+      }
+    }
+  
+    deleteAll6() {
+      if (confirm("You want to delete all marks for 6th sequence?")) {
+        for (let i = 0; i < 30; i++) {
+          this.api.deleteMark26(i).subscribe({
+            next: (res) => {
+              // console.log("All 1st sequence marks have been removed")
+              this.getAllMarks16();
+            },
+            error: () => {
+              // alert("One or more marks could not be removed")
+            }
+          })
+        }
+      }
+    }
+  
   //Getting all marks... for term ONE... *********************************************************************************
 
 getTermMark(el1: any, studName: any) {

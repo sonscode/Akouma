@@ -4,179 +4,160 @@
     background: rgb(105, 103, 103);
 
   }
-
-h3{
-    margin-left: 0em;
-}
-
   button{
     width: 5em;
     height: 3em;
-}
+  }
   input{
     background-color:rgba(105, 103, 103, 0.363);
     border: none;
     color: white;
     font-size: 1.2rem;
-    padding: 1em;    
-    margin-top: 0rem;
-    width: 3.645em;
+    padding: 1.1em .6em 1.1em .6em;
+    /* text-align: left; */
+    width: 4.37em;
     height: 1em;
     outline: none;
-    margin: 0;
+    /* margin: 0; */
 }
 
 input:hover{
-    background-color: rgba(182, 37, 11, 0.795);
+    background-color: rgba(19, 151, 2, 0.637);
     color: #fff;
 }
 
 .name{
-    width: 10.9em;
-    margin-left: -10.2em;
-    border-right: 1px solid rgba(182, 37, 11, 0.795);
-    color: rgba(2, 143, 61, 0.836);
+    width: 5.2em;
+    cursor:copy;
+    /* border-right: 1px solid green; */
+    color: rgba(2, 143, 61, 0.973);
 }
+#subName{
+    font-weight: lighter;
+    width: 4.4em;
+}
+.studName{
+    cursor: default;
+    width: 6em;
+    background: rgb(87, 87, 87);
+}
+
+.studName, #studCol{
+    height: 4.25em;
+}
+
 #studCol{
-    height: 2.1em;
-    background: rgba(182, 37, 11, 0.795);
+    background: rgba(20, 151, 2, 0.795);
     border: none;
     color: #fff;
+
 }
+#studCol{
+    width: 6em;
+
+}
+
 #navbar{
     margin-left: 2.1em;
     margin-top: 3em;
     position: relative;
+    
 }
+
+.no-scroll{
+    overflow-x: scroll;
+}
+
 .addBtns{
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     border-radius: 5px;
+    margin-left: 0;
+    /* margin-top: -10%; */
     padding-bottom: 2.4rem;
-    /* padding-right: 2rem; */
     width: 7em;
     height: .4em;
-    margin-left: 0em;
-    /* position: fixed;
-    top: 14.5em;
-    left: 1.75em; */
-    /* margin-top: 2%; */
 }
 
 .addBtns:hover{
     background: rgba(105, 103, 103, 0.781);
 }
-#actions, .addBtns{
+.actions, .addBtns{
     background: rgba(2, 143, 61, 0.774);
     color: #fff;
 }
-#actions:hover{
-    background: rgb(105, 103, 103);
+.actions:hover, #delBtn:hover{
+    background: rgba(255, 255, 255, 0.178);
     
 }
-
-.upperClass{
-    display: flex;
-}
-.searchbar{
-    /* margin-left: 10%; */
-    margin: 0 auto;
-    margin-top: -4%;
-    width: 200px;
-}
-
-.searchbar input{
+.actions{
+    border: none;
+    color: white;
+    font-size: 1rem;
+    padding: 1rem 1rem 1.5rem 1rem;
+    margin-left: 1.5rem;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+    margin-top: 0rem;
+    width: 5em;
+    height: 1em;
+    margin: 0;
     background: none;
-    width: 400px;
+}
+
+#delBtn{
+    color: rgba(182, 37, 11, 0.795);
+    /* background: wheat; */
+}
+
+#editBtn{
     color: indigo;
 }
-.searchbar input:hover{
-    background: none;
+
+#delBtn, #editBtn{
+    width: 4.35em;
 
 }
 
-.no-scroll{
-    margin-left: 0em;
-    overflow-x: scroll;
-}
-#navbar > .container > div{
-    border-right: 1px solid white;
 
-}
-/* .mat-elevation-z8{
-    margin-left: -20%;
-} */
-
-#action{
-    display: flex;
-    text-align: left;
+#update, #delete{
+    width: 5em;
+text-align: left;
 }
 
-.actBtn{
-    width: 2em;
-    height: 1.7em;
+tr th, tr td{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;   
 }
 
-.totals{
-    width: 94em;
-    color: green;
+.delAll{
+    background-color: rgba(182, 37, 11, 0.842);
+    border: none;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    border-radius: 5px;
+    padding-bottom: 2.4rem;
+    width: 7em;
+    height: .3em;
+    float: right;
+    /* margin-right: 3%; */
 }
 
-.totals, .tr-cell, .tr-cell td {
-    text-align: center;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    /* font-weight: bold; */
-    font-size: medium;
+.delAll:hover{
+    background-color: rgb(105, 103, 103);
+    /* color: #fff; */
 }
 
-
-.tr-cell{
-    /* padding-left: .2em; */
-    text-align: center;
+.term-totals td input{
+    /* color: rgba(222, 226, 2, 0.897); */
+    color: indigo;
+    
+}
+.term-totals td input:hover{
+    background: rgba(92, 6, 153, 0.315);
 }
 
-.td-cell{
-    text-align: center;
-    /* padding: 0 0 0 .7em; */
+.term-av td input{
+    color: rgba(145, 22, 0, 0.904);
 }
 
-.tr-cell{
-    border-bottom: 1px solid white;
-    border-right: 1px solid white;
-    /* margin-left: 8em; */
-
-}
-
-.tr-cell .fist, .tr-cell .fist2{
-    padding-left: 1.88em;
-}
-
-.tr-cell td{
-    padding: .8em;
-    border-right: 1px solid white;
-    border-left: 1px solid white;
-}
-
-thead > tr{
-    border-bottom: 3px solid white;
-}
-
-.av{
-    color: rgb(143, 5, 5);
-}
-
-.term-totals{
-    border-top: 3px solid white;
-    color: rgb(92, 1, 1);
-}
-/* 
-.tr-cell td{
-    width: 0%;
-} */
-
-
-@media only screen and (max-width: 800px){
-    .upperClass{
-        display: block;
-    }
+.term-av td input:hover{
+    background: rgba(180, 30, 3, 0.281);;
 }
