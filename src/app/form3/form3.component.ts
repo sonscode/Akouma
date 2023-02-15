@@ -498,12 +498,6 @@ getTotal5(studName: any) {
 
     }
 
-    // var studentCount = 0
-    // for (let i = 1; i <= 30; i++){ 
-    //  if( this.getMarkList[4]['name'+i] != ""){
-    //   studentCount++
-    //  }
-    
     // }
     return ((element/ 5)*100).toFixed(0) + "%" + "  "
         break;

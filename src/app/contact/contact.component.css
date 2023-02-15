@@ -1,6 +1,6 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
 .containerr{
-    background: rgba(214, 214, 214, 0.411);
+    /* background: rgba(214, 214, 214, 0.411); */
     height: 58vh;
     width: 55%;
     border-radius: 7px;
