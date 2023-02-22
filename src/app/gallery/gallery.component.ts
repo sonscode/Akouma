@@ -482,7 +482,7 @@ getTermMark(el1: any, studName: any) {
       this.count2 = i;
       mk2 = this.getMarkList2[this.count2][studName]
     }
-  }  
+  }   
   var mean = ((mk1 + mk2) / 2).toFixed(2);
   // console.log(this.count1, this.count2, mk1, mk2, mean)
   return mean;
