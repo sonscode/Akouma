@@ -282,7 +282,7 @@ export class GalleryComponent implements OnInit {
 
     deleteMark2(id: number) {
       if (confirm("Confirm delete")) {
-        this.api.deleteMark2(id).subscribe({
+        this.api.deleteMark(id).subscribe({
           next: (res) => {
             
             this.getAllMarks();
@@ -297,7 +297,7 @@ export class GalleryComponent implements OnInit {
     deleteMark22(id: number) {
       if (confirm("Confirm delete")) {
   
-        this.api.deleteMark22(id).subscribe({
+        this.api.deleteMark12(id).subscribe({
           next: (res) => {
             
             this.getAllMarks12();
@@ -312,7 +312,7 @@ export class GalleryComponent implements OnInit {
     deleteMark23(id: number) {
       if (confirm("Confirm delete")) {
   
-        this.api.deleteMark23(id).subscribe({
+        this.api.deleteMark13(id).subscribe({
           next: (res) => {
             
             this.getAllMarks13();
@@ -327,7 +327,7 @@ export class GalleryComponent implements OnInit {
     deleteMark24(id: number) {
       if (confirm("Confirm delete")) {
   
-        this.api.deleteMark24(id).subscribe({
+        this.api.deleteMark14(id).subscribe({
           next: (res) => {
             
             this.getAllMarks14();
@@ -342,7 +342,7 @@ export class GalleryComponent implements OnInit {
     deleteMark25(id: number) {
       if (confirm("Confirm delete")) {
   
-        this.api.deleteMark25(id).subscribe({
+        this.api.deleteMark15(id).subscribe({
           next: (res) => {
             
             this.getAllMarks15();
@@ -358,7 +358,7 @@ export class GalleryComponent implements OnInit {
       // alert("Confirm delete . . . ")
       if (confirm("Confirm delete")) {
   
-        this.api.deleteMark26(id).subscribe({
+        this.api.deleteMark16(id).subscribe({
           next: (res) => {
             
             this.getAllMarks16();
@@ -373,7 +373,7 @@ export class GalleryComponent implements OnInit {
     deleteAll1() {
       if (confirm("You want to delete all marks for 1st sequence?")) {
         for (let i = 0; i < 30; i++) {
-          this.api.deleteMark2(i).subscribe({
+          this.api.deleteMark(i).subscribe({
             next: (res) => {
               // console.log("All 1st sequence marks have been removed")
               this.getAllMarks();
@@ -389,7 +389,7 @@ export class GalleryComponent implements OnInit {
     deleteAll2() {
       if (confirm("You want to delete all marks for 2nd sequence?")) {
         for (let i = 0; i < 30; i++) {
-          this.api.deleteMark22(i).subscribe({
+          this.api.deleteMark12(i).subscribe({
             next: (res) => {
               // console.log("All 1st sequence marks have been removed")
               this.getAllMarks12();
@@ -405,7 +405,7 @@ export class GalleryComponent implements OnInit {
     deleteAll3() {
       if (confirm("You want to delete all marks for 3rd sequence?")) {
         for (let i = 0; i < 30; i++) {
-          this.api.deleteMark23(i).subscribe({
+          this.api.deleteMark13(i).subscribe({
             next: (res) => {
               // console.log("All 1st sequence marks have been removed")
               this.getAllMarks13();
@@ -421,7 +421,7 @@ export class GalleryComponent implements OnInit {
     deleteAll4() {
       if (confirm("You want to delete all marks for 4th sequence?")) {
         for (let i = 0; i < 30; i++) {
-          this.api.deleteMark24(i).subscribe({
+          this.api.deleteMark14(i).subscribe({
             next: (res) => {
               // console.log("All 1st sequence marks have been removed")
               this.getAllMarks14();
@@ -437,7 +437,7 @@ export class GalleryComponent implements OnInit {
     deleteAll5() {
       if (confirm("You want to delete all marks for 5th sequence?")) {
         for (let i = 0; i < 30; i++) {
-          this.api.deleteMark25(i).subscribe({
+          this.api.deleteMark15(i).subscribe({
             next: (res) => {
               // console.log("All 1st sequence marks have been removed")
               this.getAllMarks15();
@@ -453,7 +453,7 @@ export class GalleryComponent implements OnInit {
     deleteAll6() {
       if (confirm("You want to delete all marks for 6th sequence?")) {
         for (let i = 0; i < 30; i++) {
-          this.api.deleteMark26(i).subscribe({
+          this.api.deleteMark16(i).subscribe({
             next: (res) => {
               // console.log("All 1st sequence marks have been removed")
               this.getAllMarks16();
