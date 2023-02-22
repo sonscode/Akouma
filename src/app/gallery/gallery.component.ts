@@ -92,7 +92,7 @@ export class GalleryComponent implements OnInit {
 
   openDialog() {
     this.dialog.open(DialogComponent, {
-      width: "100%", height: "95%"
+      width: "100%", height: "100%"
     }).afterClosed().subscribe(val => {
       if (val === 'save') {
         this.getAllMarks();
@@ -107,7 +107,7 @@ export class GalleryComponent implements OnInit {
 
   editMarks(row: any) {
     this.dialog.open(DialogComponent, {
-      width: "85%", height: "85%",
+      width: "100%", height: "100%",
       data: row
     }).afterClosed().subscribe(val => {
       if (val === 'update') {

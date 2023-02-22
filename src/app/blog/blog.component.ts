@@ -35,7 +35,7 @@ export class BlogComponent implements OnInit {
   }
   openDialog() {
     this.dialog.open(Dialog2Component, {
-      width: "100%", height: "90%"
+      width: "100%", height: "100%"
     }).afterClosed().subscribe(val => {
       if (val === 'save') {
         this.listMarks();
@@ -50,7 +50,7 @@ export class BlogComponent implements OnInit {
 
   editMarks(row: any) {
     this.dialog.open(Dialog2Component, {
-      width: "85%", height: "95%",
+      width: "100%", height: "100%",
       data: row
     }).afterClosed().subscribe(val => {
       if (val === 'update') {
