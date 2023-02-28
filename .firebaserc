@@ -1,5 +1,9 @@
 {
   "projects": {
-    "default": "akapp-ad044"
-  }
+    "default": "akapp-61a11",
+    "first-akapp": "akapp-ad044",
+    "second-akapp": "akapp-61a11"
+  },
+  "targets": {},
+  "etags": {}
 }
