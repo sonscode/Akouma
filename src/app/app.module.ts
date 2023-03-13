@@ -43,6 +43,7 @@ import { SocialLoginModule, SocialAuthServiceConfig } from '@abacritt/angularx-s
 import {
   GoogleLoginProvider
 } from '@abacritt/angularx-social-login';
+import { ReportsComponent } from './reports/reports.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import {
     RegisterComponent,
     LoginComponent,
     Dialog3Component,
-    Dialog4Component    
+    Dialog4Component,
+    ReportsComponent    
   ],
   imports: [
     BrowserModule,

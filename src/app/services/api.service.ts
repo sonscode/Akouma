@@ -9,8 +9,7 @@ export class ApiService {
   matchResChanged: EventEmitter<any> = new EventEmitter();
   constructor(private http: HttpClient) { }
 
-  
-
+/*
   deleteMark(id: number) {
     return this.http.delete<any>("https://json-api2.onrender.com/marklist/" + id);
   }
@@ -432,6 +431,7 @@ export class ApiService {
   putMark46(data: any, id: number) {
     return this.http.put<any>("https://json-api2.onrender.com/markList46/" + id, data);
   }
+  */
   //End of Form 4 posts and gets*********************************************************************************************
 
 
@@ -458,7 +458,7 @@ export class ApiService {
 
 
   //used only when no connection
-  /*
+  
   deleteMark(id: number) {
     return this.http.delete<any>("http://localhost:3000/marklist" + id);
   }
@@ -879,7 +879,7 @@ export class ApiService {
   putMark46(data: any, id: number) {
     return this.http.put<any>("http://localhost:3000/markList46/" + id, data);
   }
-  */
+  
   //End of Form 4 posts and gets*********************************************************************************************
 
 }

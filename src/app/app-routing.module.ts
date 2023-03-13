@@ -13,11 +13,13 @@ import { Form4Component } from './form4/form4.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './guards/auth.guard';
+import { ReportsComponent } from './reports/reports.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'about', component: AboutComponent },
   { path: 'gallery', component: GalleryComponent },
+  { path: 'reports', component: ReportsComponent },
   {
     path: 'marks', component: AdmissionComponent,
     // canActivate: [AuthGuard], 
