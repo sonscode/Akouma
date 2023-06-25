@@ -460,16 +460,16 @@ export class ApiService {
   //used only when no connection
   
   deleteMark(id: number) {
-    return this.http.delete<any>("http://localhost:3000/marklist" + id);
+    return this.http.delete<any>("http://localhost:3000/marklist/" + id);
   }
 
   putMark(data: any, id: number) {
-    return this.http.put<any>("http://localhost:3000/marklist" + id, data);
+    return this.http.put<any>("http://localhost:3000/marklist/" + id, data);
   }
 
   // Form 1 posts and gets
   postMark(data: any) {
-    return this.http.post<any>("http://localhost:3000/marklist", data);
+    return this.http.post<any>("http://localhost:3000/marklist/", data);
 
   }
 

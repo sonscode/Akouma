@@ -3,14 +3,14 @@
 <div mat-dialog-content>
 
   <form [formGroup]="markForm">
-
+    
     <div class="coeff" style="display: flex; color: darkkhaki; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">
       <Label>
         <h5>
           Sequence</h5>
       </Label>
       <label for="" class="labcoef" >Coefficient:</label>
-      <h5  formControlName="coef">&nbsp; {{this.getCoef()}}</h5>
+      <h5  formControlName="coef">&nbsp; {{ this.getCoef() }}</h5>
       <!-- <label for="" class="labcoef" >Disabled:</label> -->
     </div>
     <h6 style="visibility: hidden;">&nbsp; {{this.verifySubject()}}</h6>

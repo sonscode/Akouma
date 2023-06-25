@@ -1,1 +1,373 @@
-<p>Academic year</p>
+<div class="report-class" *ngFor="let mark of getReportList" (click)="popUp()" (click)="getReport()">
+    <!-- <div class="btns" id="seal">
+        <button (click)="openDialog()" class="add"
+            style="color: white; border-radius: 50px; border: none; text-align: center;">+ Add</button>
+        <button (click)="editReport(mark)" class="edit"
+            style="color: white; border-radius: 50px; border: 1px solid purple; text-align: center;">Edit</button>
+        <button (click)="deleteReport(mark.id)" class="del"
+            style="color: white; border-radius: 50px; border: 1px soli8d red; text-align: center;">Delete</button>
+    </div> -->
+<!-- {{this.setColor()}} -->
+    <div style="background: #fff; margin:2px;">
+        <div class="head">
+
+            <img class="logo" src="../assets/images/head.jpg" alt="Logo"> 
+            <img class="label" src="../assets/images/label.jpg" alt="Label">
+            <div class="line" ></div> <br/>
+<!-- <hr color="transparent" style="padding: 0; margin-top: -2em;"> -->
+<!-- <button (click)="this.seal()" style="padding: 1px 6px 1px 6px; margin: 0 auto; border: 1px solid rgb(163, 163, 163); border-radius: 50px; background: transparent; color:rgb(167, 167, 167)" class="seal">finish</button> -->
+
+<span style="margin-top: -2em;">  <b style="text-align: left;">Academic year: 2022/2023</b>             <b style="float: right;">Term {{mark.term}}</b> </span>
+            <h2 style="text-align: center; color: black">REPORT CARD</h2>
+            <span> <span> Name: <b>{{mark.name}}</b></span> <span style="float: right; text-align: right;"> class: <b>
+                        {{mark.class}}</b> </span></span> <br />
+            <span class="fl"><span style="float: left;"> Date of birth: <b> {{(mark.DOB).split('-').reverse().join('/')}}</b> </span> <span
+                    style="margin: 0 auto"> Place: <b> {{mark.POB}}</b></span> <span style="float: right;">Enrollment:
+                    <b>{{mark.enrollment}}</b></span>
+            </span>
+            <br>
+            <p>Class Master/Mistress: <b>{{mark.master}}</b> <span style="float: right;"> Situation:
+                    <b>{{mark.situation}}</b></span> </p>
+        </div>
+        <div class="body">
+            <table>
+                <thead>
+                    <tr>
+                        <td><b> Subject </b></td>
+                        <td><b> Teacher </b></td>
+                        <td><b> {{mark.test1}} </b></td>
+                        <td><b> {{mark.test2}} </b></td>
+                        <td><b> Term Av./20 </b></td>
+                        <td><b> Coef. </b></td>
+                        <td><b> Total </b></td>
+                        <td><b> Pos. </b></td>
+                        <td><b> Remarks </b></td>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td> English Language </td>
+                        <td> {{this.getTeacher("eng", mark.class)}} </td>
+                        <td> {{mark.eng1}} </td>
+                        <td> {{mark.eng2}} </td>
+                        <td > <b id="av">{{termAverage("eng", mark.class, mark.eng1, mark.eng2)}}</b> </td>
+                        <td> {{this.getCoefficient("eng", mark.class)}} </td>
+                        <td> {{(termTotal("eng", mark.class, mark.eng1, mark.eng2))}} </td>
+                        <td>{{position( (mark.eng1+mark.eng2)/2, "eng1", "eng2")}}<sup>{{fancySup(position(
+                                (mark.eng1+mark.eng2)/2, "eng1", "eng2"))}}</sup></td>
+                        <td> {{remarks(mark.eng1, mark.eng2)}} </td>
+                    </tr>
+                    <tr>
+                        <td> French Language </td>
+                        <td> {{this.getTeacher("fre", mark.class)}} </td>
+                        <td> {{mark.fre1}} </td>
+                        <td> {{mark.fre2}} </td>
+                        <td> <b> {{termAverage("fre", mark.class, mark.fre1, mark.fre2)}} </b></td>
+                        <td> {{this.getCoefficient("fre", mark.class)}} </td>
+                        <td> {{(termTotal("fre", mark.class, mark.fre1, mark.fre2))}} </td>
+                        <td> {{position( (mark.fre1+mark.fre2)/2, "fre1", "fre2")}}<sup>{{fancySup(position(
+                                (mark.fre1+mark.fre2)/2, "fre1", "fre2"))}}</sup> </td>
+                        <td> {{remarks(mark.fre1, mark.fre2)}} </td>
+                    </tr>
+                    <tr>
+                        <td> Mathematics </td>
+                        <td> {{this.getTeacher("maths", mark.class)}} </td>
+                        <td> {{mark.math1}} </td>
+                        <td> {{mark.math2}} </td>
+                        <td> <b> {{termAverage("maths", mark.class, mark.math1, mark.math2)}}</b></td>
+                        <td> {{this.getCoefficient("maths", mark.class)}} </td>
+                        <td> {{(termTotal("maths", mark.class, mark.math1, mark.math2))}} </td>
+                        <td> {{position( (mark.math1+mark.math2)/2, "math1", "math2")}}<sup>{{fancySup(position(
+                                (mark.math1+mark.math2)/2, "math1", "math2"))}}</sup> </td>
+                        <td> {{remarks(mark.math1, mark.math2)}} </td>
+                    </tr>
+                    <tr>
+                        <td> History </td>
+                        <td> {{this.getTeacher("hist", mark.class)}} </td>
+                        <td> {{mark.hist1}} </td>
+                        <td> {{mark.hist2}} </td>
+                        <td><b> {{termAverage("hist", mark.class, mark.hist1, mark.hist2)}}</b> </td>
+                        <td> {{this.getCoefficient("hist", mark.class)}} </td>
+                        <td> {{(termTotal("hist", mark.class, mark.hist1, mark.hist2))}} </td>
+                        <td> {{position( (mark.hist1+mark.hist2)/2, "hist1", "hist2")}}<sup>{{fancySup(position(
+                                (mark.hist1+mark.hist2)/2, "hist1", "hist2"))}}</sup> </td>
+                        <td> {{remarks(mark.hist1, mark.hist2)}} </td>
+                    </tr>
+                    <tr>
+                        <td> Literature </td>
+                        <td> {{this.getTeacher("lit", mark.class)}} </td>
+                        <td> {{mark.lit1}} </td>
+                        <td> {{mark.lit2}} </td>
+                        <td> <b>{{termAverage("lit", mark.class, mark.lit1, mark.lit2)}}</b> </td>
+                        <td> {{this.getCoefficient("lit", mark.class)}} </td>
+                        <td> {{(termTotal("lit", mark.class, mark.lit1, mark.lit2))}} </td>
+                        <td> {{position( (mark.lit1+mark.lit2)/2, "lit1", "lit2")}}<sup>{{fancySup(position(
+                                (mark.lit1+mark.lit2)/2, "lit1", "lit2"))}}</sup> </td>
+                        <td> {{remarks(mark.lit1, mark.lit2)}} </td>
+                    </tr>
+                    <tr>
+                        <td> Geography </td>
+                        <td> {{this.getTeacher("geo", mark.class)}} </td>
+                        <td> {{mark.geo1}} </td>
+                        <td> {{mark.geo2}} </td>
+                        <td> <b>{{termAverage("geo", mark.class, mark.geo1, mark.geo2) }}</b></td>
+                        <td> {{this.getCoefficient("geo", mark.class)}} </td>
+                        <td> {{(termTotal("geo", mark.class, mark.geo1, mark.geo2))}} </td>
+                        <td> {{position( (mark.geo1+mark.geo2)/2, "geo1", "geo2")}}<sup>{{fancySup(position(
+                                (mark.geo1+mark.geo2)/2, "geo1", "geo2"))}}</sup> </td>
+                        <td> {{remarks(mark.geo1, mark.geo2)}} </td>
+                    </tr>
+                    <tr>
+                        <td> Economics </td>
+                        <td> {{this.getTeacher("econs", mark.class)}} </td>
+                        <td> {{mark.econs1}} </td>
+                        <td> {{mark.econs2}} </td>
+                        <td> <b>{{termAverage("econs", mark.class, mark.econs1, mark.econs2)}}</b> </td>
+                        <td> {{this.getCoefficient("econs", mark.class)}} </td>
+                        <td> {{(termTotal("econs", mark.class, mark.econs1, mark.econs2))}} </td>
+                        <td> {{position( (mark.econs1+mark.econs2)/2, "econs1", "econs2")}}<sup>{{fancySup(position(
+                                (mark.econs1+mark.econs2)/2, "econs1", "econs2"))}}</sup> </td>
+                        <td> {{remarks(mark.econs1, mark.econs2)}} </td>
+                    </tr>
+                    <tr>
+                        <td> Commerce </td>
+                        <td> {{this.getTeacher("comm", mark.class)}} </td>
+                        <td> {{mark.comm1}} </td>
+                        <td> {{mark.comm2}} </td>
+                        <td> <b>{{termAverage("comm", mark.class, mark.comm1, mark.comm2) }}</b></td>
+                        <td> {{this.getCoefficient("comm", mark.class)}} </td>
+                        <td> {{(termTotal("comm", mark.class, mark.comm1, mark.comm2))}} </td>
+                        <td> {{position( (mark.comm1+mark.comm2)/2, "comm1", "comm2")}}<sup>{{fancySup(position(
+                                (mark.comm1+mark.comm2)/2, "comm1", "comm2"))}}</sup> </td>
+                        <td> {{remarks(mark.comm1, mark.comm2)}} </td>
+                    </tr>
+                    <tr>
+                        <td> Accounting </td>
+                        <td> {{this.getTeacher("acc", mark.class)}} </td>
+                        <td> {{mark.acc1}} </td>
+                        <td> {{mark.acc2}} </td>
+                        <td><b> {{termAverage("acc", mark.class, mark.acc1, mark.acc2)}}</b> </td>
+                        <td> {{this.getCoefficient("acc", mark.class)}} </td>
+                        <td> {{(termTotal("acc", mark.class, mark.acc1, mark.acc2))}} </td>
+                        <td> {{position( (mark.acc1+mark.acc2)/2, "acc1", "acc2")}}<sup>{{fancySup(position(
+                                (mark.acc1+mark.acc2)/2, "acc1", "acc2"))}}</sup> </td>
+                        <td> {{remarks(mark.acc1, mark.acc2)}} </td>
+                    </tr>
+                    <tr>
+                        <td> Citizenship </td>
+                        <td> {{this.getTeacher("citi", mark.class)}} </td>
+                        <td> {{mark.citi1}} </td>
+                        <td> {{mark.citi2}} </td>
+                        <td><b> {{termAverage("citi", mark.class, mark.citi1, mark.citi2)}}</b> </td>
+                        <td> {{this.getCoefficient("citi", mark.class)}} </td>
+                        <td> {{(termTotal("citi", mark.class, mark.citi1, mark.citi2))}} </td>
+                        <td> {{position( (mark.citi1+mark.citi2)/2, "citi1", "citi2")}}<sup>{{fancySup(position(
+                                (mark.citi1+mark.citi2)/2, "citi1", "citi2"))}}</sup> </td>
+                        <td> {{remarks(mark.citi1, mark.citi2)}} </td>
+                    </tr>
+                    <tr>
+                        <td> Logic </td>
+                        <td> {{this.getTeacher("logic", mark.class)}} </td>
+                        <td> {{mark.logic1}} </td>
+                        <td> {{mark.logic2}} </td>
+                        <td> <b>{{termAverage("logic", mark.class, mark.logic1, mark.logic2)}} </b></td>
+                        <td> {{this.getCoefficient("logic", mark.class)}} </td>
+                        <td> {{(termTotal("logic", mark.class, mark.logic1, mark.logic2))}} </td>
+                        <td> {{position( (mark.logic1+mark.logic2)/2, "logic1", "logic2")}}<sup>{{fancySup(position(
+                                (mark.logic1+mark.logic2)/2, "logic1", "logic2"))}}</sup> </td>
+                        <td> {{remarks(mark.logic1, mark.logic2)}} </td>
+                    </tr>
+                    <tr>
+                        <td> Religion </td>
+                        <td> {{this.getTeacher("rel", mark.class)}} </td>
+                        <td> {{mark.rel1}} </td>
+                        <td> {{mark.rel2}} </td>
+                        <td> <b>{{termAverage("rel", mark.class, mark.rel1, mark.rel2) }}</b></td>
+                        <td> {{this.getCoefficient("rel", mark.class)}} </td>
+                        <td> {{(termTotal("rel", mark.class, mark.rel1, mark.rel2))}} </td>
+                        <td> {{position( (mark.rel1+mark.rel2)/2, "rel1", "rel2")}}<sup>{{fancySup(position(
+                                (mark.rel1+mark.rel2)/2, "rel1", "rel2"))}}</sup> </td>
+                        <td> {{remarks(mark.rel1, mark.rel2)}} </td>
+                    </tr>
+                    <tr>
+                        <td> Food & Nutrition </td>
+                        <td> {{this.getTeacher("food", mark.class)}} </td>
+                        <td> {{mark.food1}} </td>
+                        <td> {{mark.food2}} </td>
+                        <td> <b>{{termAverage("food", mark.class, mark.food1, mark.food2) }}</b></td>
+                        <td> {{this.getCoefficient("food", mark.class)}} </td>
+                        <td> {{(termTotal("food", mark.class, mark.food1, mark.food2))}} </td>
+                        <td> {{position( (mark.food1+mark.food2)/2, "food1", "food2")}}<sup>{{fancySup(position(
+                                (mark.food1+mark.food2)/2, "food1", "food2"))}}</sup> </td>
+                        <td> {{remarks(mark.food1, mark.food2)}} </td>
+                    </tr>
+                    <tr>
+                        <td> Chemistry </td>
+                        <td> {{this.getTeacher("chem", mark.class)}} </td>
+                        <td> {{mark.chem1}} </td>
+                        <td> {{mark.chem2}} </td>
+                        <td> <b>{{termAverage("chem", mark.class, mark.chem1, mark.chem2)}} </b></td>
+                        <td> {{this.getCoefficient("chem", mark.class)}} </td>
+                        <td> {{(termTotal("chem", mark.class, mark.chem1, mark.chem2))}} </td>
+                        <td> {{position( (mark.chem1+mark.chem2)/2, "chem1", "chem2")}}<sup>{{fancySup(position(
+                                (mark.chem1+mark.chem2)/2, "chem1", "chem2"))}}</sup> </td>
+                        <td> {{remarks(mark.chem1, mark.chem2)}} </td>
+                    </tr>
+                    <tr>
+                        <td> Biology </td>
+                        <td> {{this.getTeacher("bio", mark.class)}} </td>
+                        <td> {{mark.bio1}} </td>
+                        <td> {{mark.bio2}} </td>
+                        <td> <b>{{termAverage("bio", mark.class, mark.bio1, mark.bio2)}}</b> </td>
+                        <td> {{this.getCoefficient("bio", mark.class)}} </td>
+                        <td> {{(termTotal("bio", mark.class, mark.bio1, mark.bio2))}} </td>
+                        <td> {{position( (mark.bio1+mark.bio2)/2, "bio1", "bio2")}}<sup>{{fancySup(position(
+                                (mark.bio1+mark.bio2)/2, "bio1", "bio2"))}}</sup> </td>
+                        <td> {{remarks(mark.bio1, mark.bio2)}} </td>
+                    </tr>
+                    <tr>
+                        <td> Human Biology </td>
+                        <td> {{this.getTeacher("hb", mark.class)}} </td>
+                        <td> {{mark.hb1}} </td>
+                        <td> {{mark.hb2}} </td>
+                        <td><b> {{termAverage("hb", mark.class, mark.hb1, mark.hb2)}} </b></td>
+                        <td> {{this.getCoefficient("hb", mark.class)}} </td>
+                        <td> {{(termTotal("hb", mark.class, mark.hb1, mark.hb2))}} </td>
+                        <td> {{position( (mark.hb1+mark.hb2)/2, "hb1", "hb2")}}<sup>{{fancySup(position(
+                                (mark.hb1+mark.hb2)/2, "hb1", "hb2"))}}</sup> </td>
+                        <td> {{remarks(mark.hb1, mark.hb2)}} </td>
+                    </tr>
+                    <tr>
+                        <td> Physics </td>
+                        <td> {{this.getTeacher("phy", mark.class)}} </td>
+                        <td> {{mark.phy1}} </td>
+                        <td> {{mark.phy2}} </td>
+                        <td> <b>{{termAverage("phy", mark.class, mark.phy1, mark.phy2)}}</b> </td>
+                        <td> {{this.getCoefficient("phy", mark.class)}} </td>
+                        <td> {{(termTotal("phy", mark.class, mark.phy1, mark.phy2))}} </td>
+                        <td> {{position( (mark.phy1+mark.phy2)/2, "phy1", "phy2")}}<sup>{{fancySup(position(
+                                (mark.phy1+mark.phy2)/2, "phy1", "phy2"))}}</sup> </td>
+                        <td> {{remarks(mark.phy1, mark.phy2)}} </td>
+                    </tr>
+                    <tr>
+                        <td> Computer Science </td>
+                        <td> {{this.getTeacher("comp", mark.class)}} </td>
+                        <td> {{mark.comp1}} </td>
+                        <td> {{mark.comp2}} </td>
+                        <td> <b>{{termAverage("comp", mark.class, mark.comp1, mark.comp2)}}</b> </td>
+                        <td> {{this.getCoefficient("comp", mark.class)}} </td>
+                        <td> {{(termTotal("comp", mark.class, mark.comp1, mark.comp2))}} </td>
+                        <td> {{position( (mark.comp1+mark.comp2)/2, "comp1", "comp2")}}<sup>{{fancySup(position(
+                                (mark.comp1+mark.comp2)/2, "comp1", "comp2"))}}</sup> </td>
+                        <td> {{remarks(mark.comp1, mark.comp2)}} </td>
+                    </tr>
+                    <tr>
+                        <td> Sports </td>
+                        <td> {{this.getTeacher("sport", mark.class)}} </td>
+                        <td> {{mark.sport1}} </td>
+                        <td> {{mark.sport2}} </td>
+                        <td> <b>{{termAverage("sport", mark.class, mark.sport1, mark.sport2)}}</b> </td>
+                        <td> {{this.getCoefficient("sport", mark.class)}} </td>
+                        <td> {{(termTotal("sport", mark.class, mark.sport1, mark.sport2))}} </td>
+                        <td> {{position( (mark.sport1+mark.sport2)/2, "sport1", "sport2")}}<sup>{{fancySup(position(
+                                (mark.sport1+mark.sport2)/2, "sport1", "sport2"))}}</sup> </td>
+                        <td> {{remarks(mark.sport1, mark.sport2)}} </td>
+                    </tr>
+                    <tr style="font-weight: bolder;">
+                        <td colspan="5"><h5><b>Total</b></h5></td>
+                        <td><h6><b>{{totalCoefficient( this.getCoefficient("eng", mark.class), this.getCoefficient("fre", mark.class), this.getCoefficient("maths", mark.class), this.getCoefficient("hist", mark.class), this.getCoefficient("lit", mark.class), this.getCoefficient("geo", mark.class), this.getCoefficient("econs", mark.class), this.getCoefficient("comm", mark.class), this.getCoefficient("acc", mark.class), this.getCoefficient("citi", mark.class), this.getCoefficient("logic", mark.class), this.getCoefficient("rel", mark.class), this.getCoefficient("food", mark.class), this.getCoefficient("chem", mark.class), this.getCoefficient("bio", mark.class), this.getCoefficient("hb", mark.class), this.getCoefficient("phy", mark.class), this.getCoefficient("comp", mark.class), this.getCoefficient("sport", mark.class) )}}</b></h6></td>
+                        <td><h5><b>{{totalMark( termTotal("eng", mark.class, mark.eng1, mark.eng2), termTotal("fre", mark.class, mark.fre1, mark.fre2), termTotal("maths", mark.class, mark.math1, mark.math2), termTotal("hist", mark.class, mark.hist1, mark.hist2), termTotal("lit", mark.class, mark.lit1, mark.lit2), termTotal("geo", mark.class, mark.geo1, mark.geo2), termTotal("econs", mark.class, mark.econs1, mark.econs2), termTotal("comm", mark.class, mark.comm1, mark.comm2), termTotal("acc", mark.class, mark.acc1, mark.acc2), termTotal("citi", mark.class, mark.citi1, mark.citi2), termTotal("logic", mark.class, mark.logic1, mark.logic2), termTotal("rel", mark.class, mark.rel1, mark.rel2), termTotal("food", mark.class, mark.food1, mark.food2), termTotal("chem", mark.class, mark.chem1, mark.chem2), termTotal("bio", mark.class, mark.bio1, mark.bio2), termTotal("hb", mark.class, mark.hb1, mark.hb2), termTotal("phy", mark.class, mark.phy1, mark.phy2), termTotal("comp", mark.class, mark.comp1, mark.comp2), termTotal("sport", mark.class, mark.sport1, mark.sport2) )}}</b></h5></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+                </tbody>
+               
+            </table>
+            <br/>
+            <table>
+                <thead>
+                    <tr>
+                        <th >Total Abs.</th>
+                        <th>Non-justified Abs.</th>
+                        <th>Punishment</th>
+                        <th colspan="2">Discipline Council</th>
+                        <th colspan="4">Academic Master's comment</th>
+                    </tr>
+
+                    <tr>
+                        <td>{{mark.ta}}</td>
+                        <td>{{mark.na}}</td>
+                        <td>{{mark.punishment}}</td>
+                        <td colspan="2">{{mark.DC}}</td>
+                        <td rowspan="3">{{mark.AMC}}</td>
+                        <!-- <td colspan="4" rowspan="4"></td> -->
+                    </tr>
+
+                    <tr>
+                        <th >Class Av..</th>
+                        <th>Student Average</th>
+                        <th>position</th>
+                        <!-- <th colspan="2">Discipline Master's Comment</th> -->
+                        <th>Discipline Master's Comment</th>
+                    </tr>
+
+                    <tr>
+                        <td >{{this.getClassAverage(mark.average).toFixed(2)}}</td>
+                        <td>{{( this.getAverage(totalMark( termTotal("eng", mark.class, mark.eng1, mark.eng2), termTotal("fre", mark.class, mark.fre1, mark.fre2), termTotal("maths", mark.class, mark.math1, mark.math2), termTotal("hist", mark.class, mark.hist1, mark.hist2), termTotal("lit", mark.class, mark.lit1, mark.lit2), termTotal("geo", mark.class, mark.geo1, mark.geo2), termTotal("econs", mark.class, mark.econs1, mark.econs2), termTotal("comm", mark.class, mark.comm1, mark.comm2), termTotal("acc", mark.class, mark.acc1, mark.acc2), termTotal("citi", mark.class, mark.citi1, mark.citi2), termTotal("logic", mark.class, mark.logic1, mark.logic2), termTotal("rel", mark.class, mark.rel1, mark.rel2), termTotal("food", mark.class, mark.food1, mark.food2), termTotal("chem", mark.class, mark.chem1, mark.chem2), termTotal("bio", mark.class, mark.bio1, mark.bio2), termTotal("hb", mark.class, mark.hb1, mark.hb2), termTotal("phy", mark.class, mark.phy1, mark.phy2), termTotal("comp", mark.class, mark.comp1, mark.comp2), termTotal("sport", mark.class, mark.sport1, mark.sport2) ), totalCoefficient( this.getCoefficient("eng", mark.class), this.getCoefficient("fre", mark.class), this.getCoefficient("maths", mark.class), this.getCoefficient("hist", mark.class), this.getCoefficient("lit", mark.class), this.getCoefficient("geo", mark.class), this.getCoefficient("econs", mark.class), this.getCoefficient("comm", mark.class), this.getCoefficient("acc", mark.class), this.getCoefficient("citi", mark.class), this.getCoefficient("logic", mark.class), this.getCoefficient("rel", mark.class), this.getCoefficient("food", mark.class), this.getCoefficient("chem", mark.class), this.getCoefficient("bio", mark.class), this.getCoefficient("hb", mark.class), this.getCoefficient("phy", mark.class), this.getCoefficient("comp", mark.class), this.getCoefficient("sport", mark.class) )) ).toFixed(2)}}</td>
+                        <td>{{getClassPosition(mark.average)}}<sup>{{fancySup(getClassPosition(mark.average))}}</sup></td>
+                        <td colspan="2">{{mark.DMC}}</td>
+                        <!-- <td ></td> -->
+                    </tr>
+                </thead>
+            </table>
+
+           <!-- <h5> <b for="">School Fees Paid: </b> <u>150,000</u>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+            <b for="">School Fees Owing: </b> <u>150,000</u> </h5>
+
+            <h5> <b for="">Parents Summoned on: </b> <u>150,000</u>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                <b for="">Time: </b> <u>150,000</u> </h5>
+
+                <h5><b> Principal's Note: </b> <u>... ... ...</u></h5>
+                
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                <h5><b>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; The Parent </b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+                <b>The Principal</b></h5> -->
+    
+                <table style="text-align: center;">
+                    <tr colspan="6">
+                      <th colspan="2"> <h6><b> School Fees</b></h6></th>
+                       <th colspan="2"> <h6><b> Parents summon</b> </h6></th>
+                    </tr>
+                    <tr>
+                        <th style="width: 25%;"> Owing</th>
+                        <th style="width: 25%;"> Paid</th>
+                        <th style="width: 25%;">Date</th>
+                        <th style="width: 25%;">Time</th>
+                    </tr>
+                    <tr>
+                        <td style="width: 25%;">{{mark.owing}} </td>
+                        <td style="width: 25%;"> {{mark.paid}}</td>
+                        <td style="width: 25%;">{{mark.summonDate}}</td>
+                        <td style="width: 25%;">{{mark.summonTime}}</td>
+                    </tr>
+
+                </table>
+                <h6>Principal's Note: <b><u>{{mark.note}}</u></b></h6>
+                <div style="display: flex; margin: 0 auto;">
+                    <h5 style="margin: 0 auto;"><b>The Parent</b></h5>
+                    <h5 style="margin: 0 auto;"><b>The Principal</b></h5>
+                    <br/>
+                    <br/>
+                    <br/>
+                </div>
+        </div>
+    </div>
+
+</div>
+
+<br />
+<br />

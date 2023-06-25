@@ -1,0 +1,97 @@
+@import '~bootstrap/dist/css/bootstrap.min.css';
+*{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.fl{
+    display: flex;
+}
+table{
+    border-collapse: collapse;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    width: 100%;
+    margin: 1px auto;
+}
+table, th, td{
+    border: 1px solid black;
+}
+th, td{
+    padding: 0px;
+}
+thead tr, tbody td{
+    text-align: center;
+}
+.add{
+    background: green;
+    margin: auto;
+    padding: 1px 6px 1px 6px;
+
+
+}
+.add:hover, .edit:hover, .del:hover{
+    background: rgb(97, 97, 97);
+}
+
+.edit{
+    background: transparent;
+    margin: auto;
+    padding: 1px 6px 1px 6px;
+}
+
+.del{
+    background: transparent;
+    margin: auto;
+    padding: 1px 6px 1px 6px;
+
+}
+
+.btns{
+    display: flex;
+    margin: auto;
+}
+
+.seal:hover{
+    background: gray;
+}
+
+/* .logo{
+    width: 14%;
+    height: 15vh;
+} */
+
+/* .label{
+    width:48%;
+    height: 21vh;
+    margin-left: 12.5%;
+
+} */
+hr{
+    color: transparent;
+}
+/* portrait */
+.label{
+    width:59%;
+    height: 12vh;
+    margin-left: 0%;
+    /* float: right; */
+    z-index: -3;
+
+}
+.logo{
+    width: 25%;
+    height: 13vh;
+    
+    /* z-index: 3; */
+}
+
+.line{
+    margin-left: 13em;
+    margin-bottom: .2em;
+    /* height: .4em */
+    /* border: .3em solid rgb(207, 0, 0); */
+    width:62%;
+    /* color:"brown"; */
+    height: .5vh;
+    background: rgb(114, 2, 2);
+    z-index: 50;
+}

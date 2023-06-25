@@ -226,7 +226,7 @@ export class Dialog4Component implements OnInit {
       this.markForm.controls['name6'].enable()
       this.markForm.controls['name7'].enable()
     }
-    this.markForm.value['coef'] = this.getCoef()
+    // this.markForm.value['coef'] = this.getCoef()
   }
 
   // verifyArtSubject() {

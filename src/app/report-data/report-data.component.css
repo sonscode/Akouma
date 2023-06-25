@@ -1,0 +1,85 @@
+*{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+mat-form-field{
+    color: white;
+    margin: auto;
+}
+.info, .infoline2, .marks{
+    display: flex;
+    color: white;
+}
+
+.marks{
+    display: flex;
+    /* height: 500vh; */
+}
+
+.admin mat-form-field{
+    margin: 2em;
+}
+
+.test1, .test2{
+    margin: 0 auto;
+}
+
+.addreport{
+    margin: auto;
+    border-radius: 40px;
+    background: rgba(0, 128, 0, 0.76);
+    width: 8em;
+    padding: 17px;
+}
+
+.clonereport{
+    margin: 0 auto;
+    border-radius: 40px;
+    background: rgba(224, 191, 0, 0.897);
+    width: 8em;
+    padding: 17px;
+}
+
+.close{
+    margin: auto;
+    border-radius: 40px;
+    background: rgba(155, 0, 0, 0.76);
+    width: 8em;
+    padding: 17px;
+}
+
+.classOfButtons{
+    margin: 0 auto;
+    display: flex;
+}
+
+.addreport:hover, .close:hover, .clonereport:hover{
+    background: rgba(100, 100, 100, 0.644);
+}
+
+
+input{
+    color: white;
+    border: none;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    outline: none;
+}
+
+.test1 mat-form-field, .test2 mat-form-field{
+    width: 8em;
+    margin: auto;
+}
+
+
+.four1, .four2, .four3, .four4, .four5, .four6, .four7{
+    float: left;
+}
+
+.four1 mat-form-field, .four2 mat-form-field, .four3 mat-form-field, .four4 mat-form-field, .four5 mat-form-field, .four6 mat-form-field, .four7 mat-form-field{
+    margin-left: 2.2em;
+}
+
+.test-title{
+    text-align: center;
+    /* margin-left: 2em; */
+}
+

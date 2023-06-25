@@ -14,6 +14,7 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './guards/auth.guard';
 import { ReportsComponent } from './reports/reports.component';
+import { ReportDataComponent } from './report-data/report-data.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -111,7 +112,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   // { path: 'form3', component: Form3Component },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '', redirectTo: '/reports', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];
 

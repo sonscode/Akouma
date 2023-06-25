@@ -1,0 +1,397 @@
+
+
+    <form [formGroup]="markForm">
+        <div class="info" >
+        <mat-form-field appearance="outline">
+            <mat-label>Name of student</mat-label>
+            <input type="text" matInput placeholder="" formControlName="name">
+            <mat-hint>name</mat-hint>
+          </mat-form-field>
+
+<h6 style="display: none;">{{this.verifyClass()}}</h6>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Class</mat-label>
+            <mat-select placeholder="class" formControlName="class">
+              <mat-option *ngFor="let class of classes" [value]="class.viewValue">
+                {{class.viewValue}}
+              </mat-option>
+            </mat-select>
+            <mat-hint>class</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Date of birth</mat-label>
+            <input type="date" matInput value="" formControlName="DOB">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Place of birth</mat-label>
+            <input type="text" matInput placeholder="" formControlName="POB">
+            <mat-hint>place</mat-hint>
+          </mat-form-field>
+        
+        </div>
+
+
+<!-- Second line -->
+
+
+        <div class="infoline2">
+          <mat-form-field appearance="outline">
+            <mat-label>Enrollment</mat-label>
+            <input type="number" matInput placeholder="" formControlName="enrollment" min="0">
+            <mat-hint>enroll</mat-hint>
+          </mat-form-field>
+
+             <mat-form-field appearance="outline">
+            <mat-label>Class master/mistress</mat-label>
+            <mat-select placeholder="" formControlName="master">
+              <mat-option *ngFor="let master of masters" [value]="master.viewValue">
+                {{master.viewValue}}
+              </mat-option>
+            </mat-select>
+            <mat-hint>master</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Situation</mat-label>
+            <mat-select placeholder="" formControlName="situation">
+              <mat-option *ngFor="let situation of situations" [value]="situation.viewValue">
+                {{situation.viewValue}}
+              </mat-option>
+            </mat-select>
+            <mat-hint>situation</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Term</mat-label>
+            <mat-select placeholder="" formControlName="term">
+              <mat-option *ngFor="let term of terms" [value]="term.value">
+                {{term.viewValue}}
+              </mat-option>
+            </mat-select>
+            <mat-hint>term</mat-hint>
+          </mat-form-field>
+        </div>
+<hr color="white" width="95%" >
+<br/>
+      <div mat-dialog-content style="display: block;">
+        <div class="marks" >
+          <div class="test1">
+            <h2 formControlName="test1" class="test-title">{{this.getTest1()}}</h2>
+            <div class="four1">
+              <mat-form-field appearance="outline">
+                <mat-label>English </mat-label>
+                <input type="number" matInput placeholder="" formControlName="eng1" min="0" max="20" value="0">
+                <mat-hint>mark test 1</mat-hint>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>French </mat-label>
+                <input type="number" matInput placeholder="" formControlName="fre1" min="0" max="20">
+                <mat-hint>mark test 1</mat-hint>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Mathematics </mat-label>
+                <input type="number" matInput placeholder="" formControlName="math1" min="0" max="20">
+                <mat-hint>mark test 1</mat-hint>
+              </mat-form-field>
+            </div>
+            <div class="four2">
+              <mat-form-field appearance="outline">
+                <mat-label>History </mat-label>
+                <input type="number" matInput placeholder="" formControlName="hist1" min="0" max="20">
+                <mat-hint>mark test 1</mat-hint>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Literature </mat-label>
+                <input type="number" matInput placeholder="" formControlName="lit1" min="0" max="20">
+                <mat-hint>mark test 1</mat-hint>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Geography </mat-label>
+                <input type="number" matInput placeholder="" formControlName="geo1" min="0" max="20">
+                <mat-hint>mark test 1</mat-hint>
+              </mat-form-field>
+            </div>
+            <div class="four3">
+              <mat-form-field appearance="outline">
+                <mat-label>Economics </mat-label>
+                <input type="number" matInput placeholder="" formControlName="econs1" min="0" max="20">
+                <mat-hint>mark test 1</mat-hint>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Commerce </mat-label>
+                <input type="number" matInput placeholder="" formControlName="comm1" min="0" max="20">
+                <mat-hint>mark test 1</mat-hint>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Accounting </mat-label>
+                <input type="number" matInput placeholder="" formControlName="acc1" min="0" max="20">
+                <mat-hint>mark test 1</mat-hint>
+              </mat-form-field>
+            </div>
+            <div class="four4">
+              <mat-form-field appearance="outline">
+                <mat-label>Citizenship </mat-label>
+                <input type="number" matInput placeholder="" formControlName="citi1" min="0" max="20">
+                <mat-hint>mark test 1</mat-hint>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Religion </mat-label>
+                <input type="number" matInput placeholder="" formControlName="rel1" min="0" max="20">
+                <mat-hint>mark test 1</mat-hint>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Food and Nutrition </mat-label>
+                <input type="number" matInput placeholder="" formControlName="food1" min="0" max="20">
+                <mat-hint>mark test 1</mat-hint>
+              </mat-form-field>
+            </div>
+            <div class="four5">
+              <mat-form-field appearance="outline">
+                <mat-label>Chemistry </mat-label>
+                <input type="number" matInput placeholder="" formControlName="chem1" min="0" max="20">
+                <mat-hint>mark test 1</mat-hint>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Biology </mat-label>
+                <input type="number" matInput placeholder="" formControlName="bio1" min="0" max="20">
+                <mat-hint>mark test 1</mat-hint>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Physics</mat-label>
+                <input type="number" matInput placeholder="" formControlName="phy1" min="0" max="20">
+                <mat-hint>mark test 1</mat-hint>
+              </mat-form-field>
+            </div>
+
+            <div class="four6">
+              <mat-form-field appearance="outline">
+                <mat-label>Computer Science </mat-label>
+                <input type="number" matInput placeholder="" formControlName="comp1" min="0" max="20">
+                <mat-hint>mark test 1</mat-hint>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Logic</mat-label>
+                <input type="number" matInput placeholder="" formControlName="logic1" min="0" max="20">
+                <mat-hint>mark test 1</mat-hint>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Human Biology</mat-label>
+                <input type="number" matInput placeholder="" formControlName="hb1" min="0" max="20">
+                <mat-hint>mark test 1</mat-hint>
+              </mat-form-field>
+            </div>
+
+            <div class="four7">
+              <mat-form-field appearance="outline">
+                <mat-label>Sports</mat-label>
+                <input type="number" matInput placeholder="" formControlName="sport1" min="0" max="20">
+                <mat-hint>mark test 1</mat-hint>
+              </mat-form-field>
+            </div>
+
+          </div>
+
+          <div class="test2">
+            <h2 formControlName="test2" class="test-title">{{this.getTest2()}}</h2>
+            <div class="four1">
+              <mat-form-field appearance="outline">
+                <mat-label>English </mat-label>
+                <input type="number" matInput placeholder="" formControlName="eng2" min="0" max="20">
+                <mat-hint>mark test 2</mat-hint>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>French </mat-label>
+                <input type="number" matInput placeholder="" formControlName="fre2" min="0" max="20">
+                <mat-hint>mark test 2</mat-hint>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Mathematics </mat-label>
+                <input type="number" matInput placeholder="" formControlName="math2" min="0" max="20">
+                <mat-hint>mark test 2</mat-hint>
+              </mat-form-field>
+            </div>
+            <div class="four2">
+              <mat-form-field appearance="outline">
+                <mat-label>History </mat-label>
+                <input type="number" matInput placeholder="" formControlName="hist2" min="0" max="20">
+                <mat-hint>mark test 2</mat-hint>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Literature </mat-label>
+                <input type="number" matInput placeholder="" formControlName="lit2" min="0" max="20">
+                <mat-hint>mark test 2</mat-hint>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Geography </mat-label>
+                <input type="number" matInput placeholder="" formControlName="geo2" min="0" max="20">
+                <mat-hint>mark test 2</mat-hint>
+              </mat-form-field>
+            </div>
+            <div class="four3">
+              <mat-form-field appearance="outline">
+                <mat-label>Economics </mat-label>
+                <input type="number" matInput placeholder="" formControlName="econs2" min="0" max="20">
+                <mat-hint>mark test 2</mat-hint>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Commerce </mat-label>
+                <input type="number" matInput placeholder="" formControlName="comm2" min="0" max="20">
+                <mat-hint>mark test 2</mat-hint>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Accounting </mat-label>
+                <input type="number" matInput placeholder="" formControlName="acc2" min="0" max="20">
+                <mat-hint>mark test 2</mat-hint>
+              </mat-form-field>
+            </div>
+            <div class="four4">
+              <mat-form-field appearance="outline">
+                <mat-label>Citizenship </mat-label>
+                <input type="number" matInput placeholder="" formControlName="citi2" min="0" max="20">
+                <mat-hint>mark test 2</mat-hint>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Religion </mat-label>
+                <input type="number" matInput placeholder="" formControlName="rel2" min="0" max="20">
+                <mat-hint>mark test 2</mat-hint>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Food and Nutrition </mat-label>
+                <input type="number" matInput placeholder="" formControlName="food2" min="0" max="20">
+                <mat-hint>mark test 2</mat-hint>
+              </mat-form-field>
+            </div>
+            <div class="four5">
+              <mat-form-field appearance="outline">
+                <mat-label>Chemistry </mat-label>
+                <input type="number" matInput placeholder="" formControlName="chem2" min="0" max="20">
+                <mat-hint>mark test 2</mat-hint>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Biology </mat-label>
+                <input type="number" matInput placeholder="" formControlName="bio2" min="0" max="20">
+                <mat-hint>mark test 2</mat-hint>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Physics</mat-label>
+                <input type="number" matInput placeholder="" formControlName="phy2" min="0" max="20">
+                <mat-hint>mark test 2</mat-hint>
+              </mat-form-field>
+            </div>
+
+            <div class="four6">
+              <mat-form-field appearance="outline">
+                <mat-label>Computer Science </mat-label>
+                <input type="number" matInput placeholder="" formControlName="comp2" min="0" max="20">
+                <mat-hint>mark test 2</mat-hint>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Logic</mat-label>
+                <input type="number" matInput placeholder="" formControlName="logic2" min="0" max="20">
+                <mat-hint>mark test 2</mat-hint>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Human Biology</mat-label>
+                <input type="number" matInput placeholder="" formControlName="hb2" min="0" max="20">
+                <mat-hint>mark test 2</mat-hint>
+              </mat-form-field>
+              
+            </div>
+
+            <div class="four7">
+              <mat-form-field appearance="outline">
+                <mat-label>Sports</mat-label>
+                <input type="number" matInput placeholder="" formControlName="sport2" min="0" max="20">
+                <mat-hint>mark test 2</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+    <hr color="white" width="95%" >
+        
+        <div class="admin" >
+          <br/>
+          
+          <h1 style="text-align: center;" mat-dialog-title>Disciplinary Council</h1>
+          <mat-form-field appearance="outline">
+            <mat-label>Total Absences</mat-label>
+            <input type="number" matInput placeholder="" formControlName="ta" min="0">
+            <mat-hint>absences</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Non-justified Absences</mat-label>
+            <input type="number" matInput placeholder="" formControlName="na" min="0">
+            <mat-hint>absences</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Punishment</mat-label>
+            <input type="string" matInput placeholder="" formControlName="punishment">
+            <mat-hint>punishment</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Discipline Council</mat-label>
+            <input type="string" matInput placeholder="" formControlName="DC" >
+            <mat-hint>council</mat-hint>
+          </mat-form-field>
+            
+          <mat-form-field appearance="outline">
+            <mat-label>Discipline Master's Comment </mat-label>
+            <input type="string" matInput placeholder="" formControlName="DMC" >
+            <mat-hint>council</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Academic Master's Comment </mat-label>
+            <input type="string" matInput placeholder="" formControlName="AMC" >
+            <mat-hint>council</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Fees Owing</mat-label>
+            <input type="number" matInput placeholder="" formControlName="owing" min="0">
+            <mat-hint>fees</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Fees Paid</mat-label>
+            <input type="number" matInput placeholder="" formControlName="paid" min="0">
+            <mat-hint>fees</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Parent's summon date</mat-label>
+            <input type="text" matInput formControlName="summonDate" >
+            <mat-hint>summon</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Summon time</mat-label>
+            <input type="text" matInput formControlName="summonTime" >
+            <mat-hint>summon</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Principal's Note </mat-label>
+            <input type="text" matInput formControlName="note" >
+            <mat-hint>note</mat-hint>
+          </mat-form-field>
+        </div>
+      </div>
+<br/>
+Average: <h3 formControlName="average" type="number">{{this.setAverage()}}</h3>
+
+      <div class="classOfButtons">
+        <button class="close" mat-dialog-close>Close</button>
+        <button (click)="cloneReport()" class="clonereport" id="cl">Clone</button>
+        <button (click)="addSomeReports()" class="addreport">{{actionBtn}}</button>
+      </div>
+</form>
+
+

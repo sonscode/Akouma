@@ -1,0 +1,28 @@
+<h1 style="text-align: center;">Actions</h1>
+<hr color="white" width="75%">
+<br/>
+
+<div class="div-add">
+    <button (click)="openDialog()" class="add"
+    style=" color: white; border-radius: 50px; text-align: center; margin: 0 auto;">+
+    Add</button>
+    <button class="close" mat-dialog-close (click)="getReport()">Close</button>
+</div>
+
+<hr color="white" width="100%">
+
+<div *ngFor="let mark of getReportList">
+    <div class="btns" id="seal">
+        <p style="width: 15em; font-weight:lighter; font-size: large;">{{mark.name}}</p>
+        <button (click)="editReport(mark)" class="edit"
+            style="color: white; border-radius: 50px; text-align: center;">Edit</button>
+        <button (click)="deleteReport(mark.id)" class="del"
+            style="color: white; border-radius: 50px; text-align: center;">Delete</button>
+        <br />
+        <br />
+        <br />
+    </div>
+
+    <hr color="white" width="100%">
+
+</div>

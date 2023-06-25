@@ -41,7 +41,6 @@ export class DialogComponent implements OnInit {
   actionBtn: string = "Save";
   // @ViewChild('child') child!: BlogComponent;
 
-
   constructor(private formbuilder: FormBuilder, private api: ApiService, @Inject(MAT_DIALOG_DATA) public editData: any, private dialogRef: MatDialogRef<DialogComponent>) {
     // api.matchResChanged.subscribe(status=>this.verifyMatch());
   }

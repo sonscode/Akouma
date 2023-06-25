@@ -1,0 +1,48 @@
+.add{
+    background: rgba(0, 110, 0, 0.808);
+    /* margin: auto; */
+    padding: 12px;
+
+
+}
+.add:hover, .edit:hover, .del:hover, .close:hover{
+    background: rgba(100, 100, 100, 0.644);
+}
+
+.edit{
+    background:  rgba(117, 1, 117, 0.719);
+    margin: auto;
+    padding: 12px;
+}
+
+.del{
+    background: rgba(173, 0, 0, 0.705);
+    margin: auto;
+    padding: 12px;
+}
+
+.btns{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    display: flex;
+    margin: auto;
+}
+
+.add, .edit, .del{
+    width: 8em;
+}
+
+.div-add{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    display: flex;
+    margin: auto;
+}
+
+.close{
+    margin: 0 auto;
+    border-radius: 50px;
+    background: rgba(255, 217, 0, 0.849);
+    /* float: right; */
+    width: 8em;
+    padding: 12px;
+
+}
