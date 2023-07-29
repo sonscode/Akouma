@@ -4,13 +4,8 @@ import { DialogComponent } from '../dialog/dialog.component';
 import { MatTableDataSource } from '@angular/material/table';
 import { ReportDataComponent } from '../report-data/report-data.component';
 import { ReportServiceService } from '../services/report-service.service';
-import { area120tables } from 'googleapis/build/src/apis/area120tables';
-import { max, of } from 'rxjs';
-import { randomInt } from 'crypto';
-import { HtmlTagDefinition } from '@angular/compiler';
-import { style } from '@angular/animations';
-import { NgStyle } from '@angular/common';
 import { ActionsComponent } from '../actions/actions.component';
+import { MysqlService } from '../services/mysql-service.service';
 
 
 @Component({
@@ -27,6 +22,7 @@ export class ReportsComponent {
   el: any;
   el2: any;
   markArray = []
+  showAddButton: boolean = true; 
 
   displayedColumns: string[] = [
     'name',
@@ -83,7 +79,7 @@ export class ReportsComponent {
 
   dataSource!: MatTableDataSource<any>
 
-  constructor(private dialog: MatDialog, private api: ReportServiceService) { }
+  constructor(private dialog: MatDialog, private api: MysqlService) { }
 
 
   ngOnInit() {
@@ -91,7 +87,7 @@ export class ReportsComponent {
     // this.getPosition(17)
 // this.setColor()
 
-  }
+}
 
   getReport() {
     this.api.getMark()
@@ -99,17 +95,19 @@ export class ReportsComponent {
         next: (res) => {
           this.dataSource = new MatTableDataSource(res);
           this.getReportList = res;
+          this.showAddButton = res.length === 0;
           // console.log(res);
         },
         error: (err) => {
           alert("Error while fetching marks!");
+          console.log(err)
         }
       })
   }
 
   openDialog() {
     this.dialog.open(ReportDataComponent, {
-      width: "100%", height: "98%"
+      width: "100%", height: "100%"
     }).afterClosed().subscribe({
       next: (res) => {
         this.getReport();
@@ -119,7 +117,7 @@ export class ReportsComponent {
 
   editReport(row: any) {
     this.dialog.open(ReportDataComponent, {
-      width: "100%", height: "98%",
+      width: "100%", height: "100%",
       data: row
     }).afterClosed().subscribe(val => {
       if (val === 'update') {
@@ -739,8 +737,14 @@ export class ReportsComponent {
   }
 
   remarks(mk1: any, mk2: any) {
-    var tmk = (mk1 + mk2) / 2
-    if (tmk >= 0 && tmk < 10) {
+
+    var tmk:any = (mk1 + mk2) / 2
+    // console.log(tmk)
+    if (mk1 == null ){
+      return '/';
+    }
+
+    else if (tmk >= 0 && tmk < 10) {
       return "NA";
     }
 
@@ -755,14 +759,21 @@ export class ReportsComponent {
     else if (tmk >= 18 && tmk <= 20) {
       return "E";
     }
-    else {
-      return "/"
+    else{
+      return '/';
     }
   }
 
   position(mark: any, sub1: any, sub2: any): any {
     var B: any = []
     var Arr: any = [0]
+
+    for (let i = 0; i < this.getReportList.length; i++) {
+    if (this.remarks(this.getReportList[i][sub1], this.getReportList[i][sub2]) == '/'){
+      return '/';
+    }
+  }
+
     for (let i = 0; i < this.getReportList.length; i++) {
       Arr.push((this.getReportList[i][sub1] + this.getReportList[i][sub2]) / 2)
       B.push(i + 1)
@@ -867,9 +878,9 @@ totalCoefficient(coef1: any, coef2: any,coef3: any,coef4: any,coef5: any,coef6: 
 
 totalMark(av1: any, av2: any,av3: any,av4: any,av5: any,av6: any,av7: any,av8: any, av9: any, av10: any,av11: any,av12: any,av13: any,av14: any,av15: any,av16: any,av17: any,av18: any,av19: any){
   var rav: number = 0
-  rav += (eval(av1)+eval(av2)+eval(av3)+eval(av4)+eval(av5)+eval(av6)+eval(av7)+eval(av8)+eval(av9)+eval(av10)+eval(av11)+eval(av12)+eval(av13)+eval(av14)+eval(av15)+eval(av16)+eval(av17)+eval(av18)+eval(av19)) 
+  rav += (eval(av1)+eval(av2)+eval(av3)+eval(av4)+eval(av5)+eval(av6)+eval(av7)+eval(av8)+eval(av9)+eval(av10)+eval(av11)+eval(av12)+eval(av13)+eval(av14)+eval(av15)+eval(av16)+eval(av17)+eval(av18)+eval(av19)); 
   // var ans = parseInt(rav);
-  return (rav)
+  return rav;
 }
 
 getAverage(total: any, coefficient: any){
@@ -879,10 +890,8 @@ getAverage(total: any, coefficient: any){
 getClassAverage(average: any){
   var B: any = []
   var Arr: any = []
-  var sum: any = 0;
  
   for (let i = 0; i < this.getReportList.length; i++) {
-    // Arr.push((this.getReportList[i][average]))
     Arr.push(this.getReportList[i]['average'])
     B.push(i + 1)
   }
@@ -904,8 +913,7 @@ classAv = sumAv/this.getReportList.length
 getClassPosition(average: any){
   var B: any = []
   var Arr: any = []
-  var sum: any = 0;
- 
+
   for (let i = 0; i < this.getReportList.length; i++) {
     // Arr.push((this.getReportList[i][average]))
     Arr.push(this.getReportList[i]['average'])
@@ -915,8 +923,6 @@ getClassPosition(average: any){
     return b - a
   })
   // Arr.pop()
-  var sumAv = 0
-  var classAv = 0
   for (let i = 0; i < this.getReportList.length; i++) {
     // sumAv = sumAv + eval(Arr[i])
     if (average == Arr[i]) {
@@ -940,7 +946,7 @@ getClassPosition(average: any){
 
 popUp(){
   this.dialog.open(ActionsComponent, {
-    width: "80%", height: "90%"
+    width: "60%", height: "90%"
   }).afterClosed().subscribe(val => {
     if (val === 'save') {
       this.getReport();

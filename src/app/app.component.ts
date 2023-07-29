@@ -9,7 +9,6 @@ import { AuthApiService } from './services/auth-api.service';
 })
 
 
-
 export class AppComponent {
   title = 'Akouma';
 

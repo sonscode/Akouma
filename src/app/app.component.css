@@ -2,16 +2,15 @@
 
 .containerr{
   height: 100%;
-  
   /* display: flex;
   justify-content: flex-start;
   align-items: stretch;
   flex-direction: column; */
 }
+
 .inner-container{
   /* padding-bottom: 36px; */
   min-height: 100%;
-
 }
 
 .img{

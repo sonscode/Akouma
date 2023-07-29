@@ -1,5 +1,6 @@
-
-
+<br/>
+<h1 style="text-align: center;">ENTRY DETAILS FOR THIS STUDENT</h1> 
+<br/>
     <form [formGroup]="markForm">
         <div class="info" >
         <mat-form-field appearance="outline">
@@ -22,8 +23,8 @@
 
           <mat-form-field appearance="outline">
             <mat-label>Date of birth</mat-label>
-            <input type="date" matInput value="" formControlName="DOB">
-            <mat-hint>MM/DD/YYYY</mat-hint>
+            <input type="text" matInput value="" formControlName="DOB">
+            <mat-hint>DD/MM/YYYY</mat-hint>
           </mat-form-field>
 
           <mat-form-field appearance="outline">
@@ -368,7 +369,7 @@
           <mat-form-field appearance="outline">
             <mat-label>Parent's summon date</mat-label>
             <input type="text" matInput formControlName="summonDate" >
-            <mat-hint>summon</mat-hint>
+            <mat-hint>DD/MM/YYYY</mat-hint>
           </mat-form-field>
 
           <mat-form-field appearance="outline">
@@ -385,7 +386,8 @@
         </div>
       </div>
 <br/>
-Average: <h3 formControlName="average" type="number">{{this.setAverage()}}</h3>
+
+<h3 formControlName="average" type="number">Average: {{this.setAverage()}}</h3>
 
       <div class="classOfButtons">
         <button class="close" mat-dialog-close>Close</button>

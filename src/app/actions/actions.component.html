@@ -1,4 +1,6 @@
-<h1 style="text-align: center;">Actions</h1>
+<br/>
+<h1 style="text-align: center;">ACTIONS</h1>
+<br/>
 <hr color="white" width="75%">
 <br/>
 
@@ -13,7 +15,8 @@
 
 <div *ngFor="let mark of getReportList">
     <div class="btns" id="seal">
-        <p style="width: 15em; font-weight:lighter; font-size: large;">{{mark.name}}</p>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         <p style="width: 15em; font-weight:lighter; font-size: large; color: white;">{{mark.name}}</p>
         <button (click)="editReport(mark)" class="edit"
             style="color: white; border-radius: 50px; text-align: center;">Edit</button>
         <button (click)="deleteReport(mark.id)" class="del"

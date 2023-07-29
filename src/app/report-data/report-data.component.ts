@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ReportServiceService } from '../services/report-service.service';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MysqlService } from '../services/mysql-service.service';
 
 interface Sequence {
   value: string;
@@ -34,9 +35,6 @@ interface Master {
   viewValue: string;
 }
 
-interface Average {
-  value: number;
-}
 
 
 
@@ -53,7 +51,7 @@ export class ReportDataComponent {
   actionBtn: string = "Save";
 
 
-  constructor(private formbuilder: FormBuilder, private api: ReportServiceService, @Inject(MAT_DIALOG_DATA) public editData: any, private dialogRef: MatDialogRef<ReportDataComponent>) {
+  constructor(private formbuilder: FormBuilder, private api: MysqlService, @Inject(MAT_DIALOG_DATA) public editData: any, private dialogRef: MatDialogRef<ReportDataComponent>) {
     // api.matchResChanged.subscribe(status=>this.verifyMatch());
   }
 
@@ -121,12 +119,12 @@ export class ReportDataComponent {
       punishment: ['/', Validators.nullValidator],
       DC: ['/', Validators.nullValidator],
       DMC: ['/', Validators.nullValidator],
-      AMC: ['', Validators.nullValidator],
+      AMC: ['Passed', Validators.nullValidator],
       paid: [0, Validators.nullValidator],
       owing: [0, Validators.nullValidator],
-      summonDate: ['19/04/2023', Validators.nullValidator],
+      summonDate: ['dd-mm-yyyy', Validators.nullValidator],
       summonTime: ['8:00 AM', Validators.nullValidator],
-      note: ['Third Term resumes on 17/04/2023', Validators.nullValidator]
+      note: ['Third Term resumes on dd-mm-yyyy', Validators.nullValidator]
 
     })
 
@@ -298,12 +296,14 @@ export class ReportDataComponent {
         .subscribe({
           next: (res) => {
             this.reportList = res;
-            alert("info added successfully");
+            alert("Info added successfully");
             this.markForm.reset();
             this.dialogRef.close('Save');
           },
           error: () => {
             alert("Error: Marks could not be added");
+            console.log(JSON.stringify(this.markForm.value))
+            // console.log(this.reportList)
           }
         });
     }

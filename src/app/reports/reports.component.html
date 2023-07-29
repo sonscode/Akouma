@@ -1,3 +1,4 @@
+<div class="hid-start" *ngIf="showAddButton"><button (click)="openDialog()" class="start">start</button></div>
 <div class="report-class" *ngFor="let mark of getReportList" (click)="popUp()" (click)="getReport()">
     <!-- <div class="btns" id="seal">
         <button (click)="openDialog()" class="add"
@@ -21,10 +22,12 @@
             <h2 style="text-align: center; color: black">REPORT CARD</h2>
             <span> <span> Name: <b>{{mark.name}}</b></span> <span style="float: right; text-align: right;"> class: <b>
                         {{mark.class}}</b> </span></span> <br />
-            <span class="fl"><span style="float: left;"> Date of birth: <b> {{(mark.DOB).split('-').reverse().join('/')}}</b> </span> <span
+            <span class="fl"><span style="float: left;"> Date of birth: <b> {{(mark.DOB)}}</b> </span> <span
                     style="margin: 0 auto"> Place: <b> {{mark.POB}}</b></span> <span style="float: right;">Enrollment:
                     <b>{{mark.enrollment}}</b></span>
             </span>
+<!-- .split('-').reverse().join('/') -->
+
             <br>
             <p>Class Master/Mistress: <b>{{mark.master}}</b> <span style="float: right;"> Situation:
                     <b>{{mark.situation}}</b></span> </p>
@@ -358,8 +361,8 @@
                 </table>
                 <h6>Principal's Note: <b><u>{{mark.note}}</u></b></h6>
                 <div style="display: flex; margin: 0 auto;">
-                    <h5 style="margin: 0 auto;"><b>The Parent</b></h5>
-                    <h5 style="margin: 0 auto;"><b>The Principal</b></h5>
+                    <h5 style="margin: 0 auto; font-weight: lighter; color:black;"><b>The Parent</b></h5>
+                    <h5 style="margin: 0 auto; font-weight: lighter; color:black;"><b>The Principal</b></h5>
                     <br/>
                     <br/>
                     <br/>

@@ -95,3 +95,30 @@ hr{
     background: rgb(114, 2, 2);
     z-index: 50;
 }
+
+.start{
+    /* margin: 7% 0 0 40%; */
+    
+    border-radius: 100%;
+    background: rgb(121, 0, 0);
+    width: 6em;
+    padding: 18px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    height: 6em;
+    font-size: 50px;
+    text-align: center;
+    margin: 5% auto auto 39%;
+    
+}
+
+.start:hover{
+    background: rgb(177, 0, 0);;
+}
+
+.hid-start{
+    background: rgb(117, 117, 117);
+    align-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+}

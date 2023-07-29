@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { ReportDataComponent } from '../report-data/report-data.component';
 import { ReportServiceService } from '../services/report-service.service';
+import { MysqlService } from '../services/mysql-service.service';
 
 @Component({
   selector: 'app-actions',
@@ -14,7 +15,7 @@ export class ActionsComponent {
 
   dataSource!: MatTableDataSource<any>
 
-  constructor(private dialog: MatDialog, private api: ReportServiceService) { }
+  constructor(private dialog: MatDialog, private api: MysqlService) { }
   
   ngOnInit() {
     this.getReport();
@@ -38,7 +39,7 @@ export class ActionsComponent {
 
   openDialog() {
     this.dialog.open(ReportDataComponent, {
-      width: "100%", height: "98%"
+      width: "98%", height: "98%"
     }).afterClosed().subscribe({ 
       next: (res) => {
         this.getReport();
@@ -49,7 +50,7 @@ export class ActionsComponent {
 
   editReport(row: any) {
     this.dialog.open(ReportDataComponent, {
-      width: "100%", height: "98%",
+      width: "98%", height: "98%",
       data: row
     }).afterClosed().subscribe({
       next: (res) => {
