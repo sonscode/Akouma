@@ -35,6 +35,11 @@ interface Master {
   viewValue: string;
 }
 
+interface Comment {
+  value: string;
+  viewValue: string;
+}
+
 
 
 
@@ -242,6 +247,11 @@ export class ReportDataComponent {
   masters: Master[] = [
     { value: 'sonna', viewValue: 'Mr. Sonna Temgoua' },
     { value: 'munge', viewValue: 'Mrs. Munge Isabell' }
+  ]
+
+  comments : Comment[] = [
+    {value: 'Ppass', viewValue: 'PASSED'},
+    {value: 'fail', viewValue: 'FAILED'}
   ]
 
 

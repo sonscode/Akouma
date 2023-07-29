@@ -729,7 +729,7 @@ export class ReportsComponent {
 
   termTotal(subject: any, classe: any, mk1: any, mk2: any): any {
     if (this.getCoefficient(subject, classe) == 0) {
-      return 0;
+      return null;
     }
     else {
       return (((mk1 + mk2) / 2) * this.getCoefficient(subject, classe)).toFixed(2)
@@ -773,7 +773,7 @@ export class ReportsComponent {
       return '/';
     }
   }
-
+  
     for (let i = 0; i < this.getReportList.length; i++) {
       Arr.push((this.getReportList[i][sub1] + this.getReportList[i][sub2]) / 2)
       B.push(i + 1)
@@ -789,7 +789,7 @@ export class ReportsComponent {
     }
     // console.log(Arr)
     // console.log(B)
-    return "/"
+    // return "/"
   }
 
   classPosition(studAverage: any): any {
@@ -810,7 +810,7 @@ export class ReportsComponent {
     }
     // console.log(Arr)
     // console.log(B)
-    return "/"
+    // return "/"
   }
 
 
