@@ -97,6 +97,8 @@ export class ReportsComponent {
           this.getReportList = res;
           this.showAddButton = res.length === 0;
           // console.log(res);
+          console.log(this.getReportList[3]['_id']);
+
         },
         error: (err) => {
           alert("Error while fetching marks!");
@@ -126,7 +128,7 @@ export class ReportsComponent {
     })
   }
 
-  deleteReport(id: number) {
+  deleteReport(id: any) {
     if (confirm("Confirm delete")) {
       this.api.deleteReport(id).subscribe({
         next: (res) => {

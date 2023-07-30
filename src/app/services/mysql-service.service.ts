@@ -7,7 +7,7 @@ import { Report } from '../report';
   providedIn: 'root',
 })
 export class MysqlService {
-  private apiUrl = 'http://localhost:3000/api/reports';
+  private apiUrl = 'https://mysql-express.onrender.com/api/reports/';
 
   constructor(private http: HttpClient) {}
 
@@ -17,7 +17,7 @@ export class MysqlService {
   }
 
   // Method to get a single report by ID
-  getReportById(id: number): Observable<Report> {
+  getReportById(id: any): Observable<Report> {
     const url = `${this.apiUrl}/${id}`;
     return this.http.get<Report>(url);
   }
@@ -28,13 +28,15 @@ export class MysqlService {
   }
 
   // Method to update an existing report
-  putReport(report: Report, id: number): Observable<Report> {
+  putReport(report: Report, id: any): Observable<Report> {
     const url = `${this.apiUrl}/${id}`;
+    // Remove the '_id' field from the report object before sending it to the backend
+    // delete report._id;
     return this.http.put<Report>(url, report);
   }
 
   // Method to delete a report by ID
-  deleteReport(id: number): Observable<any> {
+  deleteReport(id: any): Observable<any> {
     const url = `${this.apiUrl}/${id}`;
     return this.http.delete(url);
   }

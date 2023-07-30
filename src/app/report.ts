@@ -1,5 +1,5 @@
 export interface Report {
-    id: number;
+    id: any;
     term: number;
     name: string;
     class: string;

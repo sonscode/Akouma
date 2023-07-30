@@ -29,7 +29,6 @@ export class ActionsComponent {
         next: (res) => {
           this.dataSource = new MatTableDataSource(res);
           this.getReportList = res;
-          // console.log(res);
         },
         error: (err) => {
           alert("Error while fetching marks!");
@@ -60,7 +59,7 @@ export class ActionsComponent {
     })
   }
 
-  deleteReport(id: number) {
+  deleteReport(id: any) {
     if (confirm("Confirm delete")) {
       this.api.deleteReport(id).subscribe({
         next: (res) => {

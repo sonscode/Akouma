@@ -124,7 +124,7 @@ export class ReportDataComponent {
       punishment: ['/', Validators.nullValidator],
       DC: ['/', Validators.nullValidator],
       DMC: ['/', Validators.nullValidator],
-      AMC: ['Passed', Validators.nullValidator],
+      AMC: ['', Validators.nullValidator],
       paid: [0, Validators.nullValidator],
       owing: [0, Validators.nullValidator],
       summonDate: ['dd-mm-yyyy', Validators.nullValidator],
