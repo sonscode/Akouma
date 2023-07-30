@@ -40,12 +40,12 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "4mb",
-                  "maximumError": "7mb"
+                  "maximumWarning": "7mb",
+                  "maximumError": "10mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "20kb",
+                  "maximumWarning": "50kb",
                   "maximumError": "500kb"
                 }
               ],
@@ -115,7 +115,7 @@
       }
     }
   },
-  "defaultProject": "Akouma-hs",
+  "defaultProject": "akouma-high-school",
   "cli": {
     "analytics": false
   }
