@@ -45,8 +45,8 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "50kb",
-                  "maximumError": "500kb"
+                  "maximumWarning": "220kb",
+                  "maximumError": "600kb"
                 }
               ],
               "fileReplacements": [
@@ -115,7 +115,6 @@
       }
     }
   },
-  "defaultProject": "akouma-high-school",
   "cli": {
     "analytics": false
   }

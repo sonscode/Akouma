@@ -7,8 +7,8 @@ import { Report } from '../report';
   providedIn: 'root',
 })
 export class MysqlService {
-  private apiUrl = '  https://mysql-express.onrender.com/api/reports/';
-  // private apiUrl = 'http://localhost:3000/api/reports';
+  // private apiUrl = '  https://mysql-express.onrender.com/api/reports/';
+  private apiUrl = 'http://localhost:3000/api/reports';
   constructor(private http: HttpClient) {}
 
   // Method to get all reports
