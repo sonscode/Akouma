@@ -808,8 +808,6 @@ position(mark1: any, mark2: any, sub1: any, sub2: any, form: any): any {
   Arr.sort(function (a: number, b: number) {
     return b - a;
   });
-  console.log("Arr: ", Arr)
-  console.log("Mark: ", mark, "position ", Arr.indexOf(mark)+1)
 
   return Arr.indexOf(mark) + 1;
 }
