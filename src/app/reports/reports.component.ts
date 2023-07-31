@@ -764,7 +764,8 @@ export class ReportsComponent {
     }
   }
 
-  position(mark1: any, mark2: any, sub1: any, sub2: any): any {
+/*
+position(mark1: any, mark2: any, sub1: any, sub2: any): any {
     var B: any = []
     var Arr: any = [0]
     var mark = (mark1 + mark2)/2
@@ -772,10 +773,8 @@ export class ReportsComponent {
     // console.log("Average: ", this.getReportList[i]['average'])
       if (this.remarks(mark1, mark2) == '/'){
       return '/';
-      
+      }
     }
-  }
-  
     for (let i = 0; i < this.getReportList.length; i++) {
       Arr.push((this.getReportList[i][sub1] + this.getReportList[i][sub2]) / 2)
       B.push(i + 1)
@@ -793,6 +792,28 @@ export class ReportsComponent {
     // console.log(B)
     // return "/"
   }
+*/
+
+position(mark1: any, mark2: any, sub1: any, sub2: any, form: any): any {
+  var relevantReports = this.getReportList.filter((report: { class: any }) => report.class === form);
+  var mark = (mark1 + mark2) / 2;
+
+  for (let i = 0; i < this.getReportList.length; i++) {
+      if (this.remarks(mark1, mark2) == '/'){
+      return '/';
+      }
+    }
+
+  var Arr: any = relevantReports.map((report: any) => (report[sub1] + report[sub2])/2);
+  Arr.sort(function (a: number, b: number) {
+    return b - a;
+  });
+  console.log("Arr: ", Arr)
+  console.log("Mark: ", mark, "position ", Arr.indexOf(mark)+1)
+
+  return Arr.indexOf(mark) + 1;
+}
+
 
   classPosition(studAverage: any): any {
     var B: any = []
@@ -892,6 +913,7 @@ getAverage(total: any, coefficient: any){
   return total/coefficient;
 }
 
+/*
 getClassAverage(average: any){
   var B: any = []
   var Arr: any = []
@@ -937,6 +959,28 @@ getClassPosition(average: any){
   // classAv = sumAv/this.getReportList.length
   // console.log("B: "+B + "\nArr: " + Arr+"\n"+ sumAv)
   return 0
+}
+
+*/
+
+// Function to calculate class average for a specific form level
+getClassAverage(form: string) {
+  const relevantReports = this.getReportList.filter((report: { class: string; }) => report.class === form);
+  
+  const sumAv = relevantReports.reduce((total: any, report: { average: any; }) => total + report.average, 0);
+  const classAv = sumAv / relevantReports.length;
+  
+  return classAv;
+}
+
+// Function to calculate position for a specific average in a given form level
+getClassPosition(form: string, average: number) {
+  const relevantReports = this.getReportList.filter((report: { class: string; }) => report.class === form);
+  
+  const sortedAverages = relevantReports.map((report: { average: any; }) => report.average).sort((a: number, b: number) => b - a);
+  const position = sortedAverages.indexOf(average) + 1;
+  
+  return position;
 }
 
 // seal(){
