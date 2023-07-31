@@ -351,7 +351,7 @@ export class ReportDataComponent {
   }
 
   editReport() {
-    this.api.putReport(this.markForm.value, this.editData.id)
+    this.api.putReport(this.markForm.value, this.editData._id)
       .subscribe({
         next: (res) => {
           alert("Marks updated successfully!");
@@ -360,7 +360,7 @@ export class ReportDataComponent {
           // this.getReport()
         },
         error: () => {
-          alert("Error while updating the records with id " + this.editData.id);
+          alert("Error while updating the records with id " + this.editData._id);
         }
       })
 

@@ -96,8 +96,6 @@ export class ReportsComponent {
           this.dataSource = new MatTableDataSource(res);
           this.getReportList = res;
           this.showAddButton = res.length === 0;
-          // console.log(res);
-          console.log(this.getReportList[3]['_id']);
 
         },
         error: (err) => {
