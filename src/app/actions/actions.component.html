@@ -9,14 +9,15 @@
     style=" color: white; border-radius: 50px; text-align: center; margin: 0 auto;">+
     Add</button>
     <button class="close" mat-dialog-close (click)="getReport()">Close</button>
-</div>
+</div> <br/>
 
 <hr color="white" width="100%">
 
 <div *ngFor="let mark of getReportList">
     <div class="btns" id="seal">
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-         <p style="width: 15em; font-weight:lighter; font-size: large; color: white;">{{mark.name}}</p>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+         <p style="width: 9em; font-weight:lighter; font-size: large; color: white;">{{mark.name}}</p>
+         <p style="width: 5em; font-weight:lighter; font-size: small; color: white; text-align: left;">{{mark.class}}</p>
         <button (click)="editReport(mark)" class="edit"
             style="color: white; border-radius: 50px; text-align: center;">Edit</button>
         <button (click)="deleteReport(mark._id)" class="del"
