@@ -764,13 +764,15 @@ export class ReportsComponent {
     }
   }
 
-  position(mark: any, sub1: any, sub2: any): any {
+  position(mark1: any, mark2: any, sub1: any, sub2: any): any {
     var B: any = []
     var Arr: any = [0]
-
+    var mark = (mark1 + mark2)/2
     for (let i = 0; i < this.getReportList.length; i++) {
-    if (this.remarks(this.getReportList[i][sub1], this.getReportList[i][sub2]) == '/'){
+    // console.log("Average: ", this.getReportList[i]['average'])
+      if (this.remarks(mark1, mark2) == '/'){
       return '/';
+      
     }
   }
   
@@ -826,6 +828,9 @@ export class ReportsComponent {
         return "rd"
         break;
       case "/":
+        return ""
+        break;
+      case "":
         return ""
         break;
       default:
@@ -971,6 +976,13 @@ setColor(mk1 : any, mk2 : any){
 
 refreshColor(engMark1: any, engMark2: any){
   this.setColor(engMark1, engMark2)
+}
+
+setAMC(average: any){
+  if(average >= 10)
+    return "PASSED";
+  else
+    return "FAILED";
 }
 
 
