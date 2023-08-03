@@ -38,7 +38,7 @@ export class ActionsComponent {
 
   openDialog() {
     this.dialog.open(ReportDataComponent, {
-      width: "98%", height: "95%", maxWidth: "none"
+      width: "91%", height: "95%", maxWidth: "none"
     }).afterClosed().subscribe({ 
       next: (res) => {
         this.getReport();
@@ -49,7 +49,7 @@ export class ActionsComponent {
 
   editReport(row: any) {
     this.dialog.open(ReportDataComponent, {
-      width: "98%", height: "95%", maxWidth: "none",
+      width: "91%", height: "95%", maxWidth: "none",
       data: row
     }).afterClosed().subscribe({
       next: (res) => {

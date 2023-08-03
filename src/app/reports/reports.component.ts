@@ -107,7 +107,7 @@ export class ReportsComponent {
 
   openDialog() {
     this.dialog.open(ReportDataComponent, {
-      width: "98%", height: "95%", maxWidth: "none"
+      width: "91%", height: "95%", maxWidth: "none"
     }).afterClosed().subscribe({
       next: (res) => {
         this.getReport();
@@ -117,7 +117,7 @@ export class ReportsComponent {
 
   editReport(row: any) {
     this.dialog.open(ReportDataComponent, {
-      width: "98%", height: "95%", maxWidth: "none",
+      width: "91%", height: "95%", maxWidth: "none",
       data: row
     }).afterClosed().subscribe(val => {
       if (val === 'update') {
@@ -993,7 +993,7 @@ getClassPosition(form: string, average: number) {
 
 popUp(){
   this.dialog.open(ActionsComponent, {
-    width: "98%", height: "95%", maxWidth: "none"
+    width: "90%", height: "95%", maxWidth: "none"
   }).afterClosed().subscribe(val => {
     if (val === 'save') {
       this.getReport();
