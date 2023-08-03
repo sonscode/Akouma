@@ -3,7 +3,7 @@
 }
 mat-form-field{
     color: white;
-    margin: auto;
+    margin: 0 auto;
 }
 .info, .infoline2, .marks{
     display: flex;
@@ -12,44 +12,78 @@ mat-form-field{
 
 .marks{
     display: flex;
-    /* height: 500vh; */
+    color: white;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: center; /*Center align the content horizontally*/
+    /* flex-wrap: wrap; */
+}
+
+.marks mat-form-field{
+    margin: 0px;
+}
+
+.admin{
+    display: flex;
+    /*flex-direction: column; */
+    justify-content: center;
+    align-items: center;
+  flex-wrap: wrap;
+   /*height: 100vh; /* Adjust the height as needed */
+    padding: 10px; /* Add padding for spacing around the content */
 }
 
 .admin mat-form-field{
-    margin: 2em;
+    margin: 15px;
 }
 
 .test1, .test2{
+    flex-wrap: wrap;
+    text-align: center; /* Center align the test titles */
     margin: 0 auto;
+    /* float: left; */
+}
+
+.test1{
+    border-top-right-radius: 70px;
+    border-bottom-right-radius: 70px;
+    border-right: 1px solid white;
+}
+.test2{
+    border-bottom-left-radius: 70px;
+    border-top-left-radius: 70px;
+    border-left: 1px solid white;
 }
 
 .addreport{
-    margin: auto;
+    margin: 10px;
     border-radius: 40px;
     background: rgba(0, 128, 0, 0.76);
     width: 8em;
-    padding: 17px;
 }
 
 .clonereport{
-    margin: 0 auto;
+    /* margin: 0 auto; */
+    margin: 10px;
     border-radius: 40px;
     background: rgba(224, 191, 0, 0.897);
     width: 8em;
-    padding: 17px;
 }
 
 .close{
-    margin: auto;
+    /* margin: auto; */
+    margin: 10px;
     border-radius: 40px;
     background: rgba(155, 0, 0, 0.76);
     width: 8em;
-    padding: 17px;
 }
 
 .classOfButtons{
-    margin: 0 auto;
     display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 12px;
 }
 
 .addreport:hover, .close:hover, .clonereport:hover{
@@ -66,20 +100,62 @@ input{
 
 .test1 mat-form-field, .test2 mat-form-field{
     width: 8em;
-    margin: auto;
+    margin: 10px;
 }
-
 
 .four1, .four2, .four3, .four4, .four5, .four6, .four7{
-    float: left;
+    justify-content: center;
+    display: flex;
+  flex-wrap: wrap;
+  /*justify-content: space-between; /* Distribute items evenly */
+  margin-top: 10px; /* Add spacing between rows */
 }
 
-.four1 mat-form-field, .four2 mat-form-field, .four3 mat-form-field, .four4 mat-form-field, .four5 mat-form-field, .four6 mat-form-field, .four7 mat-form-field{
-    margin-left: 2.2em;
-}
+/* .four1 mat-form-field, .four2 mat-form-field, .four3 mat-form-field, .four4 mat-form-field, .four5 mat-form-field, .four6 mat-form-field, .four7 mat-form-field{
+    margin: 4px;
+} */
 
 .test-title{
     text-align: center;
     /* margin-left: 2em; */
+}
+
+
+
+
+
+
+
+
+/* Responsive styles for smaller screens */
+@media (max-width: 875px) {
+    .info,
+    .infoline2, .admin{
+        flex-direction: column; /* Stack the form fields vertically on smaller screens */
+        align-items: center; /* Center align the form fields */
+    }
+
+    mat-form-field {
+        width: 100%; /* Set the width of form fields to 100% on smaller screens */
+        margin-bottom: 10px; /* Add some spacing between the form fields */
+    }
+
+    .info mat-form-field, .infoline2 mat-form-field, .admin mat-form-field{
+        width: 12em;
+        margin: auto;   
+    }
+
+    .admin {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Center align content horizontally */
+        color: white;
+        margin: auto;
+    }
+    
+    /* .admin mat-form-field {
+        margin: 10px; 
+        max-width: 400px; 
+    } */
 }
 

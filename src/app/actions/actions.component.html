@@ -6,9 +6,8 @@
 
 <div class="div-add">
     <button (click)="openDialog()" class="add"
-    style=" color: white; border-radius: 50px; text-align: center; margin: 0 auto;">+
-    Add</button>
-    <button class="close" mat-dialog-close (click)="getReport()">Close</button>
+    style=" color: white; border-radius: 50px; text-align: center; margin: 0 auto;">+add</button>
+    <button class="close" mat-dialog-close (click)="getReport()">close</button>
 </div> <br/>
 
 <hr color="white" width="100%">
@@ -19,9 +18,9 @@
          <p style="width: 9em; font-weight:lighter; font-size: large; color: white;">{{mark.name}}</p>
          <p style="width: 5em; font-weight:lighter; font-size: small; color: white; text-align: left;">{{mark.class}}</p>
         <button (click)="editReport(mark)" class="edit"
-            style="color: white; border-radius: 50px; text-align: center;">Edit</button>
+            style="color: white; border-radius: 50px; text-align: center;">edit</button> <br/>
         <button (click)="deleteReport(mark._id)" class="del"
-            style="color: white; border-radius: 50px; text-align: center;">Delete</button>
+            style="color: white; border-radius: 50px; text-align: center;">delete</button>
         <br />
         <br />
         <br />
@@ -30,3 +29,19 @@
     <hr color="white" width="100%">
 
 </div>
+
+<!-- <h1 style="text-align: center;">ACTIONS</h1>
+
+<div class="div-add">
+    <button (click)="openDialog()" class="add">+ Add</button>
+    <button class="close" mat-dialog-close (click)="getReport()">Close</button>
+</div>
+
+<div *ngFor="let mark of getReportList" class="btns">
+    <div id="seal">
+        <p class="mark-name">{{mark.name}}</p>
+        <p class="mark-class">{{mark.class}}</p>
+        <button (click)="editReport(mark)" class="edit">Edit</button>
+        <button (click)="deleteReport(mark._id)" class="del">Delete</button>
+    </div>
+</div> -->

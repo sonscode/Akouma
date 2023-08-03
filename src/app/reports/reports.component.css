@@ -54,17 +54,7 @@ thead tr, tbody td{
     background: gray;
 }
 
-/* .logo{
-    width: 14%;
-    height: 15vh;
-} */
 
-/* .label{
-    width:48%;
-    height: 21vh;
-    margin-left: 12.5%;
-
-} */
 hr{
     color: transparent;
 }
@@ -102,12 +92,11 @@ hr{
     border-radius: 100%;
     background: rgb(121, 0, 0);
     width: 6em;
-    padding: 18px;
+    padding: 3px 3px 3px 3px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     height: 6em;
-    font-size: 50px;
+    font-size: 45px;
     text-align: center;
-    margin: 5% auto auto 39%;
     
 }
 
@@ -116,9 +105,12 @@ hr{
 }
 
 .hid-start{
-    background: rgb(117, 117, 117);
-    align-content: center;
-    align-items: center;
-    height: 100vh;
-    width: 100%;
+    background-color: rgb(117, 117, 117);
+    display: flex;
+  justify-content: center; /* Horizontally center the button */
+  align-items: center; /* Vertically center the button */
+  height: 100vh; /* Set the container height to the full viewport height */
 }
+
+
+

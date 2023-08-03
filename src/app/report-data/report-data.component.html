@@ -314,10 +314,10 @@
         </div>
     <hr color="white" width="95%" >
         
-        <div class="admin" >
+
+    <h1 style="text-align: center;" mat-dialog-title>Disciplinary Council</h1>
+      <div class="admin" >
           <br/>
-          
-          <h1 style="text-align: center;" mat-dialog-title>Disciplinary Council</h1>
           <mat-form-field appearance="outline">
             <mat-label>Total Absences</mat-label>
             <input type="number" matInput placeholder="" formControlName="ta" min="0">
@@ -395,9 +395,10 @@
 <h3 formControlName="average" type="number">Average: {{this.setAverage()}}</h3>
 
       <div class="classOfButtons">
-        <button class="close" mat-dialog-close>Close</button>
-        <button (click)="cloneReport()" class="clonereport" id="cl">Clone</button>
         <button (click)="addSomeReports()" class="addreport">{{actionBtn}}</button>
+        <button (click)="cloneReport()" class="clonereport" id="cl">Clone</button>
+        <button class="close" mat-dialog-close>Close</button>
+     
       </div>
 </form>
 
