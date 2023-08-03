@@ -68,7 +68,7 @@ export class ReportDataComponent {
       term: ['', Validators.required],
       name: ['', Validators.required],
       class: ['', Validators.required],
-      DOB: ['', Validators.nullValidator],
+      DOB: ['', Validators.required],
       POB: ['Yaounde', Validators.required],
       enrollment: ['', Validators.required],
       master: ['', Validators.required],

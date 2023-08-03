@@ -3,10 +3,16 @@
 }
 mat-form-field{
     color: white;
-    margin: 0 auto;
+    margin: 12px;
 }
-.info, .infoline2, .marks{
+.info, .infoline2{
     display: flex;
+    /*flex-direction: column; */
+    justify-content: center;
+    align-items: center;
+  flex-wrap: wrap;
+   /*height: 100vh; /* Adjust the height as needed */
+    padding: 10px; 
     color: white;
 }
 
@@ -121,14 +127,8 @@ input{
 }
 
 
-
-
-
-
-
-
 /* Responsive styles for smaller screens */
-@media (max-width: 875px) {
+@media (max-width: 510px) {
     .info,
     .infoline2, .admin{
         flex-direction: column; /* Stack the form fields vertically on smaller screens */
@@ -136,13 +136,13 @@ input{
     }
 
     mat-form-field {
-        width: 100%; /* Set the width of form fields to 100% on smaller screens */
-        margin-bottom: 10px; /* Add some spacing between the form fields */
+        width: 28%; /* Set the width of form fields to 100% on smaller screens */
+       /* margin-bottom: 10px; /* Add some spacing between the form fields */
     }
 
     .info mat-form-field, .infoline2 mat-form-field, .admin mat-form-field{
         width: 12em;
-        margin: auto;   
+        margin: 12px;   
     }
 
     .admin {
@@ -150,7 +150,7 @@ input{
         flex-direction: column;
         align-items: center; /* Center align content horizontally */
         color: white;
-        margin: auto;
+        /* margin: auto; */
     }
     
     /* .admin mat-form-field {
@@ -159,3 +159,15 @@ input{
     } */
 }
 
+@media (max-width: 705px){
+.test1{
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-right: 1px solid white;
+}
+.test2{
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
+    border-left: 1px solid white;
+}
+}
