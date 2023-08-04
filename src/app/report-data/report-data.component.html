@@ -1,6 +1,10 @@
 <br/>
 <h1 style="text-align: center;">ENTRY DETAILS FOR THIS STUDENT</h1> 
 <br/>
+<div class="div-add">
+  <button class="enroll" (click)="editEnrollment(this.getEnrollmentList[0])">&nearhk;Enrollments</button>
+</div>
+<br/>
     <form [formGroup]="markForm">
         <div class="info" >
         <mat-form-field appearance="outline">
@@ -31,22 +35,23 @@
             <mat-label>Place of birth</mat-label>
             <input type="text" matInput placeholder="" formControlName="POB">
             <mat-hint>place</mat-hint>
-          </mat-form-field>
-        
+          </mat-form-field>        
         </div>
 
 
 <!-- Second line -->
 
-
         <div class="infoline2">
-          <mat-form-field appearance="outline">
+          <!-- <mat-form-field appearance="outline">
             <mat-label>Enrollment</mat-label>
             <input type="number" matInput placeholder="" formControlName="enrollment" min="0">
             <mat-hint>enroll</mat-hint>
-          </mat-form-field>
-
-             <mat-form-field appearance="outline">
+          </mat-form-field> -->
+        <div class="enroll-field">  
+          <h3 formControlName = "enrollment">Enrollment: <b>{{this.getEnrollmentFromClass()}}</b></h3>
+        </div>
+        &nbsp;&nbsp;&nbsp;
+          <mat-form-field appearance="outline" class="master">
             <mat-label>Class master/mistress</mat-label>
             <mat-select placeholder="" formControlName="master">
               <mat-option *ngFor="let master of masters" [value]="master.viewValue">

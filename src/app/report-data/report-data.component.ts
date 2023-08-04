@@ -1,10 +1,12 @@
 import { ParsedEvent } from '@angular/compiler';
 import { Component, OnInit, ViewChild, EventEmitter, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { ReportServiceService } from '../services/report-service.service';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MysqlService } from '../services/mysql-service.service';
+import { EnrollmentComponent } from '../enrollment/enrollment.component';
+import { MatTableDataSource } from '@angular/material/table';
 
 interface Sequence {
   value: string;
@@ -54,14 +56,17 @@ export class ReportDataComponent {
   reportList: any = []
 
   actionBtn: string = "Save";
+  dataSource: any;
+  getEnrollmentList: any = [];
 
 
-  constructor(private formbuilder: FormBuilder, private api: MysqlService, @Inject(MAT_DIALOG_DATA) public editData: any, private dialogRef: MatDialogRef<ReportDataComponent>) {
+  constructor(private formbuilder: FormBuilder, private api: MysqlService, @Inject(MAT_DIALOG_DATA) public editData: any, private dialogRef: MatDialogRef<ReportDataComponent>, private dialog: MatDialog) {
     // api.matchResChanged.subscribe(status=>this.verifyMatch());
   }
 
   ngOnInit(): void {
 
+    this.getEnrollment();
     this.checkClone()
 
     this.markForm = this.formbuilder.group({
@@ -363,9 +368,106 @@ export class ReportDataComponent {
           alert("Error while updating the records with id " + this.editData._id);
         }
       })
+  }
 
+  getReport() {
+    this.api.getMark()
+      .subscribe({
+        next: (res) => {
+          this.dataSource = new MatTableDataSource(res);
+          this.reportList = res;
+        },
+        error: (err) => {
+          alert("Error while fetching marks!");
+        }
+      })
+  }
+
+
+  // **************************************************************************************************************
+
+  getEnrollment() {
+    this.api.getEnrollments()
+      .subscribe({
+        next: (res) => {
+          this.dataSource = new MatTableDataSource(res);
+          this.getEnrollmentList = res;
+          // console.log(this.getEnrollmentList);
+          // return this.getEnrollmentList;
+        },
+        error: (err) => {
+          alert("Error while fetching enrollments, try again ...");
+        }
+      })
+  }
+
+  openEnrollment(){
+    this.dialog.open(EnrollmentComponent, {
+      width: "91%", height: "95%", maxWidth: "none"
+    }).afterClosed().subscribe({ 
+      next: (res) => {
+        this.getReport();
+ 
+      }
+    })
+  }
+
+  editEnrollment(row: any) {
+    this.dialog.open(EnrollmentComponent, {
+      width: "91%", height: "95%", maxWidth: "none",
+      data: row
+    }).afterClosed().subscribe({
+      next: (res) => {
+        this.getEnrollment();
+      }
+    })
+  }
+
+  getEnrollmentFromClass(){
+    var enrollmentValue;
+    switch(this.markForm.value.class){
+      case "Form One":
+        enrollmentValue = this.getEnrollmentList[0]['form1']
+        break;
+      case "Form Two":
+        enrollmentValue = this.getEnrollmentList[0]['form2']
+        break;
+      case "Form Three":
+        enrollmentValue = this.getEnrollmentList[0]['form3']
+        break;
+      case "Form Four Art":
+        enrollmentValue = this.getEnrollmentList[0]['form4A']
+        break;
+      case "Form Four Science":
+        enrollmentValue = this.getEnrollmentList[0]['form4B']
+        break;
+      case "Form Five Art":
+        enrollmentValue = this.getEnrollmentList[0]['form5A']
+        break;
+      case "Form Five Science":
+        enrollmentValue = this.getEnrollmentList[0]['form5B']
+        break;
+      case "Lower Sixth Art":
+        enrollmentValue = this.getEnrollmentList[0]['LSA']
+        break;
+      case "Lower Sixth Science":
+        enrollmentValue = this.getEnrollmentList[0]['LSS']
+        break;
+      case "Upper Sixth Art":
+        enrollmentValue = this.getEnrollmentList[0]['USA']
+        break;
+      case "Upper Sixth Science":
+        enrollmentValue = this.getEnrollmentList[0]['USS']
+        break;
+      default:
+        enrollmentValue = 0
+      break;
+    }
+    return enrollmentValue;
 
   }
+
+
   //ALERT: GIANT FUNCTION
   // This is to restrict some mks for some classes
   verifyClass() {

@@ -46,6 +46,7 @@ import {
 import { ReportsComponent } from './reports/reports.component';
 import { ReportDataComponent } from './report-data/report-data.component';
 import { ActionsComponent } from './actions/actions.component';
+import { EnrollmentComponent } from './enrollment/enrollment.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { ActionsComponent } from './actions/actions.component';
     Dialog4Component,
     ReportsComponent,
     ReportDataComponent,
-    ActionsComponent    
+    ActionsComponent,
+    EnrollmentComponent    
   ],
   imports: [
     BrowserModule,

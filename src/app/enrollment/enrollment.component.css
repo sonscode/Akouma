@@ -1,0 +1,51 @@
+*{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: white;
+}
+
+.hd{
+    text-align: center;
+    margin: 10px;
+    text-transform:uppercase;
+}
+
+.enroll{
+    margin: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+mat-form-field{
+    margin: 12px;
+    width: 10em;
+}
+
+.classOfButtons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 12px;
+}
+
+.addreport{
+    margin: 10px;
+    border-radius: 40px;
+    background: rgba(0, 128, 0, 0.76);
+    width: 8em;
+}
+
+.close{
+    /* margin: auto; */
+    margin: 10px;
+    border-radius: 40px;
+    background: rgba(155, 0, 0, 0.76);
+    width: 8em;
+}
+
+
+.addreport:hover, .close:hover, .clonereport:hover{
+    background: rgba(100, 100, 100, 0.644);
+}

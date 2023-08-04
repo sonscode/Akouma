@@ -1,13 +1,16 @@
 .add{
     background: rgba(0, 110, 0, 0.808);
-    /* margin: auto; */
+    /* margin-top: 2em; */
     padding: 12px;
-
-
+    height: 3rem;
+    margin: 1em auto;
+    width: 7em;
 }
-.add:hover, .edit:hover, .del:hover, .close:hover{
+.add:hover, .edit:hover, .del:hover, .close:hover, .enroll:hover{
     background: rgba(100, 100, 100, 0.644);
 }
+
+
 
 .edit{
     background:  rgba(117, 1, 117, 0.719);
@@ -27,25 +30,34 @@
     margin: auto;
 }
 
-.add, .edit, .del{
+.edit, .del{
     width: 8em;
 }
 
 .div-add{
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     display: flex;
-    margin: auto;
+    margin: 12px;
+    flex-wrap: wrap;
 }
 
 .close{
     margin: 0 auto;
     border-radius: 50px;
     background: rgba(255, 217, 0, 0.849);
-    /* float: right; */
-    width: 8em;
+    width: 7em;
     padding: 12px;
-
 }
+
+.enroll{
+    margin: 0 auto;
+    border-radius: 50px;
+    background: rgba(255, 94, 0, 0.849);
+    width: 7em;
+    padding: 12px;
+}
+
+
 
 
 
@@ -53,29 +65,23 @@
 /* Apply this CSS to your existing styles */
 @media (max-width: 768px) {
 
-.add, .edit, .del {
-    margin: auto;
-    padding: 8px;
-    width: 25%; /* Adjust the width based on your preference */
+/* .enroll, .close, .add{
+    margin: 0 auto;
+} */
+    
+/* .add, .edit, .del {
     border-radius: 50px;
     text-align: center;
     color: white;
-    font-size: 14px; /* Use relative font size */
-}
+} */
 
 .add:hover, .edit:hover, .del:hover, .close:hover {
     background: rgba(150, 150, 150, 0.8);
 }
 
 .close {
-    border-radius: 50px;
     background: rgba(255, 217, 0, 0.849);
-    width: 25%;
-    padding: 8px;
-    margin: auto;
-    text-align: center;
-    font-size: 14px; /* Use relative font size */
-}
+ }
 
 .mark-name {
     font-weight: lighter;

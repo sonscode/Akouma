@@ -6,6 +6,7 @@ import { ReportDataComponent } from '../report-data/report-data.component';
 import { ReportServiceService } from '../services/report-service.service';
 import { ActionsComponent } from '../actions/actions.component';
 import { MysqlService } from '../services/mysql-service.service';
+import { EnrollmentComponent } from '../enrollment/enrollment.component';
 
 
 @Component({

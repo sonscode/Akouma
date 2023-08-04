@@ -1,0 +1,89 @@
+<br/>
+
+<h1 class="hd">Input all the enrollments here!</h1>
+<br/>
+
+<hr color="orange" width="95%" >
+<div *ngIf="loadingEnrollmentData; else enrollmentForm">
+  Enrollment values are being fetched...
+</div>
+
+<ng-template #enrollmentForm>
+  <form [formGroup]="markForm">
+    <div class="enroll">
+        <mat-form-field appearance="outline">
+            <mat-label>Form One</mat-label>
+            <input type="number" matInput placeholder="" formControlName="form1" min="0">
+            <mat-hint>enrollment</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Form Two</mat-label>
+            <input type="number" matInput placeholder="" formControlName="form2" min="0">
+            <mat-hint>enrollment</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Form Three</mat-label>
+            <input type="number" matInput placeholder="" formControlName="form3" min="0">
+            <mat-hint>enrollment</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Form Four Arts</mat-label>
+            <input type="number" matInput placeholder="" formControlName="form4A" min="0">
+            <mat-hint>enrollment</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Form Four Science</mat-label>
+            <input type="number" matInput placeholder="" formControlName="form4B" min="0">
+            <mat-hint>enrollment</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Form Five Arts</mat-label>
+            <input type="number" matInput placeholder="" formControlName="form5A" min="0">
+            <mat-hint>enrollment</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Form Five Science</mat-label>
+            <input type="number" matInput placeholder="" formControlName="form5B" min="0">
+            <mat-hint>enrollment</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Lower Sixth Arts</mat-label>
+            <input type="number" matInput placeholder="" formControlName="LSA" min="0">
+            <mat-hint>enrollment</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Lower Sixth Science</mat-label>
+            <input type="number" matInput placeholder="" formControlName="LSS" min="0">
+            <mat-hint>enrollment</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Upper Sixth Arts</mat-label>
+            <input type="number" matInput placeholder="" formControlName="USA" min="0">
+            <mat-hint>enrollment</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Upper Sixth Science</mat-label>
+            <input type="number" matInput placeholder="" formControlName="USS" min="0">
+            <mat-hint>enrollment</mat-hint>
+          </mat-form-field>
+    </div>
+    <div class="classOfButtons">
+      <!-- <button (click)="addSomeEnrollments()" class="addreport">{{actionBtn}}</button> -->
+      <button (click)="editEnrollment()" class="addreport">update</button>
+      <button class="close" mat-dialog-close>&times; close</button>
+    </div>
+  </form>
+</ng-template>
+
+
+<h2 style="color: orange; text-align:center;">Note: These values will be included in the reports to avoid redundancy!</h2>

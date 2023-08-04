@@ -5,6 +5,20 @@ mat-form-field{
     color: white;
     margin: 12px;
 }
+
+.enroll-field{
+    margin-bottom: 1.7em;
+    margin-left: .55em;
+    /* margin: 1.3em; */
+    border-radius: 5px;
+    width: 15em;
+    height: 3.85em;
+    border: 1px solid rgba(255, 255, 255, 0.589);
+    justify-content: center;
+    text-align: center;
+}
+
+
 .info, .infoline2{
     display: flex;
     /*flex-direction: column; */
@@ -126,6 +140,26 @@ input{
     /* margin-left: 2em; */
 }
 
+.div-add{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    display: flex;
+    margin: 6px;
+    flex-wrap: wrap;
+}
+
+.enroll{
+    margin: 0 auto;
+    border-radius: 50px;
+    background: rgba(255, 94, 0, 0.849);
+    width: 7em;
+    padding: 12px;
+}
+
+
+.enroll:hover{
+    background: rgba(100, 100, 100, 0.644);
+}
+
 
 /* Responsive styles for smaller screens */
 @media (max-width: 510px) {
@@ -140,9 +174,12 @@ input{
        /* margin-bottom: 10px; /* Add some spacing between the form fields */
     }
 
-    .info mat-form-field, .infoline2 mat-form-field, .admin mat-form-field{
+    .info mat-form-field, .infoline2 mat-form-field, .admin mat-form-field, .infoline2 .enroll-field{
         width: 12em;
         margin: 12px;   
+    }
+    .enroll-field{
+        width: 14em;
     }
 
     .admin {
@@ -158,6 +195,8 @@ input{
         max-width: 400px; 
     } */
 }
+
+
 
 @media (max-width: 705px){
 .test1{

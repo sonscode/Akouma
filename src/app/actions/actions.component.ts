@@ -4,6 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ReportDataComponent } from '../report-data/report-data.component';
 import { ReportServiceService } from '../services/report-service.service';
 import { MysqlService } from '../services/mysql-service.service';
+import { EnrollmentComponent } from '../enrollment/enrollment.component';
 
 @Component({
   selector: 'app-actions',
@@ -12,6 +13,7 @@ import { MysqlService } from '../services/mysql-service.service';
 })
 export class ActionsComponent {
   getReportList: any = []
+  getEnrollmentList: any = []
 
   dataSource!: MatTableDataSource<any>
 
@@ -20,6 +22,7 @@ export class ActionsComponent {
   ngOnInit() {
     this.getReport();
     // this.getPosition(17)
+    this.getEnrollment();
   }
 
 
@@ -71,6 +74,72 @@ export class ActionsComponent {
       })
     }
   }
+
+// ************************************ENROLLMENTS************************************
+
+
+  getEnrollment() {
+    this.api.getEnrollments()
+      .subscribe({
+        next: (res) => {
+          this.dataSource = new MatTableDataSource(res);
+          this.getEnrollmentList = res;
+          // console.log(this.getEnrollmentList);
+          // return this.getEnrollmentList;
+        },
+        error: (err) => {
+          alert("Error while fetching enrollments, try again ...");
+        }
+      })
+  }
+
+  openEnrollment(){
+    this.dialog.open(EnrollmentComponent, {
+      width: "91%", height: "95%", maxWidth: "none"
+    }).afterClosed().subscribe({ 
+      next: (res) => {
+        this.getEnrollment();
+      }
+    })
+  }
+
+editEnrollment(row: any) {
+    this.dialog.open(EnrollmentComponent, {
+      width: "91%", height: "95%", maxWidth: "none",
+      data: row
+    }).afterClosed().subscribe({
+      next: (res) => {
+        this.getEnrollment();
+      }
+    })
+  }
+
+
+/*editEnrollment() {
+  this.api.getEnrollments().subscribe({
+    next: (res) => {
+      if (res.length > 0) {
+        const enrollmentList = res[0]; // Assuming the first element is the enrollment list
+        this.dialog.open(EnrollmentComponent, {
+          width: "91%", height: "95%", maxWidth: "none",
+          data: enrollmentList
+        }).afterClosed().subscribe({
+          next: (result) => {
+            if (result) {
+              this.getEnrollment();
+            }
+          }
+        });
+      } else {
+        alert("No enrollment list found");
+      }
+    },
+    error: (err) => {
+      alert("Error while fetching enrollments!");
+    }
+  });
+}
+*/
 
 
 
