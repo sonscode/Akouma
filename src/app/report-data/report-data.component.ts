@@ -892,7 +892,7 @@ export class ReportDataComponent implements OnInit{
       if ( value !== undefined && this.getCoef(field, classValue)) {
         total += (value) * this.getCoef(field, classValue);
         sumCoef += this.getCoef(field, classValue);
-        console.log('coef: ', this.getCoef(field, classValue));
+        // console.log('Subject: ', field, 'coef: ', this.getCoef(field, classValue));
 
       }
     });
@@ -900,8 +900,8 @@ export class ReportDataComponent implements OnInit{
     if (sumCoef === 0) {
       return 0;
     }
-    console.log('TOTAL: ', total)
-    console.log('Sum COEF: ', sumCoef)
+    // console.log('TOTAL: ', total)
+    // console.log('Sum COEF: ', sumCoef)
     return +(total / sumCoef).toFixed(2);
   }
   
