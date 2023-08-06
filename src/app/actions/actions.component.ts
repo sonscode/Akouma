@@ -22,7 +22,7 @@ export class ActionsComponent {
   ngOnInit() {
     this.getReport();
     // this.getPosition(17)
-    this.getEnrollment();
+    // this.getEnrollment();
   }
 
 
@@ -34,7 +34,8 @@ export class ActionsComponent {
           this.getReportList = res;
         },
         error: (err) => {
-          alert("Error while fetching marks!");
+          console.log("Error while fetching marks!");
+          // this.getReport();
         }
       })
   }
@@ -69,7 +70,7 @@ export class ActionsComponent {
           this.getReport();
         },
         error: () => {
-          alert("Sorry! Your marks could not be removed")
+          console.log("Sorry! Your marks could not be removed")
         }
       })
     }
@@ -88,7 +89,7 @@ export class ActionsComponent {
           // return this.getEnrollmentList;
         },
         error: (err) => {
-          alert("Error while fetching enrollments, try again ...");
+          console.log("Error while fetching enrollments, try again ...");
         }
       })
   }

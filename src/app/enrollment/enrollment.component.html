@@ -5,7 +5,7 @@
 
 <hr color="orange" width="95%" >
 <div *ngIf="loadingEnrollmentData; else enrollmentForm">
-  Enrollment values are being fetched...
+  Enrollment values are being processed...
 </div>
 
 <ng-template #enrollmentForm>
@@ -84,6 +84,5 @@
     </div>
   </form>
 </ng-template>
-
 
 <h2 style="color: orange; text-align:center;">Note: These values will be included in the reports to avoid redundancy!</h2>

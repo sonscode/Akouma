@@ -48,9 +48,9 @@
             <mat-hint>enroll</mat-hint>
           </mat-form-field> -->
         <div class="enroll-field">  
-          <h3 formControlName = "enrollment">Enrollment: <b>{{this.getEnrollmentFromClass()}}</b></h3>
+          <h3>Enrollment: <b>{{ this.markForm.get('enrollment')?.value}} {{this.realFunction()}} </b></h3>
         </div>
-        &nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;
           <mat-form-field appearance="outline" class="master">
             <mat-label>Class master/mistress</mat-label>
             <mat-select placeholder="" formControlName="master">
@@ -202,7 +202,7 @@
           </div>
 
           <div class="test2">
-            <h2 formControlName="test2" class="test-title">{{this.getTest2()}}</h2>
+            <h2 formControlName="test2" class="test-title">{{ this.getTest2()}}</h2>
             <div class="four1">
               <mat-form-field appearance="outline">
                 <mat-label>English </mat-label>
@@ -397,7 +397,7 @@
       </div>
 <br/>
 
-<h3 formControlName="average" type="number">Average: {{this.setAverage()}}</h3>
+<h3 formControlName="average" type="number">Average: {{this.setAverage(this.markForm.value.class)}}</h3>
 
       <div class="classOfButtons">
         <button (click)="addSomeReports()" class="addreport">{{actionBtn}}</button>

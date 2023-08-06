@@ -100,8 +100,9 @@ export class ReportsComponent {
 
         },
         error: (err) => {
-          alert("Error while fetching marks!");
+          console.log("Error while fetching marks!");
           console.log(err)
+          this.getReport();
         }
       })
   }
@@ -135,6 +136,7 @@ export class ReportsComponent {
         },
         error: () => {
           alert("Sorry! Your marks could not be removed")
+          this.getReport();
         }
       })
     }
@@ -765,7 +767,7 @@ export class ReportsComponent {
     }
   }
 
-/*
+/*alert
 position(mark1: any, mark2: any, sub1: any, sub2: any): any {
     var B: any = []
     var Arr: any = [0]

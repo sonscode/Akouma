@@ -73,7 +73,8 @@ getEnrollment() {
         console.log("Enrollment length ", this.enrollmentList.length)
       },
       error: (err) => {
-        alert("Error while fetching enrollments!");
+        console.log("Error while fetching enrollments!");
+        this.getEnrollment();
       }
     })
 }
@@ -118,6 +119,7 @@ editEnrollment() {
       },
       error: () => {
         alert("Error while updating the enrollments with id " + this.editData._id);
+        this.getEnrollment();
       },
       complete: () => {
         this.loadingEnrollmentData = false; // Reset loading flag

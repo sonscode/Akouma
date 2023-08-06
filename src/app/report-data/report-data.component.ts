@@ -7,6 +7,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MysqlService } from '../services/mysql-service.service';
 import { EnrollmentComponent } from '../enrollment/enrollment.component';
 import { MatTableDataSource } from '@angular/material/table';
+import { FormControl } from '@angular/forms';
+
 
 interface Sequence {
   value: string;
@@ -51,13 +53,16 @@ interface Comment {
   styleUrls: ['./report-data.component.css']
 })
 
-export class ReportDataComponent {
-  markForm !: FormGroup;
+export class ReportDataComponent implements OnInit{
+  markForm!: FormGroup;
   reportList: any = []
 
   actionBtn: string = "Save";
   dataSource: any;
   getEnrollmentList: any = [];
+  loadingTestData: boolean = true; // Initialize as true since data is still loading initially
+  loadingEnrollmentData: boolean = true; // Initialize as true since data is still loading initially
+
 
 
   constructor(private formbuilder: FormBuilder, private api: MysqlService, @Inject(MAT_DIALOG_DATA) public editData: any, private dialogRef: MatDialogRef<ReportDataComponent>, private dialog: MatDialog) {
@@ -65,9 +70,10 @@ export class ReportDataComponent {
   }
 
   ngOnInit(): void {
-
-    this.getEnrollment();
-    this.checkClone()
+    this.getReport();
+    // this.getEnrollment();
+    this.checkClone();
+    // this.verifyClass();
 
     this.markForm = this.formbuilder.group({
       term: ['', Validators.required],
@@ -75,7 +81,8 @@ export class ReportDataComponent {
       class: ['', Validators.required],
       DOB: ['', Validators.required],
       POB: ['Yaounde', Validators.required],
-      enrollment: ['', Validators.required],
+      enrollment: [''],
+      // enrollment: [this.getEnrollmentFromClass(), Validators.nullValidator],
       master: ['', Validators.required],
       situation: ['', Validators.required],
 
@@ -139,6 +146,24 @@ export class ReportDataComponent {
     })
 
 
+  // Fetch enrollment data and update the form control value
+
+  this.api.getEnrollments().subscribe({
+    next: (enrollments) => {
+      this.getEnrollmentList = enrollments;
+      const enrollmentControl = this.markForm.get('enrollment');
+      if (enrollmentControl) {
+        enrollmentControl.setValue(this.getEnrollmentFromClass());
+      }
+      this.loadingEnrollmentData = false;
+    },
+    error: (err) => {
+      console.log("Error while fetching enrollments, try again ...", err);
+      this.loadingEnrollmentData = false;
+    }
+  }); 
+
+
 
     if (this.editData) {
       this.actionBtn = "Update";
@@ -150,6 +175,9 @@ export class ReportDataComponent {
       this.markForm.controls['enrollment'].setValue(this.editData.enrollment);
       this.markForm.controls['master'].setValue(this.editData.master);
       this.markForm.controls['situation'].setValue(this.editData.situation);
+
+      this.markForm.controls['test1'].setValue(this.editData.test1);
+      this.markForm.controls['test2'].setValue(this.editData.test2);
 
       this.markForm.controls['eng1'].setValue(this.editData.eng1);
       this.markForm.controls['fre1'].setValue(this.editData.fre1);
@@ -169,6 +197,7 @@ export class ReportDataComponent {
       this.markForm.controls['phy1'].setValue(this.editData.phy1);
       this.markForm.controls['comp1'].setValue(this.editData.comp1);
       this.markForm.controls['sport1'].setValue(this.editData.sport1);
+      this.markForm.controls['hb1'].setValue(this.editData.hb1);
 
       this.markForm.controls['eng2'].setValue(this.editData.eng2);
       this.markForm.controls['fre2'].setValue(this.editData.fre2);
@@ -188,6 +217,9 @@ export class ReportDataComponent {
       this.markForm.controls['phy2'].setValue(this.editData.phy2);
       this.markForm.controls['comp2'].setValue(this.editData.comp2);
       this.markForm.controls['sport2'].setValue(this.editData.sport2);
+      this.markForm.controls['hb2'].setValue(this.editData.hb2);
+
+      this.markForm.controls['average'].setValue(this.editData.average);
 
 
       this.markForm.controls['ta'].setValue(this.editData.ta);
@@ -208,7 +240,27 @@ export class ReportDataComponent {
 
 
 
+  }
 
+  realFunction(){
+   this.api.getEnrollments().subscribe({
+    next: (enrollments) => {
+      this.getEnrollmentList = enrollments;
+      const enrollmentControl = this.markForm.get('enrollment');
+      
+      if (enrollmentControl) {
+        enrollmentControl.setValue(this.getEnrollmentFromClass());
+        return this.markForm.get('enrollment');
+        
+      }
+      this.loadingEnrollmentData = false;
+      return this.markForm.get('enrollment');
+    },
+    error: (err) => {
+      console.log("Error while fetching enrollments, try again ...");
+      this.loadingEnrollmentData = false;
+    }
+  });
   }
 
   sequences: Sequence[] = [
@@ -234,8 +286,8 @@ export class ReportDataComponent {
     { value: 'form1', viewValue: 'Form One' },
     { value: 'form2', viewValue: 'Form Two' },
     { value: 'form3', viewValue: 'Form Three' },
-    { value: 'form4', viewValue: 'Form Four Science' },
-    { value: 'form4', viewValue: 'Form Four Art' },
+    { value: 'form4B', viewValue: 'Form Four Science' },
+    { value: 'form4A', viewValue: 'Form Four Art' },
     // { value: 'form4', viewValue: 'Form Five Science' },
     // { value: 'form4', viewValue: 'Form Five Art' },
     // { value: 'form5', viewValue: 'Lower Sixth Science' },
@@ -255,41 +307,68 @@ export class ReportDataComponent {
   ]
 
   comments : Comment[] = [
-    {value: 'Ppass', viewValue: 'PASSED'},
+    {value: 'pass', viewValue: 'PASSED'},
     {value: 'fail', viewValue: 'FAILED'}
   ]
 
+  getReport() {
+    this.api.getMark()
+      .subscribe({
+        next: (res) => {
+          this.dataSource = new MatTableDataSource(res);
+          this.reportList = res;
+          this.loadingTestData = false; // Data is fetched, loading is complete
+          this.loadingEnrollmentData = false; // Data is fetched, loading is complete
+        },
+        error: (err) => {
+          console.log("Error while fetching marks!");
+          // this.getReport();
+        }
+      })
+  }
 
   getTest1() {
-    if (this.markForm.value.term === 1) {
-      this.markForm.value.test1 = "1st ev./20";
+    if (this.reportList) {
+    if (this.markForm.value.term == 1) {
+      this.markForm.value.test1 = "1st ev. on 20";
     }
-    else if (this.markForm.value.term === 2) {
-      this.markForm.value.test1 = "3rd ev./20";
+    else if (this.markForm.value.term == 2) {
+      this.markForm.value.test1 = "3rd ev. on 20";
     }
-    else if (this.markForm.value.term === 3) {
-      this.markForm.value.test1 = "5th ev./20";
+    else if (this.markForm.value.term == 3) {
+      this.markForm.value.test1 = "5th ev. on 20";
     }
     else {
-      this.markForm.value.test1 = "Test1 /20";
+      this.markForm.value.test1 = "Test-1 on 20";
     }
     return this.markForm.value.test1;
   }
+  else{
+    return 'test values are loading...'
+  }
+
+
+  }
 
   getTest2() {
+    if (this.reportList) {
     if (this.markForm.value.term === 1) {
-      this.markForm.value.test2 = "2nd ev./20";
+      this.markForm.value.test2 = "2th ev. on 20";
     }
     else if (this.markForm.value.term === 2) {
-      this.markForm.value.test2 = "4th ev./20";
+      this.markForm.value.test2 = "4th ev. on 20";
     }
     else if (this.markForm.value.term === 3) {
-      this.markForm.value.test2 = "6th ev./20";
+      this.markForm.value.test2 = "6th ev. on 20";
     }
     else {
-      this.markForm.value.test2 = "Test2 /20";
+      this.markForm.value.test2 = "Test-2 on 20";
     }
     return this.markForm.value.test2;
+  }
+    else{
+      return 'test values are loading...'
+    }
   }
 
 
@@ -303,8 +382,6 @@ export class ReportDataComponent {
 
   }
 
-
-
   addReport() {
     if (this.markForm.valid) {
       this.api.postMark(this.markForm.value)
@@ -317,7 +394,8 @@ export class ReportDataComponent {
           },
           error: () => {
             alert("Error: Marks could not be added");
-            console.log(JSON.stringify(this.markForm.value))
+            console.log((this.markForm.value))
+            // this.getReport()
             // console.log(this.reportList)
           }
         });
@@ -356,32 +434,22 @@ export class ReportDataComponent {
   }
 
   editReport() {
-    this.api.putReport(this.markForm.value, this.editData._id)
+    this.api.putReport(this.markForm.value, this.editData?._id)
       .subscribe({
         next: (res) => {
           alert("Marks updated successfully!");
           this.markForm.reset();
           this.dialogRef.close('Update');
-          // this.getReport()
+          this.getReport();
         },
         error: () => {
-          alert("Error while updating the records with id " + this.editData._id);
+          alert("Error while updating the records with id " + this.editData?._id);
+          // this.getReport();
         }
       })
   }
 
-  getReport() {
-    this.api.getMark()
-      .subscribe({
-        next: (res) => {
-          this.dataSource = new MatTableDataSource(res);
-          this.reportList = res;
-        },
-        error: (err) => {
-          alert("Error while fetching marks!");
-        }
-      })
-  }
+
 
 
   // **************************************************************************************************************
@@ -396,7 +464,8 @@ export class ReportDataComponent {
           // return this.getEnrollmentList;
         },
         error: (err) => {
-          alert("Error while fetching enrollments, try again ...");
+          console.log("Error while fetching enrollments, try again ...");
+          // this.getEnrollment()
         }
       })
   }
@@ -406,7 +475,7 @@ export class ReportDataComponent {
       width: "91%", height: "95%", maxWidth: "none"
     }).afterClosed().subscribe({ 
       next: (res) => {
-        this.getReport();
+        this.getEnrollment();
  
       }
     })
@@ -424,417 +493,97 @@ export class ReportDataComponent {
   }
 
   getEnrollmentFromClass(){
-    var enrollmentValue;
+    if (this.getEnrollmentList) {
     switch(this.markForm.value.class){
       case "Form One":
-        enrollmentValue = this.getEnrollmentList[0]['form1']
+        this.markForm.value.enrollment = this.getEnrollmentList[0]['form1']
         break;
       case "Form Two":
-        enrollmentValue = this.getEnrollmentList[0]['form2']
+        this.markForm.value.enrollment = this.getEnrollmentList[0]['form2']
         break;
       case "Form Three":
-        enrollmentValue = this.getEnrollmentList[0]['form3']
+        this.markForm.value.enrollment = this.getEnrollmentList[0]['form3']
         break;
       case "Form Four Art":
-        enrollmentValue = this.getEnrollmentList[0]['form4A']
+        this.markForm.value.enrollment = this.getEnrollmentList[0]['form4A']
         break;
       case "Form Four Science":
-        enrollmentValue = this.getEnrollmentList[0]['form4B']
+        this.markForm.value.enrollment = this.getEnrollmentList[0]['form4B']
         break;
       case "Form Five Art":
-        enrollmentValue = this.getEnrollmentList[0]['form5A']
+        this.markForm.value.enrollment = this.getEnrollmentList[0]['form5A']
         break;
       case "Form Five Science":
-        enrollmentValue = this.getEnrollmentList[0]['form5B']
+        this.markForm.value.enrollment = this.getEnrollmentList[0]['form5B']
         break;
       case "Lower Sixth Art":
-        enrollmentValue = this.getEnrollmentList[0]['LSA']
+        this.markForm.value.enrollment = this.getEnrollmentList[0]['LSA']
         break;
       case "Lower Sixth Science":
-        enrollmentValue = this.getEnrollmentList[0]['LSS']
+        this.markForm.value.enrollment = this.getEnrollmentList[0]['LSS']
         break;
       case "Upper Sixth Art":
-        enrollmentValue = this.getEnrollmentList[0]['USA']
+        this.markForm.value.enrollment = this.getEnrollmentList[0]['USA']
         break;
       case "Upper Sixth Science":
-        enrollmentValue = this.getEnrollmentList[0]['USS']
+        this.markForm.value.enrollment = this.getEnrollmentList[0]['USS']
         break;
       default:
-        enrollmentValue = 0
+        this.markForm.value.enrollment = 0
       break;
     }
-    return enrollmentValue;
-
+    return this.markForm.value.enrollment;
+  }
+  else{
+    return 'Enrollment values are being fetched...';
   }
 
+  }
 
   //ALERT: GIANT FUNCTION
   // This is to restrict some mks for some classes
   verifyClass() {
+    const classValue = this.markForm.get('class')?.value;
 
-    this.markForm.value.econs1 = 0
-    this.markForm.value.econs2 = 0
-    this.markForm.value.comm1 = 0
-    this.markForm.value.comm2 = 0
-    this.markForm.value.food1 = 0
-    this.markForm.value.food2 = 0
-
-
-    if (this.markForm.value.class == "Form One") {
-      this.markForm.controls['eng1'].enable()
-      this.markForm.controls['fre1'].enable()
-      this.markForm.controls['math1'].enable()
-      this.markForm.controls['hist1'].enable()
-      this.markForm.controls['lit1'].enable()
-      this.markForm.controls['geo1'].enable()
-      this.markForm.controls['citi1'].enable()
-      this.markForm.controls['rel1'].enable()
-      this.markForm.controls['chem1'].enable()
-      this.markForm.controls['bio1'].enable()
-      this.markForm.controls['phy1'].enable()
-      this.markForm.controls['comp1'].enable()
-      this.markForm.controls['sport1'].enable()
-
-      this.markForm.controls['eng2'].enable()
-      this.markForm.controls['fre2'].enable()
-      this.markForm.controls['math2'].enable()
-      this.markForm.controls['hist2'].enable()
-      this.markForm.controls['lit2'].enable()
-      this.markForm.controls['geo2'].enable()
-      this.markForm.controls['citi2'].enable()
-      this.markForm.controls['rel2'].enable()
-      this.markForm.controls['chem2'].enable()
-      this.markForm.controls['bio2'].enable()
-      this.markForm.controls['phy2'].enable()
-      this.markForm.controls['comp2'].enable()
-      this.markForm.controls['sport2'].enable()
-
-
-      // Disabled tags
-
-      // this.markForm.value['econs1'] = 0
-      // this.markForm.value['comm1'] = 0
-      // this.markForm.value['acc1'] = 0
-      // this.markForm.value['logic1'] = 0
-      // this.markForm.value['food1'] = 0
-      // this.markForm.value['hb1'] = 0
-
-      // this.markForm.value['econs2'] = 0
-      // this.markForm.value['comm2'] = 0
-      // this.markForm.value['acc2'] = 0
-      // this.markForm.value['logic2'] = 0
-      // this.markForm.value['food2'] = 0
-      // this.markForm.value['hb2'] = 0
-
-      this.markForm.controls['econs1'].disable()
-      this.markForm.controls['comm1'].disable()
-      this.markForm.controls['acc1'].disable()
-      this.markForm.controls['logic1'].disable()
-      this.markForm.controls['food1'].disable()
-      this.markForm.controls['hb1'].disable()
-
-      this.markForm.controls['econs2'].disable()
-      this.markForm.controls['comm2'].disable()
-      this.markForm.controls['acc2'].disable()
-      this.markForm.controls['logic2'].disable()
-      this.markForm.controls['food2'].disable()
-      this.markForm.controls['hb2'].disable()
-
-
+    if (!classValue) {
+      return; // Exit early if classValue is not selected yet
     }
 
-    else if (this.markForm.value.class == "Form Two") {
-      this.markForm.controls['eng1'].enable()
-      this.markForm.controls['fre1'].enable()
-      this.markForm.controls['math1'].enable()
-      this.markForm.controls['hist1'].enable()
-      this.markForm.controls['lit1'].enable()
-      this.markForm.controls['geo1'].enable()
-      this.markForm.controls['citi1'].enable()
-      this.markForm.controls['rel1'].enable()
-      this.markForm.controls['chem1'].enable()
-      this.markForm.controls['bio1'].enable()
-      this.markForm.controls['phy1'].enable()
-      this.markForm.controls['comp1'].enable()
-      this.markForm.controls['sport1'].enable()
+    const enabledFieldsByClass: { [key: string]: string[] } = {
+      "Form One": ['eng1', 'fre1', 'math1', 'hist1', 'lit1', 'geo1', 'citi1', 'rel1', 'chem1', 'bio1', 'phy1', 'comp1', 'sport1',
+                   'eng2', 'fre2', 'math2', 'hist2', 'lit2', 'geo2', 'citi2', 'rel2', 'chem2', 'bio2', 'phy2', 'comp2', 'sport2'],
+      "Form Two": ['eng1', 'fre1', 'math1', 'hist1', 'lit1', 'geo1', 'citi1', 'rel1', 'chem1', 'bio1', 'phy1', 'comp1', 'sport1', 
+                   'eng2', 'fre2', 'math2', 'hist2', 'lit2', 'geo2', 'citi2', 'rel2', 'chem2', 'bio2', 'phy2', 'comp2', 'sport2'],
+      "Form Three": ['eng1', 'fre1', 'math1', 'hist1', 'lit1', 'geo1', 'econs1', 'comm1','citi1', 'rel1', 'food1', 'chem1', 'bio1', 'phy1', 'comp1', 'sport1',
+                     'eng2', 'fre2', 'math2', 'hist2', 'lit2', 'geo2', 'econs2', 'comm2','citi2', 'rel2', 'food2', 'chem2', 'bio2', 'phy2', 'comp2', 'sport2'
+    ],
+      "Form Four Science": ['eng1', 'fre1', 'math1', 'geo1', 'econs1', 'comm1', 'citi1', 'rel1', 'food1', 'chem1', 'bio1', 'phy1', 'comp1', 'sport1', 'hb1',
+                            'eng2', 'fre2', 'math2', 'geo2', 'econs2', 'comm2', 'citi2', 'rel2', 'food2', 'chem2', 'bio2', 'phy2', 'comp2', 'sport2', 'hb2'],
+      "Form Four Art": ['eng1', 'fre1', 'math1', 'hist1', 'lit1', 'geo1', 'econs1', 'comm1', 'citi1', 'rel1', 'food1', 'bio1', 'comp1', 'sport1',
+                        'eng2', 'fre2', 'math2', 'hist2', 'lit2', 'geo2', 'econs2', 'comm2', 'citi2', 'rel2', 'food2', 'bio2', 'comp2', 'sport2',]
+    };
 
-      this.markForm.controls['eng2'].enable()
-      this.markForm.controls['fre2'].enable()
-      this.markForm.controls['math2'].enable()
-      this.markForm.controls['hist2'].enable()
-      this.markForm.controls['lit2'].enable()
-      this.markForm.controls['geo2'].enable()
-      this.markForm.controls['citi2'].enable()
-      this.markForm.controls['rel2'].enable()
-      this.markForm.controls['chem2'].enable()
-      this.markForm.controls['bio2'].enable()
-      this.markForm.controls['phy2'].enable()
-      this.markForm.controls['comp2'].enable()
-      this.markForm.controls['sport2'].enable()
-
-
-      // Disabled tags
-
-      // this.markForm.value['econs1'] = 0
-      // this.markForm.value['comm1'] = 0
-      // this.markForm.value['acc1'] = 0
-      // this.markForm.value['logic1'] = 0
-      // this.markForm.value['food1'] = 0
-      // this.markForm.value['hb1'] = 0
-
-      // this.markForm.value['econs2'] = 0
-      // this.markForm.value['comm2'] = 0
-      // this.markForm.value['acc2'] = 0
-      // this.markForm.value['logic2'] = 0
-      // this.markForm.value['food2'] = 0
-      // this.markForm.value['hb2'] = 0
-
-      this.markForm.controls['econs1'].disable()
-      this.markForm.controls['comm1'].disable()
-      this.markForm.controls['acc1'].disable()
-      this.markForm.controls['logic1'].disable()
-      this.markForm.controls['food1'].disable()
-      this.markForm.controls['hb1'].disable()
-
-      this.markForm.controls['econs2'].disable()
-      this.markForm.controls['comm2'].disable()
-      this.markForm.controls['acc2'].disable()
-      this.markForm.controls['logic2'].disable()
-      this.markForm.controls['food2'].disable()
-      this.markForm.controls['hb2'].disable()
-
-
-    }
-
-    else if (this.markForm.value.class == "Form Three") {
-      this.markForm.controls['math1'].enable()
-      this.markForm.controls['eng1'].enable()
-      this.markForm.controls['fre1'].enable()
-      this.markForm.controls['hist1'].enable()
-      this.markForm.controls['lit1'].enable()
-      this.markForm.controls['geo1'].enable()
-      this.markForm.controls['econs1'].enable()
-      this.markForm.controls['comm1'].enable()
-      this.markForm.controls['citi1'].enable()
-      this.markForm.controls['rel1'].enable()
-      this.markForm.controls['food1'].enable()
-      this.markForm.controls['chem1'].enable()
-      this.markForm.controls['bio1'].enable()
-      this.markForm.controls['phy1'].enable()
-      this.markForm.controls['comp1'].enable()
-      this.markForm.controls['sport1'].enable()
-
-
-      // Disabled
-      this.markForm.controls['acc1'].disable()
-      this.markForm.controls['logic1'].disable()
-      this.markForm.controls['hb1'].disable()
-
-      this.markForm.value['acc1'] = 0
-      this.markForm.value['logic1'] = 0
-      this.markForm.value['hb1'] = 0
-
-
-      this.markForm.controls['math2'].enable()
-      this.markForm.controls['eng2'].enable()
-      this.markForm.controls['fre2'].enable()
-      this.markForm.controls['hist2'].enable()
-      this.markForm.controls['lit2'].enable()
-      this.markForm.controls['geo2'].enable()
-      this.markForm.controls['econs2'].enable()
-      this.markForm.controls['comm2'].enable()
-      this.markForm.controls['citi2'].enable()
-      this.markForm.controls['rel2'].enable()
-      this.markForm.controls['food2'].enable()
-      this.markForm.controls['chem2'].enable()
-      this.markForm.controls['bio2'].enable()
-      this.markForm.controls['phy2'].enable()
-      this.markForm.controls['comp2'].enable()
-      this.markForm.controls['sport2'].enable()
-
-
-      // Disabled
-      // this.markForm.value['acc2'] = 0
-      // this.markForm.value['logic2'] = 0
-      // this.markForm.value['hb2'] = 0
-
-      this.markForm.controls['acc2'].disable()
-      this.markForm.controls['logic2'].disable()
-      this.markForm.controls['hb2'].disable()
-
-
-    }
-
-    else if (this.markForm.value.class == "Form Four Science") {
-
-      this.markForm.controls['math1'].enable()
-      this.markForm.controls['eng1'].enable()
-      this.markForm.controls['fre1'].enable()
-      this.markForm.controls['geo1'].enable()
-      this.markForm.controls['econs1'].enable()
-      this.markForm.controls['comm1'].enable()
-      this.markForm.controls['citi1'].enable()
-      this.markForm.controls['rel1'].enable()
-      this.markForm.controls['food1'].enable()
-      this.markForm.controls['chem1'].enable()
-      this.markForm.controls['bio1'].enable()
-      this.markForm.controls['phy1'].enable()
-      this.markForm.controls['comp1'].enable()
-      this.markForm.controls['sport1'].enable()
-      this.markForm.controls['hb1'].enable()
-
-
-      // Disabled
-      // this.markForm.value['acc1'] = 0
-      // this.markForm.value['logic1'] = 0
-      // this.markForm.value['hist1'] = 0
-      // this.markForm.value['lit1'] = 0
-
-      this.markForm.controls['acc1'].disable()
-      this.markForm.controls['logic1'].disable()
-      this.markForm.controls['hist1'].disable()
-      this.markForm.controls['lit1'].disable()
-
-
-      this.markForm.controls['math2'].enable()
-      this.markForm.controls['eng2'].enable()
-      this.markForm.controls['fre2'].enable()
-      this.markForm.controls['geo2'].enable()
-      this.markForm.controls['econs2'].enable()
-      this.markForm.controls['comm2'].enable()
-      this.markForm.controls['citi2'].enable()
-      this.markForm.controls['rel2'].enable()
-      this.markForm.controls['food2'].enable()
-      this.markForm.controls['chem2'].enable()
-      this.markForm.controls['bio2'].enable()
-      this.markForm.controls['phy2'].enable()
-      this.markForm.controls['comp2'].enable()
-      this.markForm.controls['sport2'].enable()
-      this.markForm.controls['hb2'].enable()
-
-
-      // Disabled
-      // this.markForm.value['acc2'] = 0
-      // this.markForm.value['logic2'] = 0
-      // this.markForm.value['hist2'] = 0
-      // this.markForm.value['lit2'] = 0
-
-      this.markForm.controls['acc2'].disable()
-      this.markForm.controls['logic2'].disable()
-      this.markForm.controls['hist2'].disable()
-      this.markForm.controls['lit2'].disable()
-
-    }
-
-
-    else if (this.markForm.value.class == "Form Four Art") {
-
-      this.markForm.controls['math1'].enable()
-      this.markForm.controls['eng1'].enable()
-      this.markForm.controls['fre1'].enable()
-      this.markForm.controls['geo1'].enable()
-      this.markForm.controls['econs1'].enable()
-      this.markForm.controls['comm1'].enable()
-      this.markForm.controls['citi1'].enable()
-      this.markForm.controls['rel1'].enable()
-      this.markForm.controls['food1'].enable()
-      this.markForm.controls['bio1'].enable()
-      this.markForm.controls['comp1'].enable()
-      this.markForm.controls['sport1'].enable()
-      this.markForm.controls['hist1'].enable()
-      this.markForm.controls['lit1'].enable()
-
-
-
-      // Disabled
-      // this.markForm.value.acc1 = 0
-      // this.markForm.value.logic1 = 0
-      // this.markForm.value.chem1 = 0
-      // this.markForm.value.phy1 = 0
-      // this.markForm.value.hb1 = 0
-
-      this.markForm.controls['acc1'].disable()
-      this.markForm.controls['logic1'].disable()
-      this.markForm.controls['chem1'].disable()
-      this.markForm.controls['phy1'].disable()
-      this.markForm.controls['hb1'].disable()
-
-      this.markForm.controls['math2'].enable()
-      this.markForm.controls['eng2'].enable()
-      this.markForm.controls['fre2'].enable()
-      this.markForm.controls['geo2'].enable()
-      this.markForm.controls['econs2'].enable()
-      this.markForm.controls['comm2'].enable()
-      this.markForm.controls['citi2'].enable()
-      this.markForm.controls['rel2'].enable()
-      this.markForm.controls['food2'].enable()
-      this.markForm.controls['bio2'].enable()
-
-      this.markForm.controls['comp2'].enable()
-      this.markForm.controls['sport2'].enable()
-      this.markForm.controls['hist2'].enable()
-      this.markForm.controls['lit2'].enable()
-
-      // Disabled
-      // this.markForm.value['acc2'] = 0
-      // this.markForm.value['logic2'] = 0
-      // this.markForm.value['chem2'] = 0
-      // this.markForm.value['phy2'] = 0
-      // this.markForm.value['hb2'] = 0
-
-      this.markForm.controls['acc2'].disable()
-      this.markForm.controls['logic2'].disable()
-      this.markForm.controls['hb2'].disable()
-      this.markForm.controls['chem2'].disable()
-      this.markForm.controls['phy2'].disable()
-
-    }
-
-
-    else {
-      this.markForm.controls['eng1'].enable()
-      this.markForm.controls['fre1'].enable()
-      this.markForm.controls['math1'].enable()
-      this.markForm.controls['hist1'].enable()
-      this.markForm.controls['lit1'].enable()
-      this.markForm.controls['geo1'].enable()
-      this.markForm.controls['citi1'].enable()
-      this.markForm.controls['rel1'].enable()
-      this.markForm.controls['chem1'].enable()
-      this.markForm.controls['bio1'].enable()
-      this.markForm.controls['phy1'].enable()
-      this.markForm.controls['comp1'].enable()
-      this.markForm.controls['sport1'].enable()
-      this.markForm.controls['eng2'].enable()
-      this.markForm.controls['fre2'].enable()
-      this.markForm.controls['math2'].enable()
-      this.markForm.controls['hist2'].enable()
-      this.markForm.controls['lit2'].enable()
-      this.markForm.controls['geo2'].enable()
-      this.markForm.controls['citi2'].enable()
-      this.markForm.controls['rel2'].enable()
-      this.markForm.controls['chem2'].enable()
-      this.markForm.controls['bio2'].enable()
-      this.markForm.controls['phy2'].enable()
-      this.markForm.controls['comp2'].enable()
-      this.markForm.controls['sport2'].enable()
-      this.markForm.controls['econs1'].enable()
-      this.markForm.controls['comm1'].enable()
-      this.markForm.controls['acc1'].enable()
-      this.markForm.controls['logic1'].enable()
-      this.markForm.controls['food1'].enable()
-      this.markForm.controls['hb1'].enable()
-      this.markForm.controls['econs2'].enable()
-      this.markForm.controls['comm2'].enable()
-      this.markForm.controls['acc2'].enable()
-      this.markForm.controls['logic2'].enable()
-      this.markForm.controls['food2'].enable()
-      this.markForm.controls['hb2'].enable()
-    }
-
+    const subjectFields: string[] = [
+      'eng1', 'fre1', 'math1', 'hist1', 'lit1', 'geo1', 'econs1', 'comm1', 'acc1', 'citi1', 'rel1', 'food1', 'chem1', 'bio1', 'phy1', 'comp1', 'sport1', 'logic1', 'hb1',
+      'eng2', 'fre2', 'math2', 'hist2', 'lit2', 'geo2', 'econs2', 'comm2', 'acc2', 'citi2', 'rel2', 'food2', 'chem2', 'bio2', 'phy2', 'comp2', 'sport2', 'logic2', 'hb2'
+      // Add other subject fields here
+    ];
+  
+     // Enable/disable subject fields based on the selected class
+  const enabledFields = enabledFieldsByClass[classValue];
+  subjectFields.forEach(field => {
+    if (enabledFields.includes(field)) {
+      this.markForm.controls[field].enable();
+    } else {
+      this.markForm.controls[field].disable();
+    } 
+  });
+  
+    // Calculate and update the average based on the enabled fields for the current class
+    this.markForm.value.average = this.setAverage(classValue);  
   }
 
-  getCoef(subject: any, classe: any): any {
+ /* getCoef(subject: any, classe: any): any {
     var coefficient;
     if (classe == "Form One") {
       switch (subject) {
@@ -1098,83 +847,66 @@ export class ReportDataComponent {
     }
 
     return coefficient;
+  } */
+
+  getCoef(subject: string, classe: string): number {
+    const coefficientsByClass: { [key: string]: { [key: string]: number } } = {
+      "Form One": {
+        fre: 5, maths: 5, eng: 5, citi: 2, rel: 2, comp: 2, sport: 1, econs: 0, acc: 0, comm: 0, logic: 0, food: 0, hb: 0
+      },
+      "Form Two": {
+        fre: 5, maths: 5, eng: 5, citi: 2, rel: 2, comp: 2, sport: 1, econs: 0, acc: 0, comm: 0, logic: 0, food: 0, hb: 0
+      },
+      "Form Three": {
+        fre: 5, maths: 5, eng: 5, rel: 2, comp: 2, sport: 1, acc: 0, comm: 2, logic: 0, hb: 0
+      },
+      "Form Four Science": {
+        fre: 5, maths: 5, eng: 5, rel: 2, comp: 2, sport: 1, acc: 0, comm: 2, logic: 0, hist: 0, lit: 0
+      },
+      "Form Four Art": {
+        fre: 5, maths: 5, eng: 5, rel: 2, comp: 2, sport: 1, acc: 0, comm: 2, logic: 0, hb: 0, phy: 0, chem: 0
+      },
+      // ... add other classes and subjects here
+    };
+  
+    const classCoefficients = coefficientsByClass[classe] || {};
+    const coefficient = classCoefficients[subject] || 3;
+  
+    return coefficient;
   }
+  
 
-
-  setAverage(): number {
-    try {
-
-      var total1: any, total2, total3, total4, total5;
-      var sumCoef = eval((this.getCoef("eng", this.markForm.value.class)) + (this.getCoef("fre", this.markForm.value.class)) + (this.getCoef("maths", this.markForm.value.class)) + (this.getCoef("phy", this.markForm.value.class)) + (this.getCoef("chem", this.markForm.value.class)) + (this.getCoef("bio", this.markForm.value.class)) + (this.getCoef("citi", this.markForm.value.class)) + (this.getCoef("comm", this.markForm.value.class)) + (this.getCoef("comp", this.markForm.value.class)) + (this.getCoef("logic", this.markForm.value.class)) + (this.getCoef("sport", this.markForm.value.class)) + (this.getCoef("acc", this.markForm.value.class)) + (this.getCoef("geo", this.markForm.value.class)) + (this.getCoef("rel", this.markForm.value.class)) + (this.getCoef("hb", this.markForm.value.class)) + (this.getCoef("econs", this.markForm.value.class)) + (this.getCoef("food", this.markForm.value.class)) + (this.getCoef("lit", this.markForm.value.class)) + (this.getCoef("hist", this.markForm.value.class)))
-
-      var eng = ((this.markForm.value.eng1 + this.markForm.value.eng2) / 2) * (this.getCoef("eng", this.markForm.value.class))
-      var fre = ((this.markForm.value.fre1 + this.markForm.value.fre2) / 2) * (this.getCoef("fre", this.markForm.value.class))
-      var math = ((this.markForm.value.math1 + this.markForm.value.math2) / 2) * (this.getCoef("maths", this.markForm.value.class))
-      var hist = ((this.markForm.value.hist1 + this.markForm.value.hist2) / 2) * (this.getCoef("hist", this.markForm.value.class))
-      var lit = ((this.markForm.value.lit1 + this.markForm.value.lit2) / 2) * (this.getCoef("lit", this.markForm.value.class))
-      var geo = ((this.markForm.value.geo1 + this.markForm.value.geo2) / 2) * (this.getCoef("geo", this.markForm.value.class))
-      var econs = ((this.markForm.value.econs1 + this.markForm.value.econs2) / 2) * (this.getCoef("econs", this.markForm.value.class))
-      var bio = ((this.markForm.value.bio1 + this.markForm.value.bio2) / 2) * (this.getCoef("bio", this.markForm.value.class))
-      var comm = ((this.markForm.value.comm1 + this.markForm.value.comm2) / 2) * (this.getCoef("comm", this.markForm.value.class))
-      var comp = ((this.markForm.value.comp1 + this.markForm.value.comp2) / 2) * (this.getCoef("comp", this.markForm.value.class))
-      var phy = ((this.markForm.value.phy1 + this.markForm.value.phy2) / 2) * (this.getCoef("phy", this.markForm.value.class))
-      var food = ((this.markForm.value.food1 + this.markForm.value.food2) / 2) * (this.getCoef("food", this.markForm.value.class))
-      var chem = ((this.markForm.value.chem1 + this.markForm.value.chem2) / 2) * (this.getCoef("chem", this.markForm.value.class))
-      var sport = ((this.markForm.value.sport1 + this.markForm.value.sport2) / 2) * (this.getCoef("sport", this.markForm.value.class))
-      var hb = ((this.markForm.value.hb1 + this.markForm.value.hb2) / 2) * (this.getCoef("hb", this.markForm.value.class))
-      var acc = ((this.markForm.value.acc1 + this.markForm.value.acc2) / 2) * (this.getCoef("acc", this.markForm.value.class))
-      var rel = ((this.markForm.value.rel1 + this.markForm.value.rel2) / 2) * (this.getCoef("rel", this.markForm.value.class))
-      var logic = ((this.markForm.value.logic1 + this.markForm.value.logic2) / 2) * (this.getCoef("logic", this.markForm.value.class))
-      var citi = ((this.markForm.value.citi1 + this.markForm.value.citi2) / 2) * (this.getCoef("citi", this.markForm.value.class))
-
-      if (this.markForm.value.class == "Form One") {
-        total1 = (eng + fre + math + hist + lit + geo + bio + comp + phy + chem + sport + rel + citi)
-        //  total1 = eng + math + fre + hist + lit + geo + bio+ comp + phy
-        //  return ( (this.getCoef("eng", this.markForm.value.class))+(this.getCoef("fre", this.markForm.value.class))+(this.getCoef("maths", this.markForm.value.class)) + (this.getCoef("phy", this.markForm.value.class)) + (this.getCoef("chem", this.markForm.value.class)) + (this.getCoef("bio", this.markForm.value.class)) + (this.getCoef("citi", this.markForm.value.class)) + (this.getCoef("comm", this.markForm.value.class)) + (this.getCoef("comp", this.markForm.value.class)) + (this.getCoef("logic", this.markForm.value.class)) + (this.getCoef("sport", this.markForm.value.class)) + (this.getCoef("acc", this.markForm.value.class)) + (this.getCoef("geo", this.markForm.value.class)) + (this.getCoef("rel", this.markForm.value.class)) + (this.getCoef("hb", this.markForm.value.class)) + (this.getCoef("econs", this.markForm.value.class)) + (this.getCoef("food", this.markForm.value.class)) + (this.getCoef("lit", this.markForm.value.class)) + (this.getCoef("hist", this.markForm.value.class)) )
-        this.markForm.value.average = (total1 / sumCoef).toFixed(2)
-        return eval(this.markForm.value.average)
-
-      } else if (this.markForm.value.class == "Form Two") {
-        total2 = (eng + fre + math + hist + lit + geo + bio + comp + phy + chem + sport + rel + citi)
-        this.markForm.value.average = (total2 / sumCoef).toFixed(2)
-        return eval(this.markForm.value.average)
-
+  setAverage(classValue: string): number {
+    const enabledFields = [
+      'eng1', 'fre1', 'math1', 'hist1', 'lit1', 'geo1', 'citi1', 'rel1', 'chem1', 'bio1', 'phy1', 'comp1', 'sport1',
+      'eng2', 'fre2', 'math2', 'hist2', 'lit2', 'geo2', 'citi2', 'rel2', 'chem2', 'bio2', 'phy2', 'comp2', 'sport2',
+      'econs1', 'comm1', 'acc1', 'logic1', 'food1', 'hb1',
+      'econs2', 'comm2', 'acc2', 'logic2', 'food2', 'hb2'
+    ];
+  
+    let total = 0;
+    let sumCoef = 0;
+  
+    enabledFields.forEach(field => {
+      const value = this.markForm.value[field];
+      if ( value !== undefined && this.getCoef(field, classValue)) {
+        total += (value) * this.getCoef(field, classValue);
+        sumCoef += this.getCoef(field, classValue);
+        console.log('coef: ', this.getCoef(field, classValue));
 
       }
-      else if (this.markForm.value.class == "Form Three") {
-        total3 = (eng + fre + math + hist + lit + geo + econs + bio + comm + comp + phy + food + chem + sport + rel + citi)
-        this.markForm.value.average = (total3 / sumCoef).toFixed(2)
-        return eval(this.markForm.value.average)
-
-
-      }
-      else if (this.markForm.value.class == "Form Four Science") {
-        total4 = (eng + fre + math + geo + econs + bio + comm + comp + phy + food + chem + sport + rel + hb + citi)
-        this.markForm.value.average = (total4 / sumCoef).toFixed(2)
-        return eval(this.markForm.value.average)
-      }
-
-      else if (this.markForm.value.class == "Form Four Art") {
-        total5 = (eng + fre + math + hist + lit + geo + econs + bio + comm + comp + food + sport + rel + citi)
-        this.markForm.value.average = (total5 / sumCoef).toFixed(2)
-        return eval(this.markForm.value.average)
-
-      }
-
-      // total = (eng + fre + math + hist + lit + geo + econs + bio + comm + comp + phy + food + chem + sport + hb + acc + rel + logic + citi)
-      // var average = total/( (this.getCoef("eng", this.markForm.value.class))+(this.getCoef("fre", this.markForm.value.class))+(this.getCoef("maths", this.markForm.value.class)) + (this.getCoef("phy", this.markForm.value.class)) + (this.getCoef("chem", this.markForm.value.class)) + (this.getCoef("bio", this.markForm.value.class)) + (this.getCoef("citi", this.markForm.value.class)) + (this.getCoef("comm", this.markForm.value.class)) + (this.getCoef("comp", this.markForm.value.class)) + (this.getCoef("logic", this.markForm.value.class)) + (this.getCoef("sport", this.markForm.value.class)) + (this.getCoef("acc", this.markForm.value.class)) + (this.getCoef("geo", this.markForm.value.class)) + (this.getCoef("rel", this.markForm.value.class)) + (this.getCoef("hb", this.markForm.value.class)) + (this.getCoef("econs", this.markForm.value.class)) + (this.getCoef("food", this.markForm.value.class)) + (this.getCoef("lit", this.markForm.value.class)) (this.getCoef("hist", this.markForm.value.class)) )
-
-      // return total;
-
-    } catch (error) {
-      console.log("Error occured" + error)
+    });
+  
+    if (sumCoef === 0) {
+      return 0;
     }
-    return 0
-
+    console.log('TOTAL: ', total)
+    console.log('Sum COEF: ', sumCoef)
+    return +(total / sumCoef).toFixed(2);
   }
-
-
+  
 
 
 
 }
+
