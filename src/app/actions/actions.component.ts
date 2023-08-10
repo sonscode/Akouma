@@ -21,8 +21,7 @@ export class ActionsComponent {
   
   ngOnInit() {
     this.getReport();
-    // this.getPosition(17)
-    // this.getEnrollment();
+
   }
 
 

@@ -4,11 +4,10 @@
 <br/>
 
 <hr color="orange" width="95%" >
-<div *ngIf="loadingEnrollmentData; else enrollmentForm">
+<!-- <div *ngIf="loadingEnrollmentData; else enrollmentForm">
   Enrollment values are being processed...
-</div>
+</div> -->
 
-<ng-template #enrollmentForm>
   <form [formGroup]="markForm">
     <div class="enroll">
         <mat-form-field appearance="outline">
@@ -83,6 +82,5 @@
       <button class="close" mat-dialog-close>&times; close</button>
     </div>
   </form>
-</ng-template>
 
 <h2 style="color: orange; text-align:center;">Note: These values will be included in the reports to avoid redundancy!</h2>

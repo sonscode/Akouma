@@ -397,7 +397,7 @@
       </div>
 <br/>
 
-<h3 formControlName="average" type="number">Average: {{this.setAverage(this.markForm.value.class)}}</h3>
+<h3 formControlName="average" type="number">Average: {{this.setAverage(this.markForm.value.class).toFixed(2)}}</h3>
 
       <div class="classOfButtons">
         <button (click)="addSomeReports()" class="addreport">{{actionBtn}}</button>

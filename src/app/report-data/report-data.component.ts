@@ -129,7 +129,7 @@ export class ReportDataComponent implements OnInit{
       sport2: ['', Validators.nullValidator],
       logic2: ['', Validators.nullValidator],
       hb2: ['', Validators.nullValidator],
-      average: [0, Validators.nullValidator],
+      average: [Validators.nullValidator],
 
       ta: [0, Validators.nullValidator],
       na: [0, Validators.nullValidator],
@@ -257,7 +257,7 @@ export class ReportDataComponent implements OnInit{
       return this.markForm.get('enrollment');
     },
     error: (err) => {
-      console.log("Error while fetching enrollments, try again ...");
+      console.log("Error while fetching enrollments, trying again ...");
       this.loadingEnrollmentData = false;
     }
   });
@@ -288,12 +288,12 @@ export class ReportDataComponent implements OnInit{
     { value: 'form3', viewValue: 'Form Three' },
     { value: 'form4B', viewValue: 'Form Four Science' },
     { value: 'form4A', viewValue: 'Form Four Art' },
-    // { value: 'form4', viewValue: 'Form Five Science' },
-    // { value: 'form4', viewValue: 'Form Five Art' },
-    // { value: 'form5', viewValue: 'Lower Sixth Science' },
-    // { value: 'ls', viewValue: 'Lower Sixth Art' },
-    // { value: 'us', viewValue: 'Upper Sixth Science' },
-    // { value: 'us', viewValue: 'Upper Sixth Art' }
+    { value: 'form5B', viewValue: 'Form Five Science' },
+    { value: 'form5A', viewValue: 'Form Five Art' },
+    { value: 'LSA', viewValue: 'Lower Sixth Science' },
+    { value: 'LSS', viewValue: 'Lower Sixth Art' },
+    { value: 'USA', viewValue: 'Upper Sixth Science' },
+    { value: 'USS', viewValue: 'Upper Sixth Art' }
   ]
 
   situations: Situation[] = [
@@ -353,7 +353,7 @@ export class ReportDataComponent implements OnInit{
   getTest2() {
     if (this.reportList) {
     if (this.markForm.value.term === 1) {
-      this.markForm.value.test2 = "2th ev. on 20";
+      this.markForm.value.test2 = "2nd ev. on 20";
     }
     else if (this.markForm.value.term === 2) {
       this.markForm.value.test2 = "4th ev. on 20";
@@ -391,11 +391,12 @@ export class ReportDataComponent implements OnInit{
             alert("Info added successfully");
             this.markForm.reset();
             this.dialogRef.close('Save');
+            console.log((this.markForm.value))
+
           },
           error: () => {
             alert("Error: Marks could not be added");
-            console.log((this.markForm.value))
-            // this.getReport()
+            this.getReport()
             // console.log(this.reportList)
           }
         });
@@ -441,6 +442,8 @@ export class ReportDataComponent implements OnInit{
           this.markForm.reset();
           this.dialogRef.close('Update');
           this.getReport();
+          // console.log((this.markForm.value))
+
         },
         error: () => {
           alert("Error while updating the records with id " + this.editData?._id);
@@ -475,8 +478,7 @@ export class ReportDataComponent implements OnInit{
       width: "91%", height: "95%", maxWidth: "none"
     }).afterClosed().subscribe({ 
       next: (res) => {
-        this.getEnrollment();
- 
+        // this.getEnrollment();
       }
     })
   }
@@ -562,13 +564,11 @@ export class ReportDataComponent implements OnInit{
       "Form Four Art": ['eng1', 'fre1', 'math1', 'hist1', 'lit1', 'geo1', 'econs1', 'comm1', 'citi1', 'rel1', 'food1', 'bio1', 'comp1', 'sport1',
                         'eng2', 'fre2', 'math2', 'hist2', 'lit2', 'geo2', 'econs2', 'comm2', 'citi2', 'rel2', 'food2', 'bio2', 'comp2', 'sport2',]
     };
-
     const subjectFields: string[] = [
       'eng1', 'fre1', 'math1', 'hist1', 'lit1', 'geo1', 'econs1', 'comm1', 'acc1', 'citi1', 'rel1', 'food1', 'chem1', 'bio1', 'phy1', 'comp1', 'sport1', 'logic1', 'hb1',
       'eng2', 'fre2', 'math2', 'hist2', 'lit2', 'geo2', 'econs2', 'comm2', 'acc2', 'citi2', 'rel2', 'food2', 'chem2', 'bio2', 'phy2', 'comp2', 'sport2', 'logic2', 'hb2'
       // Add other subject fields here
     ];
-  
      // Enable/disable subject fields based on the selected class
   const enabledFields = enabledFieldsByClass[classValue];
   subjectFields.forEach(field => {
@@ -576,12 +576,14 @@ export class ReportDataComponent implements OnInit{
       this.markForm.controls[field].enable();
     } else {
       this.markForm.controls[field].disable();
+      this.markForm.controls[field].setValue(null);
+      // this.markForm.value[field] = null;
+      // console.log(field, this.markForm.value[field])
     } 
   });
-  
     // Calculate and update the average based on the enabled fields for the current class
-    this.markForm.value.average = this.setAverage(classValue);  
-  }
+    this.markForm.value.average = this.setAverage(classValue); 
+}
 
  /* getCoef(subject: any, classe: any): any {
     var coefficient;
@@ -849,60 +851,108 @@ export class ReportDataComponent implements OnInit{
     return coefficient;
   } */
 
-  getCoef(subject: string, classe: string): number {
+  getCoef(subjectValue: any, classe: string): number {
+
+    const subjectFields = [
+      'eng1', 'fre1', 'math1', 'hist1', 'lit1', 'geo1', 'econs1', 'comm1', 'citi1', 'rel1', 'food1', 'chem1', 'bio1', 'phy1', 'comp1', 'sport1',
+      'eng2', 'fre2', 'math2', 'hist2', 'lit2', 'geo2', 'econs2', 'comm2','citi2', ' rel2', 'food2', 'chem2', 'bio2', 'phy2', 'comp2', 'sport2',
+        'acc1', 'logic1', 'hb1',
+        'acc2', 'logic2', 'hb2'
+    ];
     const coefficientsByClass: { [key: string]: { [key: string]: number } } = {
       "Form One": {
-        fre: 5, maths: 5, eng: 5, citi: 2, rel: 2, comp: 2, sport: 1, econs: 0, acc: 0, comm: 0, logic: 0, food: 0, hb: 0
+        fre1: 5, math1: 5, eng1: 5, citi1: 2, rel1: 2, comp1: 2, sport1: 1, econs1: 0, acc1: 0, comm1: 0, logic1: 0, food1: 0, hb1: 0, chem1: 3, phy1: 3, bio1: 3, hist1: 3, lit1: 3, geo1: 3,
+        fre2: 5, math2: 5, eng2: 5, citi2: 2, rel2: 2, comp2: 2, sport2: 1, econs2: 0, acc2: 0, comm2: 0, logic2: 0, food2: 0, hb2: 0, chem2: 3, phy2: 3, bio2: 3, hist2: 3, lit2: 3, geo2: 3
       },
       "Form Two": {
-        fre: 5, maths: 5, eng: 5, citi: 2, rel: 2, comp: 2, sport: 1, econs: 0, acc: 0, comm: 0, logic: 0, food: 0, hb: 0
+        fre1: 5, math1: 5, eng1: 5, citi1: 2, rel1: 2, comp1: 2, sport1: 1, econs1: 0, acc1: 0, comm1: 0, logic1: 0, food1: 0, hb1: 0, chem1: 3, phy1: 3, bio1: 3, hist1: 3, lit1: 3, geo1: 3,
+        fre2: 5, math2: 5, eng2: 5, citi2: 2, rel2: 2, comp2: 2, sport2: 1, econs2: 0, acc2: 0, comm2: 0, logic2: 0, food2: 0, hb2: 0, chem2: 3, phy2: 3, bio2: 3, hist2: 3, lit2: 3, geo2: 3
       },
       "Form Three": {
-        fre: 5, maths: 5, eng: 5, rel: 2, comp: 2, sport: 1, acc: 0, comm: 2, logic: 0, hb: 0
+        fre1: 5, math1: 5, eng1: 5, rel1: 2, comp1: 2, sport1: 1, acc1: 0, comm1: 2, logic1: 0, hb1: 0, chem1: 3, phy1: 3, econs1: 3, bio1: 3, hist1: 3, lit1: 3, geo1: 3, citi1: 3, food1: 3,
+        fre2: 5, math2: 5, eng2: 5, rel2: 2, comp2: 2, sport2: 1, acc2: 0, comm2: 2, logic2: 0, hb2: 0, chem2: 3, phy2: 3, econs2: 3, bio2: 3, hist2: 3, lit2: 3, geo2: 3, citi2: 3, food2: 3
       },
       "Form Four Science": {
-        fre: 5, maths: 5, eng: 5, rel: 2, comp: 2, sport: 1, acc: 0, comm: 2, logic: 0, hist: 0, lit: 0
+        fre1: 5, math1: 5, eng1: 5, rel1: 2, comp1: 2, sport1: 1, acc1: 0, comm1: 2, logic1: 0, hist1: 0, lit1: 0, chem1: 3, phy1: 3, econs1: 3, bio1: 3, geo1: 3, hb1: 3, food1: 3, citi1: 3,
+        fre2: 5, math2: 5, eng2: 5, rel2: 2, comp2: 2, sport2: 1, acc2: 0, comm2: 2, logic2: 0, hist2: 0, lit2: 0, chem2: 3, phy2: 3, econs2: 3, bio2: 3, geo2: 3, hb2: 3, food2: 3, citi2: 3
       },
       "Form Four Art": {
-        fre: 5, maths: 5, eng: 5, rel: 2, comp: 2, sport: 1, acc: 0, comm: 2, logic: 0, hb: 0, phy: 0, chem: 0
+        fre1: 5, math1: 5, eng1: 5, rel1: 2, comp1: 2, sport1: 1, acc1: 0, comm1: 2, logic1: 0, hb1: 0, phy1: 0, chem1: 0, econs1: 3, bio1: 3, hist1: 3, lit1: 3, geo1: 3, food1: 3, citi1: 3,
+        fre2: 5, math2: 5, eng2: 5, rel2: 2, comp2: 2, sport2: 1, acc2: 0, comm2: 2, logic2: 0, hb2: 0, phy2: 0, chem2: 0, econs2: 3, bio2: 3, hist2: 3, lit2: 3, geo2: 3, food2: 3, citi2: 3
       },
       // ... add other classes and subjects here
     };
   
-    const classCoefficients = coefficientsByClass[classe] || {};
-    const coefficient = classCoefficients[subject] || 3;
-  
-    return coefficient;
+    // console.log(coefficientsByClass[classe][subject])
+    // console.log(subject, 'Coefficient',coefficient)
+    let coefficient = 0;
+    let classCoefficients: any;
+
+    subjectFields.forEach(subject => {
+       classCoefficients = coefficientsByClass[classe] || {};
+       coefficient = classCoefficients[subject] || 3;
+
+        if (subjectValue == subject) {
+          coefficient = classCoefficients[subjectValue];
+          // console.log(classe, subject, classCoefficients[subjectValue])
+        }
+
+      });
+
+      // console.log (classCoefficients[subjectValue]);
+      return classCoefficients[subjectValue];
+      
+    // return classCoefficients[subjectValue];
   }
   
 
-  setAverage(classValue: string): number {
+  setAverage(classValue: string): any {
+
+    const subjectFields = [
+      'eng', 'fre', 'math', 'hist', 'lit', 'geo', 'citi', 'rel', 'chem', 'bio', 'phy', 'comp', 'sport',
+      'econs', 'comm', 'acc', 'logic', 'food', 'hb'
+    ]
+
     const enabledFields = [
-      'eng1', 'fre1', 'math1', 'hist1', 'lit1', 'geo1', 'citi1', 'rel1', 'chem1', 'bio1', 'phy1', 'comp1', 'sport1',
-      'eng2', 'fre2', 'math2', 'hist2', 'lit2', 'geo2', 'citi2', 'rel2', 'chem2', 'bio2', 'phy2', 'comp2', 'sport2',
-      'econs1', 'comm1', 'acc1', 'logic1', 'food1', 'hb1',
-      'econs2', 'comm2', 'acc2', 'logic2', 'food2', 'hb2'
+      'eng1', 'fre1', 'math1', 'hist1', 'lit1', 'geo1', 'econs1', 'comm1', 'citi1', 'rel1', 'chem1', 'bio1', 'phy1', 'comp1', 'sport1',
+      'eng2', 'fre2', 'math2', 'hist2', 'lit2', 'geo2', 'econs2', 'comm2','citi2', 'rel2', 'chem2', 'bio2', 'phy2', 'comp2', 'sport2',
+       'acc1', 'logic1', 'food1', 'hb1',
+       'acc2', 'logic2', 'food2', 'hb2'
     ];
   
     let total = 0;
     let sumCoef = 0;
+    let av = 0;
   
-    enabledFields.forEach(field => {
-      const value = this.markForm.value[field];
-      if ( value !== undefined && this.getCoef(field, classValue)) {
-        total += (value) * this.getCoef(field, classValue);
-        sumCoef += this.getCoef(field, classValue);
-        // console.log('Subject: ', field, 'coef: ', this.getCoef(field, classValue));
+    enabledFields.forEach(subfield => {
+      let value = this.markForm.value[subfield];
+      const fieldKeys = Object.keys(this.markForm.value);
 
-      }
+        if (fieldKeys.includes(subfield)) {
+          // console.log(`${subfield} is present in fieldKeys`);
+          if ( value !== undefined && this.getCoef(subfield, classValue)) {
+            total += (value) * this.getCoef(subfield, classValue);
+            sumCoef += this.getCoef(subfield, classValue);
+            // console.log(subfield, sumCoef)
+            // console.log(subfield, total, this.getCoef(subfield, classValue))
+          } else if (value == null) {
+            value = 0;
+            total += (value) * this.getCoef(subfield, classValue);
+            sumCoef += this.getCoef(subfield, classValue);
+            // console.log(subfield, sumCoef)
+          }
+        }
+
+      // console.log('value', value)
+      // console.log('math', this.getCoef("math1", classValue))
     });
   
     if (sumCoef === 0) {
       return 0;
     }
-    // console.log('TOTAL: ', total)
-    // console.log('Sum COEF: ', sumCoef)
-    return +(total / sumCoef).toFixed(2);
+    av = ((total/2) / (sumCoef/2))
+    // console.log(classValue, this.getCoef(classValue))
+    return av;
   }
   
 

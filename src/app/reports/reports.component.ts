@@ -102,7 +102,7 @@ export class ReportsComponent {
         error: (err) => {
           console.log("Error while fetching marks!");
           console.log(err)
-          this.getReport();
+          // this.getReport();
         }
       })
   }
@@ -112,7 +112,7 @@ export class ReportsComponent {
       width: "91%", height: "95%", maxWidth: "none"
     }).afterClosed().subscribe({
       next: (res) => {
-        this.getReport();
+        // this.getReport();
       }
     })
   }
@@ -123,7 +123,7 @@ export class ReportsComponent {
       data: row
     }).afterClosed().subscribe(val => {
       if (val === 'update') {
-        this.getReport()
+        // this.getReport()
       }
     })
   }
@@ -719,18 +719,51 @@ export class ReportsComponent {
     return this.teacher;
   }
 
-
-
   termAverage(subject: any, classe: any, mk1: any, mk2: any): any {
-    if (this.getCoefficient(subject, classe) == 0) {
-      return '/';
-    }
-    else {
-      return (mk1 + mk2) / 2
-    }
+    // console.log(subject, this.getTeacher(subject, classe), mk1, mk2)
+      if ((mk1 == undefined && mk2 == undefined)) {
+        mk1 = 0;
+        mk2 = 0;
+      }
+      else if ((mk1 == null && mk2 == null)) {
+        mk1 = 0;
+        mk2 = 0;
+      }
+      else if(mk1 == undefined || mk1 == null){
+        mk1 = 0;
+      }
+      else if(mk2 == undefined || mk2 == null){
+        mk2 = 0;
+      }
+
+    // console.log(subject, this.getTeacher(subject, classe), mk1, mk2)
+
+      if (this.getCoefficient(subject, classe) == 0) {
+        return '/';
+      }
+      // else if ((mk1 == undefined && mk2 == undefined)){
+      //   return '';
+      // }
+      else {
+        return (mk1 + mk2) / 2
+      }
+    
+  
   }
 
   termTotal(subject: any, classe: any, mk1: any, mk2: any): any {
+
+    if ((mk1 == undefined && mk2 == undefined)) {
+      mk1 = null;
+      mk2 = null;
+    }
+    else if(mk1 == undefined){
+      mk1 = null;
+    }
+    else if(mk2 == undefined){
+      mk2 = null;
+    }
+// ******************************************************************************
     if (this.getCoefficient(subject, classe) == 0) {
       return null;
     }
@@ -741,13 +774,13 @@ export class ReportsComponent {
 
   remarks(mk1: any, mk2: any) {
 
-    var tmk:any = (mk1 + mk2) / 2
+    let tmk:any = (mk1 + mk2) / 2
     // console.log(tmk)
-    if (mk1 == null ){
+    if (mk1 == null && mk2 == null){
       return '/';
     }
 
-    else if (tmk >= 0 && tmk < 10) {
+     if (tmk >= 0 && tmk < 10) {
       return "NA";
     }
 
@@ -969,9 +1002,16 @@ getClassAverage(form: string) {
   const relevantReports = this.getReportList.filter((report: { class: string; }) => report.class === form);
   
   const sumAv = relevantReports.reduce((total: any, report: { average: any; }) => total + report.average, 0);
-  const classAv = sumAv / relevantReports.length;
-  
-  return classAv;
+  const classAv = sumAv/relevantReports.length;
+  // Round the average to 2 decimal places
+  const roundedClassAv = Number(classAv);
+// console.log(form, sumAv)
+
+  relevantReports.reduce((total: any, report: { average: any, name: any }) => {
+  // console.log(report.name, form, report.average); 
+}, 0);
+
+  return roundedClassAv;
 }
 
 // Function to calculate position for a specific average in a given form level

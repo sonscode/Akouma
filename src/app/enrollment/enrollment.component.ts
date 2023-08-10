@@ -14,8 +14,8 @@ export class EnrollmentComponent {
   actionBtn: string = "Save";
   dataSource: any;
   enrollmentList: any = []
-  enrollmentListExists: boolean = false;
-  loadingEnrollmentData = false;
+  // enrollmentListExists: boolean = false;
+  // loadingEnrollmentData = false;
 
 
   constructor(private formbuilder: FormBuilder, private api: MysqlService, @Inject(MAT_DIALOG_DATA) public editData: any, private dialogRef: MatDialogRef<EnrollmentComponent>) {
@@ -37,9 +37,8 @@ export class EnrollmentComponent {
     LSA: ['', Validators.required],
     LSS: ['', Validators.required],
     USA: ['', Validators.required],
-    USS: ['', Validators.required],
+    USS: ['', Validators.required]
   })
-
 
   if (this.editData) {
     this.actionBtn = "Update";
@@ -69,12 +68,13 @@ getEnrollment() {
       next: (res) => {
         this.dataSource = new MatTableDataSource(res);
         this.enrollmentList = res;
-        this.enrollmentListExists = this.enrollmentList.length > 0;
-        console.log("Enrollment length ", this.enrollmentList.length)
+        // this.enrollmentListExists = this.enrollmentList.length > 0;
+        // console.log("Enrollment length ", this.enrollmentList.length)
       },
       error: (err) => {
-        console.log("Error while fetching enrollments!");
-        this.getEnrollment();
+        // console.log("Error while fetching enrollments!...", err);
+        alert("Error while fetching enrollments!...");
+        // this.getEnrollment();
       }
     })
 }
@@ -108,24 +108,24 @@ addEnrollment() {
 }
 
 editEnrollment() {
-  this.loadingEnrollmentData = true; // Set loading flag
+  
   this.api.putEnrollments(this.markForm.value)
     .subscribe({
       next: (res) => {
         alert("Class enrollments updated successfully...");
         this.markForm.reset();
         this.dialogRef.close('Update');
-        // this.getReport()
+        this.getEnrollment()
       },
       error: () => {
         alert("Error while updating the enrollments with id " + this.editData._id);
-        this.getEnrollment();
-      },
-      complete: () => {
-        this.loadingEnrollmentData = false; // Reset loading flag
+        // this.getEnrollment();
       }
     })
 }
+
+
+
 
 
 }
