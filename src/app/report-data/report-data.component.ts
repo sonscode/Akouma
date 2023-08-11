@@ -264,12 +264,12 @@ export class ReportDataComponent implements OnInit{
   }
 
   sequences: Sequence[] = [
-    { value: 'seq1', viewValue: '1st ev./20' },
-    { value: 'seq2', viewValue: '2nd ev./20' },
-    { value: 'seq3', viewValue: '3rd ev./20' },
-    { value: 'seq4', viewValue: '4th ev./20' },
-    { value: 'seq5', viewValue: '5th ev./20' },
-    { value: 'seq6', viewValue: '6th ev./20' }
+    { value: 'seq1', viewValue: '1st ev.' },
+    { value: 'seq2', viewValue: '2nd ev.' },
+    { value: 'seq3', viewValue: '3rd ev.' },
+    { value: 'seq4', viewValue: '4th ev.' },
+    { value: 'seq5', viewValue: '5th ev.' },
+    { value: 'seq6', viewValue: '6th ev.' }
   ];
 
   coefficients: Coefficient[] = [
@@ -330,16 +330,16 @@ export class ReportDataComponent implements OnInit{
   getTest1() {
     if (this.reportList) {
     if (this.markForm.value.term == 1) {
-      this.markForm.value.test1 = "1st ev. on 20";
+      this.markForm.value.test1 = "1st ev.";
     }
     else if (this.markForm.value.term == 2) {
-      this.markForm.value.test1 = "3rd ev. on 20";
+      this.markForm.value.test1 = "3rd ev.";
     }
     else if (this.markForm.value.term == 3) {
-      this.markForm.value.test1 = "5th ev. on 20";
+      this.markForm.value.test1 = "5th ev.";
     }
     else {
-      this.markForm.value.test1 = "Test-1 on 20";
+      this.markForm.value.test1 = "Test-1";
     }
     return this.markForm.value.test1;
   }
@@ -353,16 +353,16 @@ export class ReportDataComponent implements OnInit{
   getTest2() {
     if (this.reportList) {
     if (this.markForm.value.term === 1) {
-      this.markForm.value.test2 = "2nd ev. on 20";
+      this.markForm.value.test2 = "2nd ev.";
     }
     else if (this.markForm.value.term === 2) {
-      this.markForm.value.test2 = "4th ev. on 20";
+      this.markForm.value.test2 = "4th ev.";
     }
     else if (this.markForm.value.term === 3) {
-      this.markForm.value.test2 = "6th ev. on 20";
+      this.markForm.value.test2 = "6th ev.";
     }
     else {
-      this.markForm.value.test2 = "Test-2 on 20";
+      this.markForm.value.test2 = "Test-2";
     }
     return this.markForm.value.test2;
   }
@@ -562,7 +562,19 @@ export class ReportDataComponent implements OnInit{
       "Form Four Science": ['eng1', 'fre1', 'math1', 'geo1', 'econs1', 'comm1', 'citi1', 'rel1', 'food1', 'chem1', 'bio1', 'phy1', 'comp1', 'sport1', 'hb1',
                             'eng2', 'fre2', 'math2', 'geo2', 'econs2', 'comm2', 'citi2', 'rel2', 'food2', 'chem2', 'bio2', 'phy2', 'comp2', 'sport2', 'hb2'],
       "Form Four Art": ['eng1', 'fre1', 'math1', 'hist1', 'lit1', 'geo1', 'econs1', 'comm1', 'citi1', 'rel1', 'food1', 'bio1', 'comp1', 'sport1',
-                        'eng2', 'fre2', 'math2', 'hist2', 'lit2', 'geo2', 'econs2', 'comm2', 'citi2', 'rel2', 'food2', 'bio2', 'comp2', 'sport2',]
+                        'eng2', 'fre2', 'math2', 'hist2', 'lit2', 'geo2', 'econs2', 'comm2', 'citi2', 'rel2', 'food2', 'bio2', 'comp2', 'sport2',],
+      "Form Five Science": ['eng1', 'fre1', 'math1', 'geo1', 'econs1', 'comm1', 'citi1', 'rel1', 'food1', 'chem1', 'bio1', 'phy1', 'comp1', 'sport1', 'hb1',
+                        'eng2', 'fre2', 'math2', 'geo2', 'econs2', 'comm2', 'citi2', 'rel2', 'food2', 'chem2', 'bio2', 'phy2', 'comp2', 'sport2', 'hb2'],
+      "Form Five Art": ['eng1', 'fre1', 'math1', 'hist1', 'lit1', 'geo1', 'econs1', 'comm1', 'citi1', 'rel1', 'food1', 'bio1', 'comp1', 'sport1',
+                        'eng2', 'fre2', 'math2', 'hist2', 'lit2', 'geo2', 'econs2', 'comm2', 'citi2', 'rel2', 'food2', 'bio2', 'comp2', 'sport2',],
+      "Lower Sixth Art": ['eng1', 'fre1', 'math1', 'hist1', 'lit1', 'geo1', 'econs1', 'comm1', 'citi1', 'rel1', 'food1', 'bio1', 'comp1', 'sport1',
+                        'eng2', 'fre2', 'math2', 'hist2', 'lit2', 'geo2', 'econs2', 'comm2', 'citi2', 'rel2', 'food2', 'bio2', 'comp2', 'sport2',],
+      "Lower Sixth Science": ['eng1', 'fre1', 'math1', 'geo1', 'econs1', 'comm1', 'citi1', 'rel1', 'food1', 'chem1', 'bio1', 'phy1', 'comp1', 'sport1', 'hb1',
+                        'eng2', 'fre2', 'math2', 'geo2', 'econs2', 'comm2', 'citi2', 'rel2', 'food2', 'chem2', 'bio2', 'phy2', 'comp2', 'sport2', 'hb2'],
+      "Upper Sixth Art": ['eng1', 'fre1', 'math1', 'hist1', 'lit1', 'geo1', 'econs1', 'comm1', 'citi1', 'rel1', 'food1', 'bio1', 'comp1', 'sport1',
+                        'eng2', 'fre2', 'math2', 'hist2', 'lit2', 'geo2', 'econs2', 'comm2', 'citi2', 'rel2', 'food2', 'bio2', 'comp2', 'sport2',],
+      "Upper Sixth Science": ['eng1', 'fre1', 'math1', 'geo1', 'econs1', 'comm1', 'citi1', 'rel1', 'food1', 'chem1', 'bio1', 'phy1', 'comp1', 'sport1', 'hb1',
+                        'eng2', 'fre2', 'math2', 'geo2', 'econs2', 'comm2', 'citi2', 'rel2', 'food2', 'chem2', 'bio2', 'phy2', 'comp2', 'sport2', 'hb2'],
     };
     const subjectFields: string[] = [
       'eng1', 'fre1', 'math1', 'hist1', 'lit1', 'geo1', 'econs1', 'comm1', 'acc1', 'citi1', 'rel1', 'food1', 'chem1', 'bio1', 'phy1', 'comp1', 'sport1', 'logic1', 'hb1',
@@ -880,6 +892,31 @@ export class ReportDataComponent implements OnInit{
         fre1: 5, math1: 5, eng1: 5, rel1: 2, comp1: 2, sport1: 1, acc1: 0, comm1: 2, logic1: 0, hb1: 0, phy1: 0, chem1: 0, econs1: 3, bio1: 3, hist1: 3, lit1: 3, geo1: 3, food1: 3, citi1: 3,
         fre2: 5, math2: 5, eng2: 5, rel2: 2, comp2: 2, sport2: 1, acc2: 0, comm2: 2, logic2: 0, hb2: 0, phy2: 0, chem2: 0, econs2: 3, bio2: 3, hist2: 3, lit2: 3, geo2: 3, food2: 3, citi2: 3
       },
+      "Form Five Science": {
+        fre1: 5, math1: 5, eng1: 5, rel1: 2, comp1: 2, sport1: 1, acc1: 0, comm1: 2, logic1: 0, hist1: 0, lit1: 0, chem1: 3, phy1: 3, econs1: 3, bio1: 3, geo1: 3, hb1: 3, food1: 3, citi1: 3,
+        fre2: 5, math2: 5, eng2: 5, rel2: 2, comp2: 2, sport2: 1, acc2: 0, comm2: 2, logic2: 0, hist2: 0, lit2: 0, chem2: 3, phy2: 3, econs2: 3, bio2: 3, geo2: 3, hb2: 3, food2: 3, citi2: 3
+      },
+      "Form Five Art": {
+        fre1: 5, math1: 5, eng1: 5, rel1: 2, comp1: 2, sport1: 1, acc1: 0, comm1: 2, logic1: 0, hb1: 0, phy1: 0, chem1: 0, econs1: 3, bio1: 3, hist1: 3, lit1: 3, geo1: 3, food1: 3, citi1: 3,
+        fre2: 5, math2: 5, eng2: 5, rel2: 2, comp2: 2, sport2: 1, acc2: 0, comm2: 2, logic2: 0, hb2: 0, phy2: 0, chem2: 0, econs2: 3, bio2: 3, hist2: 3, lit2: 3, geo2: 3, food2: 3, citi2: 3
+      },
+      "Lower Sixth Art": {
+        fre1: 5, math1: 5, eng1: 5, rel1: 2, comp1: 2, sport1: 1, acc1: 0, comm1: 2, logic1: 0, hb1: 0, phy1: 0, chem1: 0, econs1: 3, bio1: 3, hist1: 3, lit1: 3, geo1: 3, food1: 3, citi1: 3,
+        fre2: 5, math2: 5, eng2: 5, rel2: 2, comp2: 2, sport2: 1, acc2: 0, comm2: 2, logic2: 0, hb2: 0, phy2: 0, chem2: 0, econs2: 3, bio2: 3, hist2: 3, lit2: 3, geo2: 3, food2: 3, citi2: 3
+      },
+      "Lower Sixth Science": {
+        fre1: 5, math1: 5, eng1: 5, rel1: 2, comp1: 2, sport1: 1, acc1: 0, comm1: 2, logic1: 0, hb1: 0, phy1: 0, chem1: 0, econs1: 3, bio1: 3, hist1: 3, lit1: 3, geo1: 3, food1: 3, citi1: 3,
+        fre2: 5, math2: 5, eng2: 5, rel2: 2, comp2: 2, sport2: 1, acc2: 0, comm2: 2, logic2: 0, hb2: 0, phy2: 0, chem2: 0, econs2: 3, bio2: 3, hist2: 3, lit2: 3, geo2: 3, food2: 3, citi2: 3
+      },
+      "Upper Sixth Art": {
+        fre1: 5, math1: 5, eng1: 5, rel1: 2, comp1: 2, sport1: 1, acc1: 0, comm1: 2, logic1: 0, hb1: 0, phy1: 0, chem1: 0, econs1: 3, bio1: 3, hist1: 3, lit1: 3, geo1: 3, food1: 3, citi1: 3,
+        fre2: 5, math2: 5, eng2: 5, rel2: 2, comp2: 2, sport2: 1, acc2: 0, comm2: 2, logic2: 0, hb2: 0, phy2: 0, chem2: 0, econs2: 3, bio2: 3, hist2: 3, lit2: 3, geo2: 3, food2: 3, citi2: 3
+      },
+      "Upper Sixth Science": {
+        fre1: 5, math1: 5, eng1: 5, rel1: 2, comp1: 2, sport1: 1, acc1: 0, comm1: 2, logic1: 0, hb1: 0, phy1: 0, chem1: 0, econs1: 3, bio1: 3, hist1: 3, lit1: 3, geo1: 3, food1: 3, citi1: 3,
+        fre2: 5, math2: 5, eng2: 5, rel2: 2, comp2: 2, sport2: 1, acc2: 0, comm2: 2, logic2: 0, hb2: 0, phy2: 0, chem2: 0, econs2: 3, bio2: 3, hist2: 3, lit2: 3, geo2: 3, food2: 3, citi2: 3
+      },
+
       // ... add other classes and subjects here
     };
   

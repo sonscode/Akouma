@@ -1,6 +1,7 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
 *{
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: black;
 }
 
 .fl{
@@ -79,7 +80,7 @@ hr{
     margin-bottom: .2em;
     /* height: .4em */
     /* border: .3em solid rgb(207, 0, 0); */
-    width:62%;
+    width:74.5%;
     /* color:"brown"; */
     height: .5vh;
     background: rgb(114, 2, 2);
@@ -112,5 +113,15 @@ hr{
   height: 100vh; /* Set the container height to the full viewport height */
 }
 
+.head{
+    flex-wrap: wrap;
+}
 
-
+.desc{
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    vertical-align: bottom;
+    margin-top: 15px;
+    margin-left: 39px;
+}
