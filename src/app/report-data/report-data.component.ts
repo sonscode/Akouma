@@ -141,7 +141,7 @@ export class ReportDataComponent implements OnInit{
       owing: [0, Validators.nullValidator],
       summonDate: ['dd-mm-yyyy', Validators.nullValidator],
       summonTime: ['8:00 AM', Validators.nullValidator],
-      note: ['Third Term resumes on dd-mm-yyyy', Validators.nullValidator]
+      note: ['', Validators.nullValidator]
 
     })
 

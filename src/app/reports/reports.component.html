@@ -1,3 +1,9 @@
+<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+<!-- <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet"> -->
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Khitan+Small+Script&display=swap" rel="stylesheet">
+
+
+
 <div class="hid-start" *ngIf="showAddButton"><button (click)="openDialog()" class="start">START</button></div>
 <div class="report-class" *ngFor="let mark of getReportList" (click)="popUp()" (click)="getReport()">
     <!-- <div class="btns" id="seal">
@@ -14,10 +20,10 @@
             <div style="display: flex;">
                 <img class="logo" src="../assets/images/head.jpg" alt="Logo"> 
                 <div class="desc" style="text-align:center;">
-                    <h1 style="color: black;">AKOUMA HIGH SCHOOL</h1>
-                    Located before the first entrance of the Military Base Simbock <br/>
+                    <span class="ds" style="color: black;">AKOUMA HIGH SCHOOL</span> <br/> 
+                    <div style="margin-top: 15px;">Located before the first entrance of the Military Base Simbock</div>
                     <b>Motto: To honour the lord is to hate evil!</b> <br/>
-                   <span style="font-size: smaller; text-align: center;"> P.O. Box 5610 Nlongkak Yaounde Tel <b>676 59 02 71 - 677 82 58 06 - 222 31 70 50</b> </span>
+                   <span style="font-size: smaller; text-align: center;">P.O. Box 5610 Nlongkak Yaounde Tel <b>676 59 02 71 - 677 82 58 06 - 222 31 70 50</b> </span> <br/>
                 </div>
             </div>
             <!-- <img class="label" src="../assets/images/label.jpg" alt="Label"> -->
@@ -26,8 +32,8 @@
 <!-- <hr color="transparent" style="padding: 0; margin-top: -2em;"> -->
 <!-- <button (click)="this.seal()" style="padding: 1px 6px 1px 6px; margin: 0 auto; border: 1px solid rgb(163, 163, 163); border-radius: 50px; background: transparent; color:rgb(167, 167, 167)" class="seal">finish</button> -->
 
-<span style="margin-top: -2em;">  <b style="text-align: left;">Academic year: 2022/2023</b>             <b style="float: right;">Term {{mark.term}}</b> </span>
-            <h2 style="text-align: center; color: black">REPORT CARD</h2>
+<span style="margin-top: -2em;">  <b style="text-align: left;">Academic year: 2022/2023</b> <b style="float: right;">Term {{mark.term}}</b> </span>
+            <b><h2 style="text-align: center; color: black;">REPORT CARD</h2> </b>
             <span> <span> Name: <b>{{mark.name}}</b></span> <span style="float: right; text-align: right;"> class: <b>
                         {{mark.class}}</b> </span></span> <br />
             <span class="fl"><span style="float: left;"> Date of birth: <b> {{(mark.DOB)}}</b> </span> <span
@@ -48,9 +54,9 @@
                         <td><b> Teacher </b></td>
                         <td><b> {{mark.test1}} </b></td>
                         <td><b> {{mark.test2}} </b></td>
-                        <td><b> Term Av./20 </b></td>
+                        <td><b> Term Av. </b></td>
                         <td><b> Coef. </b></td>
-                        <td><b> Total </b></td>
+                        <td style="padding: 0px 10px 0 10px;"><b> Total </b></td>
                         <td><b> Pos. </b></td>
                         <td><b> Remarks </b></td>
                     </tr>
@@ -372,16 +378,12 @@
                 </table>
                 <h6>Principal's Note: <b><u>{{mark.note}}</u></b></h6>
                 <div style="display: flex; margin: 0 auto;">
-                    <h5 style="margin: 0 auto; font-weight: lighter; color:black;"><b>The Parent</b></h5>
-                    <h5 style="margin: 0 auto; font-weight: lighter; color:black;"><b>The Principal</b></h5>
+                    <h6 style="margin: 0 auto; font-weight: lighter; color:black;"><b>The Parent</b></h6>
+                    <h6 style="margin: 0 auto; font-weight: lighter; color:black;"><b>The Principal</b></h6>
                     <br/>
                     <br/>
                     <br/>
                 </div>
         </div>
     </div>
-
 </div>
-
-<br />
-<br />

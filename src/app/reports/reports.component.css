@@ -122,6 +122,18 @@ hr{
     align-items: center;
     height: auto;
     vertical-align: bottom;
-    margin-top: 15px;
-    margin-left: 39px;
+    margin-top: 33px;
+    margin-left: 33px;
 }
+
+.ds{
+    font-family: 'Lobster', cursive;
+    font-size: 34px;
+  }
+
+  h2{
+    font-family: 'Noto Serif Khitan Small Script', cursive;
+    font-size: 28px;
+  }
+  
+  
