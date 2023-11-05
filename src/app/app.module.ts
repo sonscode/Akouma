@@ -39,14 +39,13 @@ import { AuthGuard } from './guards/auth.guard';
 import { TokenInterceptorService } from './services/token-interceptor.service';
 import { Dialog3Component } from './dialog3/dialog3.component';
 import { Dialog4Component } from './dialog4/dialog4.component';
-import { SocialLoginModule, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
-import {
-  GoogleLoginProvider
-} from '@abacritt/angularx-social-login';
+import { SocialLoginModule, GoogleLoginProvider, SocialAuthServiceConfig} from '@abacritt/angularx-social-login';
+
 import { ReportsComponent } from './reports/reports.component';
 import { ReportDataComponent } from './report-data/report-data.component';
 import { ActionsComponent } from './actions/actions.component';
 import { EnrollmentComponent } from './enrollment/enrollment.component';
+
 
 @NgModule({
   declarations: [
@@ -104,7 +103,6 @@ import { EnrollmentComponent } from './enrollment/enrollment.component';
       useClass: TokenInterceptorService,
       multi: true
     },
-
     {
       provide: 'SocialAuthServiceConfig',
       useValue: {
@@ -112,16 +110,11 @@ import { EnrollmentComponent } from './enrollment/enrollment.component';
         providers: [
           {
             id: GoogleLoginProvider.PROVIDER_ID,
-            provider: new GoogleLoginProvider(
-              '89385707814-tov8ukqt2p1mum39it5t4dr6jhosoid0.apps.googleusercontent.com'
-            )
+            provider: new GoogleLoginProvider('443350484173-ilpfjv3727msuclnf18h3n8oaapi67vj.apps.googleusercontent.com')
           }
-        ], 
-        onError: (err) => {
-          console.error(err);
-        }
+        ]
       } as SocialAuthServiceConfig,
-    }
+    },
 
   ],
   bootstrap: [AppComponent]

@@ -17,13 +17,13 @@ import { ReportsComponent } from './reports/reports.component';
 import { ReportDataComponent } from './report-data/report-data.component';
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent },
-  { path: 'about', component: AboutComponent },
-  { path: 'gallery', component: GalleryComponent },
-  { path: 'reports', component: ReportsComponent },
+  
+    { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'about', component: AboutComponent, canActivate: [AuthGuard] },
+  { path: 'gallery', component: GalleryComponent, canActivate: [AuthGuard] },
+  { path: 'reports', component: ReportsComponent, canActivate: [AuthGuard] },
   {
     path: 'marks', component: AdmissionComponent,
-    // canActivate: [AuthGuard], 
     children: [
 
       {

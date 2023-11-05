@@ -46,7 +46,7 @@ export class RegisterComponent implements OnInit {
           // this.info = "This user already exists!"
           console.log(res)
           localStorage.setItem('token', res.token)
-          this.router.navigate(['/marks'])
+          this.router.navigate(['/reports'])
         },
         error: (err: any) => {
       alert("Register: May be this user already exists!")

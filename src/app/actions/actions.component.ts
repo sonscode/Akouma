@@ -5,6 +5,8 @@ import { ReportDataComponent } from '../report-data/report-data.component';
 import { ReportServiceService } from '../services/report-service.service';
 import { MysqlService } from '../services/mysql-service.service';
 import { EnrollmentComponent } from '../enrollment/enrollment.component';
+import { AuthApiService } from '../services/auth-api.service';
+import { SocialAuthService } from '@abacritt/angularx-social-login';
 
 @Component({
   selector: 'app-actions',
@@ -17,11 +19,19 @@ export class ActionsComponent {
 
   dataSource!: MatTableDataSource<any>
 
-  constructor(private dialog: MatDialog, private api: MysqlService) { }
+  constructor(private dialog: MatDialog, private api: MysqlService, private authapi: AuthApiService, private authService: SocialAuthService) { }
   
   ngOnInit() {
     this.getReport();
 
+  }
+
+  // IMPLEMENTING LOGOUT FXN
+  logout(){
+    if (confirm("Logout?")) {
+    this.authapi.logout();
+    this.authService.signOut();
+    }
   }
 
 

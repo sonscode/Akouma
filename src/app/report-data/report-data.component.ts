@@ -8,6 +8,8 @@ import { MysqlService } from '../services/mysql-service.service';
 import { EnrollmentComponent } from '../enrollment/enrollment.component';
 import { MatTableDataSource } from '@angular/material/table';
 import { FormControl } from '@angular/forms';
+import { AuthApiService } from '../services/auth-api.service';
+import { SocialAuthService } from '@abacritt/angularx-social-login';
 
 
 interface Sequence {
@@ -65,7 +67,7 @@ export class ReportDataComponent implements OnInit{
 
 
 
-  constructor(private formbuilder: FormBuilder, private api: MysqlService, @Inject(MAT_DIALOG_DATA) public editData: any, private dialogRef: MatDialogRef<ReportDataComponent>, private dialog: MatDialog) {
+  constructor(private formbuilder: FormBuilder, private api: MysqlService, private authapi: AuthApiService, @Inject(MAT_DIALOG_DATA) public editData: any, private dialogRef: MatDialogRef<ReportDataComponent>, private dialog: MatDialog, private authService: SocialAuthService) {
     // api.matchResChanged.subscribe(status=>this.verifyMatch());
   }
 
@@ -240,6 +242,14 @@ export class ReportDataComponent implements OnInit{
 
 
 
+  }
+// IMPLEMENTING LOGOUT FXN
+  logout(){
+    if (confirm("Logout?")) {
+    this.authapi.logout();
+    this.authService.signOut();
+
+    }
   }
 
   realFunction(){

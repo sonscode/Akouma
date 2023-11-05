@@ -20,6 +20,10 @@ html body{
   .row{
     margin: 0 auto;
     width: 60%;
+    color: black;
+  }
+  .form-group{
+    color: black;
   }
     .signup{
       width: auto; 

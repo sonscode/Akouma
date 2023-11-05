@@ -35,7 +35,7 @@ loggedIn(){
 
   logout() {
     localStorage.removeItem('token')
-    this.router.navigate(['/home'])
+    this.router.navigate(['/login'])
   }
 
   getToken() {

@@ -13,7 +13,6 @@ export class MysqlService {
   // private apiUrl = 'http://localhost:3000/api/reports';
   // private enrollUrl = 'http://localhost:3000/api/enrollments';
 
-
   constructor(private http: HttpClient) {}
 
   // Method to get all reports

@@ -26,6 +26,7 @@
     "@angular/platform-browser": "~16.1.0",
     "@angular/platform-browser-dynamic": "~16.1.0",
     "@angular/router": "~16.1.0",
+    "angularx-social-login": "^4.1.0",
     "bootstrap": "^5.2.2",
     "googleapis": "^122.0.0",
     "node-mailjet": "^5.1.1",

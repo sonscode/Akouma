@@ -1,4 +1,4 @@
-import { GoogleLoginProvider, SocialAuthService } from '@abacritt/angularx-social-login';
+import { GoogleLoginProvider, SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -13,14 +13,18 @@ import { Teacher } from '../teacher';
 export class LoginComponent implements OnInit {
   exform!: FormGroup;
   info!: any;
-user: any;
-loggedIn: any
+  loggedIn: any
+  public user!: SocialUser;
 
   public teacher = new Teacher()
 
-  constructor(private fb: FormBuilder, private auth_api: AuthApiService, private router: Router, private authService: SocialAuthService) { }
-
-
+  constructor(private fb: FormBuilder, private auth_api: AuthApiService, private router: Router, private authService: SocialAuthService) { 
+    this.authService.authState.subscribe((user) => {
+      this.user = user;
+      this.loggedIn = (user != null);
+      console.log(this.user);
+    });
+  }
 
   ngOnInit(): void {
     this.authService.authState.subscribe((user) => {
@@ -30,13 +34,22 @@ loggedIn: any
     });
   }
 
+  
+  
+
   signInWithGoogle(): void {
-    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
-    
+    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then((userData) => {
+      // Handle the user data after a successful login.
+      console.log(userData);
+    });
   }
 
   signOut(): void {
     this.authService.signOut();
+  }
+
+  getUser(): SocialUser {
+    return this.user;
   }
 
 
@@ -49,10 +62,10 @@ login(){
     next: (res:any)=> {
       console.log(res)
       localStorage.setItem('token', res.token)
-      this.router.navigate(['/marks']);
+      this.router.navigate(['/reports']);
     },
     error: (err: any) => {
-      alert("Login: Wrong uername or password!")
+      alert("Login: An error occured!")
       console.log(err)
     }
   })
@@ -61,3 +74,8 @@ login(){
 
 
 }
+
+/* Google Console Credentials for Social Sign in with Google
+Client ID: 443350484173-ilpfjv3727msuclnf18h3n8oaapi67vj.apps.googleusercontent.com
+security client code: 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
+*/
