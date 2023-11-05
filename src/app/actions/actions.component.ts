@@ -29,8 +29,8 @@ export class ActionsComponent {
   // IMPLEMENTING LOGOUT FXN
   logout(){
     if (confirm("Logout?")) {
+      this.authService.signOut();
     this.authapi.logout();
-    this.authService.signOut();
     }
   }
 

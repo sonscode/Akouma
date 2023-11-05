@@ -21,11 +21,10 @@ const routes: Routes = [
     { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'about', component: AboutComponent, canActivate: [AuthGuard] },
   { path: 'gallery', component: GalleryComponent, canActivate: [AuthGuard] },
-  { path: 'reports', component: ReportsComponent,  },
-  {
-    /*path: 'marks', component: AdmissionComponent,
+  { path: 'reports', component: ReportsComponent,  canActivate: [AuthGuard]},
+  /*{
+    path: 'marks', component: AdmissionComponent,
     children: [
-
       {
         path: 'form1', component: GalleryComponent,
         children: [
@@ -104,14 +103,13 @@ const routes: Routes = [
         ]
       }
 
-    ] */
-  },
+    ] 
+  }*/
   // {path: 'blog', component: BlogComponent},
 
   { path: 'contact', component: ContactComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  // { path: 'form3', component: Form3Component },
   { path: '', redirectTo: '/reports', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];
