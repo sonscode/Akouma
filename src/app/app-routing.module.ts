@@ -21,9 +21,9 @@ const routes: Routes = [
     { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'about', component: AboutComponent, canActivate: [AuthGuard] },
   { path: 'gallery', component: GalleryComponent, canActivate: [AuthGuard] },
-  { path: 'reports', component: ReportsComponent, canActivate: [AuthGuard] },
+  { path: 'reports', component: ReportsComponent,  },
   {
-    path: 'marks', component: AdmissionComponent,
+    /*path: 'marks', component: AdmissionComponent,
     children: [
 
       {
@@ -104,7 +104,7 @@ const routes: Routes = [
         ]
       }
 
-    ]
+    ] */
   },
   // {path: 'blog', component: BlogComponent},
 
