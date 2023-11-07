@@ -11,7 +11,7 @@ export class AuthGuard implements CanActivate {
   constructor(private authService: AuthApiService, private router: Router){}
 
   canActivate(): boolean {
-    if(this.authService.loggedIn()){
+    if(this.authService.loggedIn() || this.authService.isGoogleLoggedIn()){
       return true
     } else {
       this.router.navigate(['/login'])

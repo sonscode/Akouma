@@ -42,10 +42,12 @@ export class LoginComponent implements OnInit {
       // Handle the user data after a successful login.
       console.log(userData);
     });
+    this.loggedIn = true
   }
 
   signOut(): void {
     this.authService.signOut();
+    this.loggedIn=true
   }
 
   getUser(): SocialUser {
@@ -63,6 +65,7 @@ login(){
       console.log(res)
       localStorage.setItem('token', res.token)
       this.router.navigate(['/reports']);
+      this.loggedIn = true
     },
     error: (err: any) => {
       alert("Login: An error occured!")
