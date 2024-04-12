@@ -1,0 +1,12 @@
+<!-- subject-code-dialog.component.html -->
+<h2 mat-dialog-title>Enter Subject Code</h2>
+<div mat-dialog-content>
+  <p>Dear {{ data.userEmail }}, please enter your subject code:</p>
+  <mat-form-field>
+    <input matInput [(ngModel)]="subjectCode" placeholder="Subject Code" />
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button [mat-dialog-close]="subjectCode" cdkFocusInitial>Submit</button>
+</div>

@@ -18,10 +18,10 @@ import { ReportDataComponent } from './report-data/report-data.component';
 
 const routes: Routes = [
   
-    { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'reports', component: ReportsComponent,  canActivate: [AuthGuard]},
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'about', component: AboutComponent, canActivate: [AuthGuard] },
   { path: 'gallery', component: GalleryComponent, canActivate: [AuthGuard] },
-  { path: 'reports', component: ReportsComponent,  canActivate: [AuthGuard]},
   /*{
     path: 'marks', component: AdmissionComponent,
     children: [

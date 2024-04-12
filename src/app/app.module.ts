@@ -45,6 +45,7 @@ import { ReportsComponent } from './reports/reports.component';
 import { ReportDataComponent } from './report-data/report-data.component';
 import { ActionsComponent } from './actions/actions.component';
 import { EnrollmentComponent } from './enrollment/enrollment.component';
+import { SubjectCodeDialogComponent } from './subject-code-dialog/subject-code-dialog.component';
 
 
 @NgModule({
@@ -69,7 +70,8 @@ import { EnrollmentComponent } from './enrollment/enrollment.component';
     ReportsComponent,
     ReportDataComponent,
     ActionsComponent,
-    EnrollmentComponent    
+    EnrollmentComponent,
+    SubjectCodeDialogComponent    
   ],
   imports: [
     BrowserModule,

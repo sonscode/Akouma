@@ -8,10 +8,10 @@ import { Enrollment } from '../Enrollment';
   providedIn: 'root',
 })
 export class MysqlService {
-  private apiUrl = 'https://mysql-express.onrender.com/api/reports';
-  private enrollUrl = 'https://mysql-express.onrender.com/api/enrollments';
-  // private apiUrl = 'http://localhost:3000/api/reports';
-  // private enrollUrl = 'http://localhost:3000/api/enrollments';
+  // private apiUrl = 'https://mysql-express.onrender.com/api/reports';
+  // private enrollUrl = 'https://mysql-express.onrender.com/api/enrollments';
+  private apiUrl = 'http://localhost:3000/api/reports';
+  private enrollUrl = 'http://localhost:3000/api/enrollments';
 
   constructor(private http: HttpClient) {}
 

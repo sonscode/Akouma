@@ -235,20 +235,14 @@ export class ReportDataComponent implements OnInit{
       this.markForm.controls['summonDate'].setValue(this.editData.summonDate);
       this.markForm.controls['summonTime'].setValue(this.editData.summonTime);
       this.markForm.controls['note'].setValue(this.editData.note);
-
-
     }
-
-
-
 
   }
 // IMPLEMENTING LOGOUT FXN
   logout(){
     if (confirm("Logout?")) {
       this.authService.signOut();
-    this.authapi.logout();
-
+      this.authapi.logout();
     }
   }
 
